@@ -5,6 +5,10 @@ ruby "2.3.1"
 gem 'rails', '>= 5.0.0.rc1', '< 5.1'
 gem 'pg'
 gem 'puma', '~> 3.0'
+# Use devise for authentication
+gem 'devise'
+gem 'twitter-bootstrap-rails'
+gem 'devise-bootstrap-views'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'active_model_serializers', '~> 0.10.0'
@@ -12,6 +16,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 group :development, :test do
   gem 'dotenv'
   gem 'jazz_fingers'
+  gem 'sqlite3'
 end
 
 group :development do
