@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "PickAnotherServer" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Big Dog" %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "application", :media => "all" %>
@@ -45,12 +45,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">PickAnotherServer</a>
+        <%= link_to "Home", root_path, class: 'navbar-brand icon-large icon-dog'%>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+            <li><%= link_to "Entries", articles_path %></li>
+            <li><%= link_to "Tunes", "#"  %></li>
+            <li><%= link_to "Genres", "#"  %></li>
+            <li><%= link_to "Pickers", users_path %></li>
           </ul>
         </div>
       </div>
@@ -75,8 +76,9 @@
         </div><!--/span-->
       </div><!--/row-->
 
+
       <footer>
-        <p>&copy; Company 2016</p>
+        <p>&copy; Big Dog on a Little Fence 2016</p>
       </footer>
 
     </div> <!-- /container -->

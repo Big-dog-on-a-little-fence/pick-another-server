@@ -1,8 +1,12 @@
 class ArticlesController < ApplicationController
+  ### Convention order ==> Index, Show, New, Edit, Create, Update, Destroy
   before_action :set_article, only: [:edit, :update, :show, :destroy]
   
   def index
     @articles = Article.all
+  end
+  
+  def show
   end
 
   def new
@@ -23,9 +27,9 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def show
+  def update
   end
-  
+
   def destroy
   end
 
