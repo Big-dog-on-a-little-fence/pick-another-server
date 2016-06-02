@@ -1,22 +1,10 @@
-<ul>
-  <li>
-    <div class="container">
-        <h1>Dashboard</h1>
-    </div>
-  </li>
-  <li>
-    <div class="container">
-        <%= link_to "new tune submission", new_article_path %>
-    </div>
-  </li>
-  <li>
-    <div class="container">
-        <%= link_to "tune submissions", articles_path %>
-    </div>
-  </li>
-  <li>
-    <div class="container">
-        <%= link_to "logout", destroy_user_session_path, method: :delete %>
-    </div>
-  </li>
-</ul>
+<div align="center" class="container jumbotron">
+    <h1>Dashboard</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-12 text-center">
+    <%= link_to "My Recordings", articles_path, class: "btn dashboard-btn" %>
+    <%= link_to "Create New Recording", new_article_path, class: "btn dashboard-btn" %>
+  </div>
+</div>

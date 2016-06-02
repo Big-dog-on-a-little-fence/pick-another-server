@@ -1,3 +1,29 @@
 ul {
   list-style-type: none;
 }
+
+footer {
+  padding-top: 20px;
+  margin-top: 20px; /* space between content and footer */
+  box-sizing: border-box;
+  position: relative;
+  width: 100%;
+}
+
+.dashboard-btn {
+    display: inline-block;
+    vertical-align: top;
+    background-color: #4CAF50; /* Green */
+    border: 1px solid green;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+//     float: left;
+}
+
+.dashboard-btn:hover {
+    background-color: #3e8e41;
+}
