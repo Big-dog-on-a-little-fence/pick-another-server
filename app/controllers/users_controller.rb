@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  ### Convention order ==> Index, Show, New, Edit, Create, Update, Destroy
   before_action :set_user, only: [:edit, :update, :show]
   
   def dashboard

@@ -1,6 +1,4 @@
-<h1 align="center">Welcome to <%= @user.email %>'s page</h1>
-
-<h4 align="center"><%= @user.email %>'s entries</h4>
+<h1 align="center"><%= @user.username %>'s Entries</h1>
 
 <div class="center">
   <%= render 'articles/article', obj: @user_articles %>
