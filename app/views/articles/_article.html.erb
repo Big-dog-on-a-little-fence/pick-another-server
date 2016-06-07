@@ -8,6 +8,14 @@
         <div class="article-body">
           <%= truncate(article.description, length: 100) %>
           <div class="article-meta-details">
+            <% if article.genres.any? %>
+              <small>Genres: 
+              <% article.genres.each do |genre| %>
+                <%= link_to "#{genre.name}", genre_path(genre) %>
+              <% end %></small>
+            <% end %>
+          </div> <!-- /article-meta-details -->
+          <div class="article-meta-details">
             <small>Created by: 
             <% if article.user %>
               <%= link_to article.user.username, user_path(article.user) %>
