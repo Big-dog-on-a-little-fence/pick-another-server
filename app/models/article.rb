@@ -1,5 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :user
+  has_many :article_genres
+  has_many :genres, through: :article_genres
   validates :title, presence: true, length: { minimum:3, maximum: 50 }
   validates :key, presence: true, length: { minimum:1, maximum: 5 }
   validates :instrument, presence: true, length: { minimum:2, maximum: 30 }

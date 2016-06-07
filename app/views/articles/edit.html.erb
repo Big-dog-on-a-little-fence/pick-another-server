@@ -1,26 +1,4 @@
 <div class="panel-heading">
   <h4>Edit Article</h4>
-  <div class="panel-body">
-    <%= form_for @article do |f| %>
-      <div class="form-group">
-          <%= f.label :title %><br>
-          <%= f.text_field :title, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="form-group">
-          <%= f.label :key %><br>
-          <%= f.text_field :key, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="form-group">
-          <%= f.label :instrument %><br>
-          <%= f.text_field :instrument, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="form-group">
-          <%= f.label :description %><br>
-          <%= f.text_area :description, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="form-group">
-          <%= f.submit %>
-      </div>
-    <% end %>
-  </div> <!-- end panel-body -->
+  <%= render "form" %>
 </div> <!-- end panel-heading -->

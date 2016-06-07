@@ -1,5 +1,14 @@
-<h1 align="center"><%= @user.username %>'s Entries</h1>
+<div align="center" class="well col-md-3">
+    <h3 align="center">Sidebar</h3>
+    <ul align="center">
+      <li><%= link_to "New Recording", new_article_path, class: "btn btn-block dashboard-btn" %></li>
+      <li><%= link_to "New Genre", new_genre_path, class: "btn btn-block dashboard-btn" %></li>
+      <li><%= link_to "Do Another Thing", "#", class: "btn btn-block dashboard-btn"  %></li>
+    </ul>
+</div><!--/.well -->
 
-<div class="center">
+<div class="col-md-9">
+  <h1 align="center" class="jumbotron"><%= @user.username %>'s Recordings</h1>
   <%= render 'articles/article', obj: @user_articles %>
 </div>
+

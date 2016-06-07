@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   #root 'welcome#index'
   root 'users#dashboard'
   resources :articles
+  resources :genres, except: [:destroy]
   
 end

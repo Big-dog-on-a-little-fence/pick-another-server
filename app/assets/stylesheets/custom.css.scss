@@ -13,17 +13,18 @@ footer {
 .dashboard-btn {
     display: inline-block;
     vertical-align: top;
-    background-color: #4CAF50; /* Green */
-    border: 1px solid green;
+    background-color: #420C07;
+    border: 1px solid brown;
     color: white;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
     cursor: pointer;
-//     float: left;
 }
 
 .dashboard-btn:hover {
-    background-color: #3e8e41;
+    background-color: #8B4513;
+    color: white;
+    font-weight: bold;
 }

@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   ### Convention order ==> Index, Show, New, Edit, Create, Update, Destroy
-  before_action :set_article, only: [:edit, :update, :show, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
   
   def index
     @articles = Article.all
@@ -47,7 +47,7 @@ class ArticlesController < ApplicationController
       @article = Article.find(params[:id])
     end
     def article_params  # whitelist method
-      params.require(:article).permit(:title, :key, :instrument, :description)
+      params.require(:article).permit(:title, :key, :instrument, :description, genre_ids: [])
     end
 
 end

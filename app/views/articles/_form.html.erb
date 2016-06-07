@@ -1,0 +1,28 @@
+<div class="panel-body">
+<%= form_for @article do |f| %>
+  <div class="form-group">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, autofocus: true, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :key %><br>
+    <%= f.text_field :key, autofocus: true, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :instrument %><br>
+    <%= f.text_field :instrument, autofocus: true, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, autofocus: true, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name do |cb| %>
+      <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
+    <% end %>
+  </div>
+  <div class="form-group">
+      <%= f.submit %>
+  </div>
+<% end %>
+</div> <!-- end panel-body -->
