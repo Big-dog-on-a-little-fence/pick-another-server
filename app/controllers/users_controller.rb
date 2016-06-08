@@ -11,7 +11,8 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user_articles = @user.articles
+    #@user_articles = @user.articles
+    @user_articles = @user.articles.page(params[:page])
   end
   
   def update  ## added for devise username modification
