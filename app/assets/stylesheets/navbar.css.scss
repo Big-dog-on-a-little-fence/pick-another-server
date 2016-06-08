@@ -1,0 +1,24 @@
+/* NAVBAR STYLING */
+.navbar {
+  background-color: #D6BF86; /* straw color */
+}
+
+.navbar .navbar-brand {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #141414; /* matte black */
+}
+
+.navbar .navbar-brand:hover {
+  color: #2e618d; /* dark bootstrap blue */
+}
+
+.navbar-collapse > .navbar-nav > li {
+  font-size: 1.4em;
+  color: black;
+}
+
+// .navbar-nav > li:hover {
+//   color: #2e618d; /* bootstrap blue */
+//   font-weight: bold;
+// }

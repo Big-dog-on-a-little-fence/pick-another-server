@@ -1,5 +1,5 @@
 ul {
-  list-style-type: none;
+  list-style-type: none; /* remove list bullets */
 }
 
 footer {
@@ -10,21 +10,32 @@ footer {
   width: 100%;
 }
 
-.dashboard-btn {
-    display: inline-block;
-    vertical-align: top;
-    background-color: #420C07;
-    border: 1px solid brown;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    cursor: pointer;
-}
+/* GENRE CHECKBOX BUTTONS */
+// .btn-genre {
+//   background-color: #faebd7; /* antique-white */
+//   border-color: #141414; /* matte black */
+// }
 
-.dashboard-btn:hover {
-    background-color: #8B4513;
-    color: white;
-    font-weight: bold;
-}
+// .input_checkbox input {
+//   width: auto !important;
+// }
+
+// .btn-genre > input[type="checkbox"]:checked + label {
+//   background-color: #428bca; /* bootstrap blue */
+//   color: #faebd7; /* antique-white */
+//   font-weight: bold;
+// }
+
+
+// .btn-genre > input[type="checkbox"]:checked + label {
+//   background-color: #428bca; /* bootstrap blue */
+//   color: #faebd7; /* antique-white */
+//   font-weight: bold;
+// }
+
+
+// input[type="checkbox"]:checked + label {
+//   background-color: #428bca; /* bootstrap blue */
+//   color: #f00;
+//   font-style: normal;
+// } 
