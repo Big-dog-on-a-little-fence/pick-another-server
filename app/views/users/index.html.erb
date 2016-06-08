@@ -1,6 +1,7 @@
 <h1 align="center" class="jumbotron">All Pickers and Fiddlers</h1>
 
 <div align="center">
+  <%= paginate @users %>
   <% @users.each do |user| %>
     <ul class="listing">
       <div class="row">

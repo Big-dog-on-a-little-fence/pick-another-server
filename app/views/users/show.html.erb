@@ -9,6 +9,7 @@
 
 <div class="col-md-9">
   <h1 align="center" class="jumbotron"><%= @user.username %>'s Recordings</h1>
+  <%= paginate @user_articles %>
   <%= render 'articles/article', obj: @user_articles %>
 </div>
 

@@ -6,7 +6,7 @@ gem 'rails', '>= 5.0.0.rc1', '< 5.1'
 gem 'puma', '~> 3.0'
 # Use devise for authentication
 gem 'devise'
-# gem 'will_paginate'
+gem 'kaminari'
 # gem 'bootstrap-will_paginate'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'twitter-bootstrap-rails'

@@ -1,5 +1,6 @@
 <h1 align = "center" class="jumbotron">All Genres</h1>
 <div align = "center">
+  <%= paginate @genres %>
   <% @genres.each do |genre| %>
     <ul class="listing">
       <div class="row">

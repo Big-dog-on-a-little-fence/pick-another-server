@@ -2,7 +2,8 @@ class GenresController < ApplicationController
   before_action :set_genre, only: [:show]
   
   def index
-    @genres = Genre.all
+    #@genres = Genre.all
+    @genres = Genre.page(params[:page])
   end
 
   def show
