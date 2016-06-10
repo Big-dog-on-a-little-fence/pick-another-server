@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
   ### Convention order ==> Index, Show, New, Edit, Create, Update, Destroy
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+
   def index
     #@articles = Article.all
     @articles = Article.page(params[:page]).per(10)
@@ -49,6 +50,12 @@ class ArticlesController < ApplicationController
     end
     def article_params  # whitelist method
       params.require(:article).permit(:title, :key, :instrument, :description, genre_ids: [])
+    end
+    def require_same_user
+      if (current_user != @article.user) and !current_user.admin?
+        flash[:danger] = "You can only edit or delete your own articles"
+        redirect_to root_path
+      end
     end
 
 end

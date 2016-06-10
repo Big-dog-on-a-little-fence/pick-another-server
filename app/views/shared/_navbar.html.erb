@@ -14,20 +14,21 @@
     <div class="navbar-collapse collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav">
         <li><%= link_to "Recordings", articles_path %></li>
-        <li><%= link_to "Tunes", "#"  %></li>
+        <li><%= link_to "Tunes", "#" %></li>
         <li><%= link_to "Genres", genres_path %></li>
         <li><%= link_to "Pickers", users_path %></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><%= "Admin " if current_user.try(:admin?) %></li>
-        <li>
           <% if user_signed_in? %>
-            <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+            <% if current_user.try(:admin?) %>
+              <li><span id="admin-label" class="label label-default navbar-text">
+                <%= "Admin" %></span></li>
+            <% end %>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
           <% else %>
-            <%= link_to "Login", new_user_session_path %>
+            <li><%= link_to "Login", new_user_session_path %></li>
           <% end %>
-        </li>
       </ul>
     </div> <!-- end navbar-collapse -->
     
