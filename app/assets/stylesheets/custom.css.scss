@@ -10,6 +10,52 @@ footer {
   width: 100%;
 }
 
+/* CUSTOM BOOTSTRAP BUTTONS */
+.btn-db {
+  color: #2e618d;
+  background-color: #D6BF86;
+  border-color: #141414;
+  // border-style: solid;
+}
+.btn-db:hover,
+.btn-db:focus,
+.btn-db:active,
+.btn-db.active,
+.open .dropdown-toggle.btn-db {
+  color: #2e618d;
+  background-color: #FAEBD7;
+  border-color: #141414;
+}
+.btn-db:active,
+.btn-db.active,
+.open .dropdown-toggle.btn-db {
+  background-image: none;
+}
+.btn-db.disabled,
+.btn-db[disabled],
+fieldset[disabled] .btn-db,
+.btn-db.disabled:hover,
+.btn-db[disabled]:hover,
+fieldset[disabled] .btn-db:hover,
+.btn-db.disabled:focus,
+.btn-db[disabled]:focus,
+fieldset[disabled] .btn-db:focus,
+.btn-db.disabled:active,
+.btn-db[disabled]:active,
+fieldset[disabled] .btn-db:active,
+.btn-db.disabled.active,
+.btn-db[disabled].active,
+fieldset[disabled] .btn-db.active {
+  background-color: #ff0000;
+  border-color: #008000;
+}
+.btn-db .badge {
+  color: #ff0000;
+  background-color: #0000ff;
+}
+
+
+
 /* GENRE CHECKBOX BUTTONS */
 // .btn-genre {
 //   background-color: #faebd7; /* antique-white */

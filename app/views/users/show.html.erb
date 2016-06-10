@@ -1,15 +1,32 @@
-<div align="center" class="well col-md-3">
-    <h3 align="center">User Actions</h3>
+<!-- if user's own show page-->
+<% if @user == current_user %>
+  <h1 align="center" class="jumbotron"><%= @user.username %>'s Dashboard</h1>
+  <div align="center" class="col-md-3">
+    <h3 align="center">User Actions</h3><br>
     <div align="center" class="btn-group-vertical" role="group" aria-label="...">
-      <%= link_to "New Recording", new_article_path, class: "btn btn-block btn-success" %></li>
-      <%= link_to "New Genre", new_genre_path, class: "btn btn-block btn-success" %></li>
-       <%= link_to "Do Another Thing", "#", class: "btn btn-block btn-success"  %></li>
+      <%= link_to "New Genre", new_genre_path, class: "btn btn-lg btn-block btn-primary" if current_user.admin? %>
+      <%= link_to "New Recording", new_article_path, class: "btn btn-lg btn-block btn-db" %>
+      <%= link_to "Start a Jam", "#", class: "btn btn-lg btn-block btn-db"  %>
+      <%= link_to "Join a Jam", "#", class: "btn btn-lg btn-block btn-db"  %>
+      <%= link_to "Make a Picker Friend", "#", class: "btn btn-lg btn-block btn-db"  %>
+      <%= link_to "Random Song Generator", "#", class: "btn btn-lg btn-block btn-db"  %>
+      <%= link_to "Do Another Thing", "#", class: "btn btn-lg btn-block btn-db"  %>
     </div> <!--/.btn-group-vertical-->
-</div><!--/.well -->
+  </div><!--/.col-md-3 -->
+  
+  <div class="col-md-9">
+    <h3 align="center">Your Recordings</h1><br>
+    <%= paginate @user_articles %>
+    <%= render 'articles/article', obj: @user_articles %>
+  </div>
 
-<div class="col-md-9">
-  <h1 align="center" class="jumbotron"><%= @user.username %>'s Recordings</h1>
-  <%= paginate @user_articles %>
-  <%= render 'articles/article', obj: @user_articles %>
-</div>
+<!-- else if NOT user's own show page-->  
+<% else %>
+  <div class="container">
+    <h1 align="center" class="jumbotron"><%= @user.username %>'s Recordings</h1>
+    <%= paginate @user_articles %>
+    <%= render 'articles/article', obj: @user_articles %>
+  </div>
+
+<% end %>
 
