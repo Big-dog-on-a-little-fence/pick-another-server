@@ -49,7 +49,7 @@ class ArticlesController < ApplicationController
       @article = Article.find(params[:id])
     end
     def article_params  # whitelist method
-      params.require(:article).permit(:title, :key, :instrument, :description, genre_ids: [])
+      params.require(:article).permit(:title, :key, :youtube_url, :instrument, :description, genre_ids: [])
     end
     def require_same_user
       if (current_user != @article.user) and !current_user.admin?

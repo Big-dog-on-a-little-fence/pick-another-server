@@ -12,8 +12,10 @@
     </tr>
 </table>
 
-<div align="center" class="container">
-  <iframe width="560" height="315" src="//www.youtube.com/embed/DokUjuZmpCE"></iframe>
+<div align="center" class="embed-container">
+  <% if @article.youtube_url.present? %>
+    <%= embed(@article.youtube_url) %>
+  <% end %>
 </div>
 
 <div align="center" class="container">
