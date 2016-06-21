@@ -1,3 +1,43 @@
 <h1 align="center" class="jumbotron">Picker Recordings</h1>
-<%= paginate @articles %>
-<%= render 'article', obj: @articles %>
+
+<div class="row well">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <%= search_form_for @q do |f| %>
+            <!-- Search if the name field contains...-->
+            <div class="form-group">
+              <%= f.label :title_cont, "Title contains" %>
+              <%= f.search_field :title_cont, autofocus: true, class: "form-control" %>
+            </div>
+            <div class="actions">
+                <%= f.submit "Search"%>
+            </div>
+      <% end %>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->   
+</div><!-- /.row .field --> 
+
+<br>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :title, 'Title', default_order: :created_at) %></th>
+      <!--<th>Genre</th>-->
+      <th>Description</th>
+      <!--<th>Musician</th>-->
+      <th><%= sort_link(@q, :created_at, 'Created/Updated', default_order: :created_at) %></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= link_to article.title, article_path(article) %></td>
+        <td><%= truncate(article.description, length: 100) %></td>
+        <td><%= time_ago_in_words(article.created_at) %> ago, 
+                  last updated: <%= time_ago_in_words(article.updated_at) %> ago</td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>

@@ -4,8 +4,10 @@ class ArticlesController < ApplicationController
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def index
-    #@articles = Article.all
-    @articles = Article.page(params[:page]).per(10)
+    # @articles = Article.page(params[:page]).per(10)
+    @q = Article.ransack(params[:q])
+    # @articles = @q.result.includes(:genres, :users).page(params[:page]).per(10)
+    @articles = @q.result
   end
   
   def show
