@@ -7,7 +7,9 @@ class GenresController < ApplicationController
   end
 
   def show
-    @genre_articles = @genre.articles
+    #@genre_articles = @genre.articles
+    @q = @genre.articles.ransack(params[:q])
+    @genre_articles = @q.result
   end
   
   def new

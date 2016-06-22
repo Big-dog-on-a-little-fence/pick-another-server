@@ -7,8 +7,7 @@ class ArticlesController < ApplicationController
     # @articles = Article.page(params[:page]).per(10)
     @q = Article.ransack(params[:q])
     # @articles = @q.result.includes(:genres, :users).page(params[:page]).per(10)
-    #@articles = @q.result.includes(:genres, :users)
-    @articles = @q.result  ## this one works
+    @articles = @q.result.includes(:genres)
   end
   
   def show

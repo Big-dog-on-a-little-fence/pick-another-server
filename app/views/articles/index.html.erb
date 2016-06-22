@@ -18,26 +18,5 @@
 </div><!-- /.row .field --> 
 
 <br>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= sort_link(@q, :title, 'Title', default_order: :created_at) %></th>
-      <!--<th>Genre</th>-->
-      <th>Description</th>
-      <!--<th>Musician</th>-->
-      <th><%= sort_link(@q, :created_at, 'Created/Updated', default_order: :created_at) %></th>
-    </tr>
-  </thead>
-  
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= link_to article.title, article_path(article) %></td>
-        <td><%= truncate(article.description, length: 100) %></td>
-        <td><%= time_ago_in_words(article.created_at) %> ago, 
-                  last updated: <%= time_ago_in_words(article.updated_at) %> ago</td>
-      </tr>
-    <% end %>
-  </tbody>
 
-</table>
+<%= render 'article', obj: @articles %>

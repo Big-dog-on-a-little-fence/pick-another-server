@@ -1,36 +1,22 @@
-<!-- if user's own show page-->
+<!-- if user's own show page show actions dashboard -->
 <% if @user == current_user %>
-  <h1 align="center" class="jumbotron"><%= @user.username %>'s Dashboard</h1>
-  <div align="center" class="col-md-3">
-    <h3 align="center">User Actions</h3><br>
-    <div align="center" class="btn-group-vertical" role="group" aria-label="...">
-      <%= link_to "New Genre", new_genre_path, class: "btn btn-lg btn-block btn-primary" if current_user.admin? %>
-      <%= link_to "New Recording", new_article_path, class: "btn btn-lg btn-block btn-db" %>
-      <%= link_to "Start a Jam", "#", class: "btn btn-lg btn-block btn-db"  %>
-      <%= link_to "Join a Jam", "#", class: "btn btn-lg btn-block btn-db"  %>
-      <%= link_to "Make a Picker Friend", "#", class: "btn btn-lg btn-block btn-db"  %>
-      <%= link_to "Random Song Generator", "#", class: "btn btn-lg btn-block btn-db"  %>
-      <%= link_to "Do Another Thing", "#", class: "btn btn-lg btn-block btn-db"  %>
-    </div> <!--/.btn-group-vertical-->
-  </div><!--/.col-md-3 -->
-  
-  <div class="col-md-9">
-    <h3 align="center">Your Recordings</h1><br>
-      <table class="table table-striped">
-        <%= paginate @user_articles %>
-        <%= render 'articles/article', obj: @user_articles %>
-      </table>
-  </div>
-
-<!-- else if NOT user's own show page-->  
-<% else %>
-  <div class="container">
-    <table class="table table-striped">
-      <h1 align="center" class="jumbotron"><%= @user.username %>'s Recordings</h1>
-      <%= paginate @user_articles %>
-      <%= render 'articles/article', obj: @user_articles %>
-    </table>
-  </div>
-
+  <div align="center" class="container">
+    <div align="center">
+      <h2>Dashboard</h2>
+      <%= link_to "New Genre", new_genre_path, class: 'btn btn-primary btn-lg' if current_user.admin? %>
+      <%= link_to "New Recording", new_article_path, class: 'btn btn-db btn-lg' %>
+      <%= link_to "Start a Jam", "#", class: 'btn btn-db btn-lg' %>
+      <%= link_to "Join a Jam", "#", class: 'btn btn-db btn-lg'  %>
+      <%= link_to "Make a Picker Friend", "#", class: 'btn btn-db btn-lg'  %>
+      <%= link_to "Random Song Generator", "#", class: 'btn btn-db btn-lg'  %>
+      <%= link_to "Do Another Thing", "#", class: 'btn btn-db btn-lg'  %>
+    </div> <!--/.btn-group-->
+  </div><!--/.container -->
 <% end %>
+
+<h1 align="center" class="jumbotron"><%= @user.username %>'s Recordings</h1>
+<div class="container">
+  <%= render 'articles/article', obj: @user_articles %>
+</div>
+
 
