@@ -16,16 +16,20 @@
   
   <div class="col-md-9">
     <h3 align="center">Your Recordings</h1><br>
-    <%= paginate @user_articles %>
-    <%= render 'articles/article', obj: @user_articles %>
+      <table class="table table-striped">
+        <%= paginate @user_articles %>
+        <%= render 'articles/article', obj: @user_articles %>
+      </table>
   </div>
 
 <!-- else if NOT user's own show page-->  
 <% else %>
   <div class="container">
-    <h1 align="center" class="jumbotron"><%= @user.username %>'s Recordings</h1>
-    <%= paginate @user_articles %>
-    <%= render 'articles/article', obj: @user_articles %>
+    <table class="table table-striped">
+      <h1 align="center" class="jumbotron"><%= @user.username %>'s Recordings</h1>
+      <%= paginate @user_articles %>
+      <%= render 'articles/article', obj: @user_articles %>
+    </table>
   </div>
 
 <% end %>

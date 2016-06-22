@@ -8,6 +8,9 @@
     <td>Instrument: <%= @article.instrument %></td>
   </tr>
   <tr>
+    <td>Musician: <%= link_to @article.user.username, user_path(@article.user) %></td>
+  </tr>
+  <tr>
     <td>Description: <%= @article.description %></td>
     </tr>
 </table>
