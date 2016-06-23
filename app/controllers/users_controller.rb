@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def show
     #@user_articles = @user.articles
     @q = @user.articles.ransack(params[:q])
-    @user_articles = @q.result
+    @user_articles = @q.result.page(params[:page]).per(25)
   end
   
   def update  ## added for devise username modification

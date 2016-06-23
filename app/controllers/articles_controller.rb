@@ -6,8 +6,7 @@ class ArticlesController < ApplicationController
   def index
     # @articles = Article.page(params[:page]).per(10)
     @q = Article.ransack(params[:q])
-    # @articles = @q.result.includes(:genres, :users).page(params[:page]).per(10)
-    @articles = @q.result.includes(:genres)
+    @articles = @q.result.includes(:genres).page(params[:page]).per(25)
   end
   
   def show

@@ -9,7 +9,7 @@ class GenresController < ApplicationController
   def show
     #@genre_articles = @genre.articles
     @q = @genre.articles.ransack(params[:q])
-    @genre_articles = @q.result
+    @genre_articles = @q.result.page(params[:page]).per(25)
   end
   
   def new
