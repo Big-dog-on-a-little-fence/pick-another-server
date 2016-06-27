@@ -4,7 +4,14 @@
   <thead>
     <tr>
       <th><%= sort_link(@q, :title, 'Title', default_order: :updated_at) %></th>
-      <th>Genre(s)</th>
+      <th>
+      <% if obj == @articles %>
+        <%= sort_link(@q, :genres, 'Genre(s)', default_order: :updated_at) %>
+      <% else %>
+        Genre(s)
+      <% end %>
+      </th>
+      <th>User</th>
       <th>Description</th>
       <th><%= sort_link(@q, :updated_at, 'Last Updated', default_order: :updated_at) %></th>
     </tr>
