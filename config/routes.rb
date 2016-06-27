@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   root 'users#dashboard'
   resources :articles
   resources :genres, except: [:destroy]
+  resources :tunes, except: [:destroy]
   
 end

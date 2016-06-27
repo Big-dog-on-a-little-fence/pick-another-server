@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :articles, dependent: :destroy
+  has_many :repertoires
+  has_many :tunes, through: :repertoires
   attr_accessor :login
   
   # Only allow letter, number, underscore and punctuation.
