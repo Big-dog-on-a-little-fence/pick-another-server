@@ -2,7 +2,9 @@ class TunesController < ApplicationController
   ### Convention methods order ==> Index, Show, New, Edit, Create, Update, Destroy
 
   def index
-    @tunes = Tune.all
+    #@tunes = Tune.all
+    @q = Tune.ransack(params[:q])
+    @tunes = @q.result.page(params[:page]).per(25)
   end
 
   def show
