@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160627215825) do
+ActiveRecord::Schema.define(version: 20160706191614) do
 
   create_table "article_genres", force: :cascade do |t|
     t.integer "article_id"
@@ -38,6 +38,11 @@ ActiveRecord::Schema.define(version: 20160627215825) do
   create_table "repertoires", force: :cascade do |t|
     t.integer "user_id"
     t.integer "tune_id"
+  end
+
+  create_table "tune_categories", force: :cascade do |t|
+    t.integer "tune_id"
+    t.integer "category_id"
   end
 
   create_table "tunes", force: :cascade do |t|
