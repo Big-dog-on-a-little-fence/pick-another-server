@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 20160706191614) do
     t.integer "tune_id"
   end
 
-  create_table "tune_categories", force: :cascade do |t|
+  create_table "tune_genres", force: :cascade do |t|
     t.integer "tune_id"
-    t.integer "category_id"
+    t.integer "genre_id"
   end
 
   create_table "tunes", force: :cascade do |t|
