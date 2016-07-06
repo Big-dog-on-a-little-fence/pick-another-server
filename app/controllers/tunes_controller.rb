@@ -27,7 +27,7 @@ class TunesController < ApplicationController
   private  ## private functions
   
   def tune_params
-    params.require(:tune).permit(:name, :key, user_ids: [])
+    params.require(:tune).permit(:name, :key, genre_ids: [], user_ids: [])
   end
 
 end
