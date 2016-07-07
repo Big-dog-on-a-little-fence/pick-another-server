@@ -5,6 +5,7 @@
     <tr>
       <th><%= sort_link(@q, :name, 'Name', default_order: :name) %></th>
       <th><%= sort_link(@q, :key, 'Key', default_order: :name) %></th>
+      <th><%= sort_link(@q, :genres, 'Genre(s)', default_order: :name) %></th>
       <th><%= sort_link(@q, :updated_at, 'Last Updated', default_order: :name) %></th>
     </tr>
   </thead>
@@ -13,6 +14,13 @@
       <tr>
         <td><%= link_to tune.name, tune_path(tune) %></td>
         <td><%= tune.key %></td>
+        <td>
+          <% if tune.genres.any? %>
+            <% tune.genres.each do |genre| %>
+              <%= "#{genre.name}" %>
+            <% end %>
+          <% end %>
+        </td>
         <td><%= time_ago_in_words(tune.updated_at) %> ago</td>
       </tr>
     <% end %>

@@ -26,6 +26,7 @@
               <%= link_to "#{genre.name}", genre_path(genre) %>
             <% end %>
           <% end %>
+        </td>
         <td><%= link_to article.user.username, user_path(article.user) %></td>
         <td><%= truncate(article.description, length: 100) %></td>
         <td><%= time_ago_in_words(article.updated_at) %> ago</td>

@@ -46,12 +46,15 @@ class ArticlesController < ApplicationController
   end
 
   private
-    def set_article  ## create private method to reuse
+    
+    def set_article
       @article = Article.find(params[:id])
     end
+    
     def article_params  # whitelist method
       params.require(:article).permit(:title, :key, :youtube_url, :instrument, :description, genre_ids: [])
     end
+    
     def require_same_user
       if (current_user != @article.user) and !current_user.admin?
         flash[:danger] = "You can only edit or delete your own articles"

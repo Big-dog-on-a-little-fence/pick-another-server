@@ -1,0 +1,9 @@
+<h2 align="center" class="jumbotron"><%= @tune.name %></h2>
+<h3>Key: <%= @tune.key %></h3>
+<h3>Genre: 
+  <% if @tune.genres.any? %>
+    <% @tune.genres.each do |genre| %>
+      <%= "#{genre.name}" %>
+    <% end %>
+  <% end %>
+</h3>

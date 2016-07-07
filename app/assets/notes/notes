@@ -1,6 +1,6 @@
 g.articles.collect { |article| article.title }
 
-in jam model maybe:
+in jam controller maybe:
 @users = ....
 @tunes = intersect_tunes(@users)
 

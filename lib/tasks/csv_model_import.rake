@@ -1,6 +1,6 @@
 #lib/tasks/import.rake
 
-require 'csv'
+#### Could be a cool more generic task, however have not gotten it to work
 
 namespace :import do
   desc "Imports a CSV file into an ActiveRecord table"
