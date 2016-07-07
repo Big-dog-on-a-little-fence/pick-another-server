@@ -13,5 +13,5 @@ namespace :db do
       end
     end
   end
-  
+
 end

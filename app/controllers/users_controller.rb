@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:update, :show, :destroy]
+  before_action :set_user, only: [:update, :show, :destroy, :repetoire, :recordings]
   before_action :require_admin, only: [:destroy]
   
   def dashboard
@@ -28,6 +28,18 @@ class UsersController < ApplicationController
     @user.destroy
     flash[:danger] = "User and all articles created by user have been deleted"
     redirect_to users_path
+  end
+
+  def recordings
+    #@user = current_user
+    @q = @user.articles.ransack(params[:q])
+    @user_articles = @q.result.page(params[:page]).per(25)
+  end
+  
+  def repetoire
+    #@user = current_user
+    @q = @user.tunes.ransack(params[:q])
+    @user_tunes = @q.result.page(params[:page]).per(25)
   end
 
   private  ### private functions

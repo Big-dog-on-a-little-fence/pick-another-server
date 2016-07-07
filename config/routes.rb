@@ -1,13 +1,22 @@
 Rails.application.routes.draw do
-  devise_for :users
-  scope "/dog" do
-    resources :users
-  end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  #root 'welcome#index'
+  
   root 'users#dashboard'
+  devise_for :users
+
+  resources :users do
+    member do
+      get 'repetoire'
+      get 'recordings'
+    end
+  end
+
+  resources :tunes, except: [:destroy]
   resources :articles
   resources :genres, except: [:destroy]
-  resources :tunes, except: [:destroy]
+  
+  ## custom routes
+  #get 'user/repetoire', :to => 'users#repetoire'
+  #get 'user/recordings', :to => 'users#recordings'
   
 end
+
