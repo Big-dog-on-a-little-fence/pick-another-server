@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  ### Convention methods order ==> Index, Show, New, Edit, Create, Update, Destroy
   before_action :set_user, only: [:update, :show, :destroy, :repetoire, :recordings]
   before_action :require_admin, only: [:destroy]
   

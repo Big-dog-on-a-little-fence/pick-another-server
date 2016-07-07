@@ -5,8 +5,9 @@ class TunesController < ApplicationController
   def index
     #@tunes = Tune.all
     @q = Tune.ransack(params[:q])
-    @tunes = @q.result.includes(:genres).page(params[:page]).per(100)
+    @tunes = @q.result(distinct: true).includes(:genres).page(params[:page]).per(100)
   end
+
 
   def show
   end

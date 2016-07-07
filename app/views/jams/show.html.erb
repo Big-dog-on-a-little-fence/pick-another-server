@@ -1,0 +1,11 @@
+<h1 align="center" class="jumbotron"><strong><%= @tunes.sample.name %></strong></h1>
+<div align="center">
+    <%= button_to "Generate Random Tune", jam_path(@jam), :method => :get, :class => 'btn btn-lg btn-primary'%>
+</div>
+<br><br>
+
+<h3>The jam participants all know the following tunes:</h3>
+
+<br>
+
+<%= render 'jam', obj: @tunes %>

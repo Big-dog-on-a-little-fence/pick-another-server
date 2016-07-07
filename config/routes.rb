@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :tunes, except: [:destroy]
   resources :articles
   resources :genres, except: [:destroy]
+  resources :jams, only: [:show, :new, :create, :destroy]
   
   ## custom routes
   #get 'user/repetoire', :to => 'users#repetoire'

@@ -2,12 +2,12 @@
 <% if @user == current_user %>
   <div align="center" class="container">
     <div align="center">
-      <h2>Dashboard</h2>
+      <h2>Dashboard</h2><br>
+      <%= link_to "Start a Jam", new_jam_path, class: 'btn btn-db btn-lg' %>
       <%= link_to "My Repetoire", repetoire_user_path, class: 'btn btn-db btn-lg' %>
       <%= link_to "My Recordings", recordings_user_path, class: 'btn btn-db btn-lg' %>
       <%= link_to "New Genre", new_genre_path, class: 'btn btn-primary btn-lg' if current_user.admin? %>
       <%= link_to "New Recording", new_article_path, class: 'btn btn-db btn-lg' %>
-      <%= link_to "Start a Jam", "#", class: 'btn btn-db btn-lg' %>
       <%= link_to "Make a Picker Friend", "#", class: 'btn btn-db btn-lg'  %>
     </div> <!--/.btn-group-->
   </div><!--/.container -->

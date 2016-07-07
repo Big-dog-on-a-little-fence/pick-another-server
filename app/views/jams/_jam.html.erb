@@ -1,0 +1,26 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Key</th>
+      <th>Genre(s)</th>
+      <th>Last Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% obj.each do |tune| %>
+      <tr>
+        <td><%= link_to tune.name, tune_path(tune) %></td>
+        <td><%= tune.key %></td>
+        <td>
+          <% if tune.genres.any? %>
+            <% tune.genres.each do |genre| %>
+              <%= "#{genre.name}" %>
+            <% end %>
+          <% end %>
+        </td>
+        <td><%= time_ago_in_words(tune.updated_at) %> ago</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
