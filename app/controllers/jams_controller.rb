@@ -4,7 +4,7 @@ class JamsController < ApplicationController
   before_action :set_tunes, only: [:show]
   
   def show
-    
+    @tune = @tunes.sample
   #   @q = @tunes.ransack(params[:q])
   #   @jam_tunes = @q.result.page(params[:page]).per(25)
   end

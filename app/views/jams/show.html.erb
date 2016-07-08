@@ -1,11 +1,33 @@
-<h1 align="center" class="jumbotron"><strong><%= @tunes.sample.name %></strong></h1>
+<div class="well">
+  <h1 align="center"><strong><%= @tune.name %></strong></h1>
+  <div class="row">
+    <h1 align="center"><%= @tune.key %></h1>
+    <h2 align="center">
+      <% @tune.genres.each do |genre| %>
+        <%= genre.name %>
+      <% end %>
+    </h2>
+  </div>
+</div>
+
+
 <div align="center">
-    <%= button_to "Generate Random Tune", jam_path(@jam), :method => :get, :class => 'btn btn-lg btn-primary'%>
+  <%= button_to "Generate Random Tune", jam_path(@jam), :method => :get, :class => 'btn btn-lg btn-danger'%>
 </div>
 <br><br>
 
-<h3>The jam participants all know the following tunes:</h3>
+<hr>
+<div class="row">
+  <div class="list-group col-md-6 col-md-offset-3">
+    <h4 align="center" class="list-group-item active">Jam Participants</h4>
+    <% @jam.users.each do |user| %>
+    <h4 align="center"  class="list-group-item"><%= link_to(user.username, user_path(user)) %></h4>
+    <% end %>
+  </div>
+</div>
+<br>
 
+<h3>You have <%= @tunes.count %> tunes in common:</h3>
 <br>
 
 <%= render 'jam', obj: @tunes %>
