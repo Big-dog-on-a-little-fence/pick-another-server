@@ -44,9 +44,11 @@ class UsersController < ApplicationController
   end
 
   private  ### private functions
-    def set_user
-      @user = User.find(params[:id])
-    end
+  
+  def set_user
+    @user = User.find(params[:id])
+  end
+    
   def require_admin
     if user_signed_in? and !current_user.admin?
       flash[:danger] = "Only admin users can perform that action" 

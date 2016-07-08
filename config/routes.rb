@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     member do
       get 'repetoire'
       get 'recordings'
+      get 'settings'
     end
   end
 
