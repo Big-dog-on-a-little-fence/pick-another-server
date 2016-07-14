@@ -5,8 +5,8 @@ class JamsController < ApplicationController
   
   def show
     @tune = @tunes.sample
-  #   @q = @tunes.ransack(params[:q])
-  #   @jam_tunes = @q.result.page(params[:page]).per(25)
+    ## @q = @tunes.ransack(params[:q])
+    ## @jam_tunes = @q.result.page(params[:page]).per(25)
   end
   
   def new
@@ -16,7 +16,7 @@ class JamsController < ApplicationController
   def create
     @jam = Jam.new(jam_params)
     if @jam.save
-      flash[:success] = "Get your jam on beyotch!"
+      flash[:success] = "Jam created successfully"
       redirect_to jam_path(@jam)
     else
       render 'new'  ## render new article template in case of failure for another try

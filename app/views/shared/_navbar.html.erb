@@ -8,15 +8,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "V●ᴥ●V", root_path, class: 'navbar-brand'%>
+      <% if user_signed_in? %>
+        <%= link_to "Dashboard", root_path, class: 'navbar-brand'%>
+      <% else %>
+        <%= link_to "V●ᴥ●V", root_path, class: 'navbar-brand'%>
+      <% end %>
     </div>
 
     <div class="navbar-collapse collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav">
         <li><%= link_to "Tunes", tunes_path %></li>
         <li><%= link_to "Genres", genres_path %></li>
-        <li><%= link_to "Pickers", users_path %></li>
-        <li><%= link_to "Recordings", articles_path %></li>
+        <li><%= link_to "Musicians", users_path %></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

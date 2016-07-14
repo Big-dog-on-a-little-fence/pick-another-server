@@ -7,8 +7,7 @@ class TunesController < ApplicationController
     @q = Tune.ransack(params[:q])
     @tunes = @q.result(distinct: true).includes(:genres).page(params[:page]).per(100)
   end
-
-
+  
   def show
   end
   
@@ -24,6 +23,15 @@ class TunesController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def update
+    if current_user.tunes.include?(@tune)
+      current_user.tunes.delete(@tune)
+    else
+      current_user.tunes << @tune
+    end
+    redirect_to tunes_path
   end
 
   private  ## private functions
