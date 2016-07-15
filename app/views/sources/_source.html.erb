@@ -1,0 +1,24 @@
+<h3 align="center">Resources</h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>URL Link</th>
+      <th>Description/Notes</th>
+      <th>Last Update</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% obj.each do |source| %>
+      <tr>
+        <td><%= source.version %></td>
+        <td><%= link_to source.link, source.link %></td>
+        <td>
+            <%= source.description %>
+        </td>
+        <td><%= time_ago_in_words(source.updated_at) %> ago</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
