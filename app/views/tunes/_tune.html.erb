@@ -3,6 +3,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th></th>
       <th><%= sort_link(@q, :name, 'Name', default_order: :name) %></th>
       <th><%= sort_link(@q, :key, 'Key', default_order: :name) %></th>
       <th><%= sort_link(@q, :genres, 'Genre(s)', default_order: :name) %></th>
@@ -12,6 +13,11 @@
   <tbody>
     <% obj.each do |tune| %>
       <tr>
+        <td>
+        <% if current_user.tunes.include?(tune) %>
+          <span id='rep-id' class='label label-default'>Known</span>
+        <% end %>
+        </td>
         <td><%= link_to tune.name, tune_path(tune) %></td>
         <td><%= tune.key %></td>
         <td>

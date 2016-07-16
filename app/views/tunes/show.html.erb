@@ -7,3 +7,10 @@
     <% end %>
   <% end %>
 </h3>
+<h3>
+<% if current_user.tunes.include?(@tune) %>
+  <%= button_to "(-) Remove from repetoire", tune_path(:tune_id => @tune.id, :user_id => current_user.id), :method => :put, class: 'btn btn-lg btn-danger' %>
+<% else %>
+  <%= button_to "(+) Add to repetoire", tune_path(:tune_id => @tune.id, :user_id => current_user.id), :method => :put, class: 'btn btn-lg btn-primary'%>
+<% end %>
+</h3>
