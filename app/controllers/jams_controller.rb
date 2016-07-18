@@ -2,9 +2,11 @@ class JamsController < ApplicationController
   ### Convention methods order ==> Index, Show, New, Edit, Create, Update, Destroy 
   before_action :set_jam, only: [:show, :destroy]
   before_action :set_tunes, only: [:show]
+  helper_method :jam_structure
   
   def show
     @tune = @tunes.sample
+    @j_struct = jam_structure(@jam.users)
     ## @q = @tunes.ransack(params[:q])
     ## @jam_tunes = @q.result.page(params[:page]).per(25)
   end
@@ -24,6 +26,23 @@ class JamsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def jam_structure(users)
+    j = {}
+    j['Kickoff'] = users.sample
+    j['Tag'] = users.sample
+    j['Trade'] = users.sample
+    j['Unison'] = users.sample
+    if users.length >= 2
+      j['Trade'] = users.sample(2)
+      j['Unison'] = users.sample(2)
+      if users.length >= 4
+        j['Unison'] = (users - j['Trade']).sample(2)
+      end
+      
+    end
+    return j
   end
 
   private  ## private methods
