@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :tunes, except: [:destroy] do
-    resources :sources
+    resources :sources, :notes
   end
   resources :articles
   resources :genres, except: [:destroy]
