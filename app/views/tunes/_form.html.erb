@@ -11,7 +11,7 @@
       <%= f.text_field :key, autofocus: true, class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.label "Genre(s)" %><br>
+      <%= f.label "Genres (check all that apply)" %><br>
       <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name do |cb| %>
         <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
       <% end %>
@@ -20,7 +20,7 @@
         <%= f.submit %>
     </div>
     <div class="form-group">
-      [ <%= link_to "Cancel request and return to dashboard", root_path %> ]
+      [ <%= link_to "Cancel request and return to tunes listing", tunes_path %> ]
     </div>
   <% end %>
 </div> <!-- end panel-body -->

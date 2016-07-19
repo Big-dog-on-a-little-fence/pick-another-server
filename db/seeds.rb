@@ -10,10 +10,23 @@ require 'csv'
 
 User.create([
   { username: 'SammyN', email: 'sammyn@pickanother.one', password: 'password' },
-  { username: 'SammyJ', email: 'sammyj@pickanother.one', password: 'password' },
+  { username: 'SammyJ', email: 'sjbrunster@gmail.com', password: 'password' },
   { username: 'benbruno', email: 'jer@pickanother.one', password: 'password' },
   { username: 'Jer', email: 'benbruno@pickanother.one', password: 'password' },
-  { username: 'Scott', email: 'scott@pickanother.one', password: 'password' }
+  { username: 'Scott', email: 'scott@pickanother.one', password: 'password' },
+  { username: 'Dave', email: 'dave@dave.one', password: 'password' }
+])
+
+Genre.create([
+  { name: 'Bluegrass' },
+  { name: 'Old-time' },
+  { name: 'Irish' },
+  { name: 'Scottish' },
+  { name: 'Texas Swing' },
+  { name: 'Ragtime' },
+  { name: 'Gypsy Jazz' },
+  { name: 'Country' },
+  { name: 'Folk' }
 ])
 
 # add tunes to db
