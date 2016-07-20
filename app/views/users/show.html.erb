@@ -4,7 +4,7 @@
     <div align="center">
       <h2>Dashboard</h2><br>
       <%= link_to "Start a Jam", new_jam_path, class: 'btn btn-db btn-lg' %>
-      <%= link_to "My Repetoire", repetoire_user_path, class: 'btn btn-db btn-lg' %>
+      <%= link_to "My Repertoire", repertoire_user_path, class: 'btn btn-db btn-lg' %>
       <%#= link_to "My Recordings", recordings_user_path, class: 'btn btn-db btn-lg' %>
       <%#= link_to "New Genre", new_genre_path, class: 'btn btn-primary btn-lg' if current_user.admin? %>
       <%#= link_to "New Recording", new_article_path, class: 'btn btn-db btn-lg' %>
@@ -14,7 +14,7 @@
   <div align="center" class="container">
     <div align="center">
       <h2><%= @user.username %>'s Stuff</h2>
-      <%= link_to "Repetoire", repetoire_user_path, class: 'btn btn-db btn-lg' %>
+      <%= link_to "Repertoire", repertoire_user_path, class: 'btn btn-db btn-lg' %>
       <%= link_to "Recordings", recordings_user_path, class: 'btn btn-db btn-lg' %>
     </div> <!--/.btn-group-->
   </div><!--/.container -->

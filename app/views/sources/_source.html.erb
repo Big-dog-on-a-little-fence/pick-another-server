@@ -3,6 +3,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th></th>
       <th>Version</th>
       <th>URL Link</th>
       <th>Description/Notes</th>
@@ -12,11 +13,10 @@
   <tbody>
     <% obj.each do |source| %>
       <tr>
+        <td><%= link_to 'Edit', edit_tune_source_path(@tune, source), class: "btn btn-xs btn-warning" %></td>
         <td><%= source.version %></td>
-        <td><%= link_to source.link, source.link %></td>
-        <td>
-            <%= source.description %>
-        </td>
+        <td><%= link_to source.link, source.link, target: "_blank" %></td>
+        <td><%= source.description %></td>
         <td><%= time_ago_in_words(source.updated_at) %> ago</td>
       </tr>
     <% end %>

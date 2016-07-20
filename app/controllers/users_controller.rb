@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   ### Convention methods order ==> Index, Show, New, Edit, Create, Update, Destroy
-  before_action :set_user, only: [:update, :show, :destroy, :repetoire, :recordings]
+  before_action :set_user, only: [:update, :show, :destroy, :repertoire, :recordings]
   before_action :require_admin, only: [:destroy]
   
   def dashboard
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     @user_articles = @q.result.page(params[:page]).per(25)
   end
   
-  def repetoire
+  def repertoire
     #@user = current_user
     @q = @user.tunes.ransack(params[:q])
     @user_tunes = @q.result.page(params[:page]).per(25)

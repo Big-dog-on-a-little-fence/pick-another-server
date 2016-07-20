@@ -9,10 +9,16 @@ class TunesController < ApplicationController
   end
   
   def show
+    if current_user.tunes.include?(@tune)
+      @repertoire = Repertoire.where(tune_id: @tune.id, user_id: current_user.id).take
+    end
   end
   
   def new
     @tune = Tune.new
+  end
+
+  def edit
   end
 
   def create
@@ -26,12 +32,12 @@ class TunesController < ApplicationController
   end
 
   def update
-    if current_user.tunes.include?(@tune)
-      current_user.tunes.delete(@tune)
+    if @tune.update(tune_params)
+      flash[:success] = "Tune was successfully updated."
+      redirect_to tune_path(@tune)
     else
-      current_user.tunes << @tune
+      render 'edit' # render edit tune article page for another try
     end
-    redirect_to tunes_path
   end
 
   private  ## private functions

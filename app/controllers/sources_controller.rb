@@ -30,7 +30,7 @@ class SourcesController < ApplicationController
   def update
     if @source.update(source_params)
       flash[:success] = "Resource was successfully updated."
-      redirect_to tune_source_path(@source)
+      redirect_to tune_path(@tune)
     else
       render 'edit'  ## render edit article template in case of failure for another try
     end
@@ -40,7 +40,7 @@ class SourcesController < ApplicationController
 
   def set_source
     @tune = Tune.find(params[:tune_id])
-    @source = @tune.sources.find(params[:id])
+    @source = Source.find(params[:id])
   end
 
   def source_params

@@ -5,14 +5,14 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get 'repetoire'
+      get 'repertoire'
       get 'recordings'
       get 'settings'
     end
   end
 
   resources :tunes, except: [:destroy] do
-    resources :sources, :notes
+    resources :sources, :repertoires
   end
   resources :articles
   resources :genres, except: [:destroy]
