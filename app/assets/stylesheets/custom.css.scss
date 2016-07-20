@@ -10,6 +10,30 @@ footer {
   width: 100%;
 }
 
+.btn-db .badge {
+  color: #ff0000;
+  background-color: #0000ff;
+}
+
+.jam-structure {
+  background-color: #fcfbe3;
+}
+
+/* ADMIN LABEL */
+#admin-label {
+  color: #faebd7;
+}
+
+/* REP LABEL */
+#rep-label {
+  color: #faebd7;
+}
+
+.button-link {
+  font-weight: bold;
+}
+
+
 /* CUSTOM BOOTSTRAP BUTTONS */
 .btn-db {
   color: #2e618d;
@@ -49,28 +73,7 @@ fieldset[disabled] .btn-db.active {
   background-color: #ff0000;
   border-color: #008000;
 }
-.btn-db .badge {
-  color: #ff0000;
-  background-color: #0000ff;
-}
 
-.jam-structure {
-  background-color: #fcfbe3;
-}
-
-/* ADMIN LABEL */
-#admin-label {
-  color: #faebd7;
-}
-
-/* REP LABEL */
-#rep-label {
-  color: #faebd7;
-}
-
-.button-link {
-  font-weight: bold;
-}
 
 /* GENRE CHECKBOX BUTTONS */
 // .btn-genre {

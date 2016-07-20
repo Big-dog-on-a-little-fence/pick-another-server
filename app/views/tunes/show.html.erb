@@ -1,7 +1,10 @@
 <!-- TUNE SHOW PAGE -->
 <h2 align="center" class="jumbotron">
   <%= @tune.name %>
-  <%= link_to "Edit Tune", edit_tune_path(@tune), class: 'btn btn-md btn-warning' %>
+  <%= link_to "Edit Tune", edit_tune_path(@tune), class: 'btn btn-md btn-warning edit-tune' %>
+  <% if @tune.lyric.nil? %>
+    <%= link_to "Add Lyrics", new_tune_lyric_path(@tune), class: 'btn btn-md btn-primary edit-tune' %>
+  <% end %>
   </h2>
 <h3>Key: <%= @tune.key %></h3>
 <h3>Genre: 
@@ -24,8 +27,19 @@
 <br>
 <hr>
 
+<% if @tune.lyric %>
+  <div align="center" class="well">
+    <div class="edit-lyrics">
+      <%= link_to "Edit Lyrics", edit_tune_lyric_path(@tune), class: 'btn btn-sm btn-warning' %>
+    </div>
+    <div class="lyrics">
+      <%= simple_format(@tune.lyric.body) %>
+    </div>
+  </div>
+<% end %>
+
 <div class="well">
   <%= render "sources/source", obj: @tune.sources %>
-  <%= link_to '(+) Add Resource', new_tune_source_path(@tune), class: 'button-link' %>
+  <%= link_to '(+) Add Resource', new_tune_source_path(@tune), class: "button-link" %>
 </div>
 

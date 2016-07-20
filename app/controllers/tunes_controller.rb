@@ -25,7 +25,7 @@ class TunesController < ApplicationController
     @tune = Tune.new(tune_params)
     if @tune.save
       flash[:success] = "Tune was created successfully"
-      redirect_to tunes_path
+      redirect_to tune_path(@tune)
     else
       render 'new'
     end
