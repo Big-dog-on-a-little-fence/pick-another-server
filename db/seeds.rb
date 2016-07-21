@@ -26,7 +26,10 @@ Genre.create([
   { name: 'Ragtime' },
   { name: 'Gypsy Jazz' },
   { name: 'Country' },
-  { name: 'Folk' }
+  { name: 'Folk' },
+  { name: 'Classical' },
+  { name: 'Cajun' },
+  { name: 'Venezuelan' }
 ])
 
 # add tunes to db
