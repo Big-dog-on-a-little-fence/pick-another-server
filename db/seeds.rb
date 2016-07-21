@@ -9,12 +9,12 @@
 require 'csv'
 
 User.create([
-  { username: 'SammyN', email: 'sammyn@pickanother.one', password: 'password' },
+  { username: 'SammyN', email: 'sammy.nave@gmail.com', password: 'password' },
   { username: 'SammyJ', email: 'sjbrunster@gmail.com', password: 'password' },
-  { username: 'benbruno', email: 'jer@pickanother.one', password: 'password' },
-  { username: 'Jer', email: 'benbruno@pickanother.one', password: 'password' },
-  { username: 'Scott', email: 'scott@pickanother.one', password: 'password' },
-  { username: 'Dave', email: 'dave@dave.one', password: 'password' }
+  { username: 'benbruno', email: 'ohschnap@gmail.com', password: 'password' },
+  { username: 'Jer', email: 'jeremy.bohn@gmail.com', password: 'password' },
+  { username: 'Scott', email: 'scottminkin@gmail.com', password: 'password' },
+  { username: 'Dave', email: 'emceeguertin@gmail.com', password: 'password' }
 ])
 
 Genre.create([

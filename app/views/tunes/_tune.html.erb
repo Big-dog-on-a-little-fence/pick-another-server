@@ -3,11 +3,12 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th></th>
-      <th><%= sort_link(@q, :name, 'Name', default_order: :name) %></th>
-      <th><%= sort_link(@q, :key, 'Key', default_order: :name) %></th>
-      <th><%= sort_link(@q, :genres, 'Genre(s)', default_order: :name) %></th>
-      <th><%= sort_link(@q, :updated_at, 'Last Updated', default_order: :name) %></th>
+      <th class="col-md-1"></th> <!-- empty header for known badge column -->
+      <th class="col-md-1"></th> <!-- empty header for lyrics icon column -->
+      <th class="col-md-4"><%= sort_link(@q, :name, 'Name', default_order: :name) %></th>
+      <th class="col-md-1"><%= sort_link(@q, :key, 'Key', default_order: :name) %></th>
+      <th class="col-md-3"><%= sort_link(@q, :genres, 'Genre(s)', default_order: :name) %></th>
+      <th class="col-md-2"><%= sort_link(@q, :updated_at, 'Last Updated', default_order: :name) %></th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +17,11 @@
         <td>
         <% if current_user.tunes.include?(tune) %>
           <span id='rep-id' class='label label-default'>Known</span>
+        <% end %>
+        </td>
+        <td>
+        <% if tune.lyric %>
+          <i class="fa fa-lg fa-microphone tune-icon"></i>
         <% end %>
         </td>
         <td><%= link_to tune.name, tune_path(tune) %></td>

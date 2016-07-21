@@ -40,7 +40,7 @@ class LyricsController < ApplicationController
 
   def set_lyric
     @tune = Tune.find(params[:tune_id])
-    @lyric = Lyric.find(params[:id])
+    @lyric = @tune.lyric
   end
 
   def lyric_params

@@ -1,4 +1,9 @@
 <!-- JAM SHOW PAGE -->
+<div align="center">
+  <%= button_to "Generate Random Tune", jam_path(@jam), :method => :get, :class => 'btn btn-lg btn-danger'%>
+</div>
+<br><br>
+
 <div class="well">
   <h1 align="center"><strong><%= @tune.name %></strong></h1>
   <div class="row">
@@ -11,10 +16,16 @@
   </div>
 </div>
 
-<div align="center">
-  <%= button_to "Generate Random Tune", jam_path(@jam), :method => :get, :class => 'btn btn-lg btn-danger'%>
-</div>
-<br><br>
+<% if @tune.lyric %>
+  <div align="center" class="well">
+    <div class="edit-lyrics">
+      <%= link_to "Edit Lyrics", edit_tune_lyric_path(@tune), class: 'btn btn-sm btn-warning' %>
+    </div>
+    <div class="lyrics">
+      <%= simple_format(@tune.lyric.body) %>
+    </div>
+  </div>
+<% end %>
 
 <hr>
 <div class="row">
