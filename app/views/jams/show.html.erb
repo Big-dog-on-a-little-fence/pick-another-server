@@ -9,7 +9,7 @@
   <div class="row">
     <h1 align="center">
       <%= @tune.key %> 
-      <%= '  ' + @tune.time_signature if @tune.time_signature %>
+      <%= '     ' + @tune.time_signature if @tune.time_signature %>
     </h1>
     <h2 align="center">
       <% @tune.genres.each do |genre| %>
