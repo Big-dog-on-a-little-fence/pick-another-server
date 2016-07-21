@@ -7,7 +7,8 @@
   <% end %>
   </h2>
 <h3>Key: <%= @tune.key %></h3>
-<h3>Genre: 
+<h3>Time Signature: <%= @tune.time_signature %></h3>
+<h3>Genre(s): 
   <% if @tune.genres.any? %>
     <% @tune.genres.each do |genre| %>
       <%= "#{genre.name}" %>

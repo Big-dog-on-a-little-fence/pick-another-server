@@ -2,13 +2,17 @@
 
 <div class="panel-body">
   <%= form_for @tune do |f| %>
-    <div class="form-group">
-      <%= f.label :name %><br>
+    <div class="form-group required">
+      <%= f.label :name, class: "control-label" %><br>
       <%= f.text_field :name, autofocus: true, class: "form-control" %>
     </div>
-    <div class="form-group">
-      <%= f.label :key %><br>
+    <div class="form-group required">
+      <%= f.label :key, class: "control-label" %><br>
       <%= f.text_field :key, autofocus: true, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :time_signature %><br>
+      <%= f.text_field :time_signature, autofocus: true, class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label "Genres (check all that apply)" %><br>

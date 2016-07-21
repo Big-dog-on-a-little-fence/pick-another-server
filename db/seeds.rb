@@ -36,7 +36,7 @@ Genre.create([
 csv_tunes = File.read("#{Rails.root}/db/csv/seedtunes.csv")
 tunes = CSV.parse(csv_tunes, headers: true)
 tunes.each do |row|
-  tune = Tune.where(row.to_hash.slice('name', 'key')).first_or_create
+  tune = Tune.where(row.to_hash.slice('name', 'key', 'time_signature')).first_or_create
   genre = Genre.find_by(name: row['genre'])
   next if (tune.genres.include?(genre)) || (tune.nil?) || (genre.nil?)
 
