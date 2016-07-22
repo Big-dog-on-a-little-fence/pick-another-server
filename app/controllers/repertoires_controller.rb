@@ -15,6 +15,7 @@ class RepertoiresController < ApplicationController
     @repertoire.user = current_user
     @repertoire.tune = Tune.find(params[:tune_id])
     if @repertoire.save
+      @repertoire.create_activity :create, owner: current_user
       flash[:success] = @repertoire.tune.name + " was added to your repertoire"
       redirect_to tune_path(@repertoire.tune)
     else

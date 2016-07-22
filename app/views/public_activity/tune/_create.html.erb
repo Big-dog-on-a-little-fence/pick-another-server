@@ -1,0 +1,12 @@
+<!-- TUNE (CREATE) ACTIVITY PARTIAL-->
+
+<div class="alert alert-success" role="alert">
+  <i class="fa fa-lg fa-music activity-icon"></i>
+  <%= link_to activity.owner.username, activity.owner if activity.owner %> added the tune
+  <% if activity.trackable %>
+    <%= link_to activity.trackable.name, activity.trackable %> to the database
+  <% else %>
+    which has since been removed
+  <% end %>
+</div>
+

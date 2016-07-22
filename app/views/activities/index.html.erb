@@ -1,5 +1,12 @@
-<h1>Activities</h1>
+<div align="left" class="page-header">
+  <h1>Recent Activity</h1>
+</div>
 
-<% @activities.each do |activity| %>
-  <%= activity.inspect %>
-<% end %>
+<div align="left">
+  <% @activities.each do |activity| %>
+    <div class="activity">
+      <%#= activity.inspect %>
+      <%= render_activity activity %>
+    </div>
+  <% end %>
+</div>

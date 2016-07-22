@@ -7,7 +7,6 @@ class TunesController < ApplicationController
     @q = Tune.ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
     @tunes = @q.result(distinct: true).includes(:genres).page(params[:page]).per(100)
-
   end
   
   def show
@@ -26,6 +25,7 @@ class TunesController < ApplicationController
   def create
     @tune = Tune.new(tune_params)
     if @tune.save
+      @tune.create_activity :create, owner: current_user
       flash[:success] = "Tune was created successfully"
       redirect_to tune_path(@tune)
     else
@@ -35,6 +35,7 @@ class TunesController < ApplicationController
 
   def update
     if @tune.update(tune_params)
+      @tune.create_activity :update, owner: current_user
       flash[:success] = "Tune was successfully updated."
       redirect_to tune_path(@tune)
     else
