@@ -5,17 +5,9 @@ class ApplicationController < ActionController::Base
   
   include PublicActivity::StoreController
   
-  # helper_method :generate_tune
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
-  # def generate_tune(tunes, current_tunes)
-  #   if current_tunes.empty?
-  #     current_tunes = tunes.dup
-  #   end
-  #   tunes.pop
-  # end
   
   protected
 

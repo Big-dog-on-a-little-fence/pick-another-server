@@ -5,7 +5,9 @@ class TunesController < ApplicationController
   def index
     #@tunes = Tune.all
     @q = Tune.ransack(params[:q])
+    @q.sorts = 'updated_at desc' if @q.sorts.empty?
     @tunes = @q.result(distinct: true).includes(:genres).page(params[:page]).per(100)
+
   end
   
   def show
