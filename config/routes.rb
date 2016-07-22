@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root 'users#dashboard'
   devise_for :users
 
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :articles
   resources :genres, except: [:destroy]
   resources :jams, only: [:show, :new, :create, :destroy]
+  resources :activities
   
 end
 

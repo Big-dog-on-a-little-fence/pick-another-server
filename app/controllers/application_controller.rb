@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   # Note: "current_user" is already a helper method with devise
   
+  include PublicActivity::StoreController
+  
   # helper_method :generate_tune
   protect_from_forgery with: :exception
   before_action :authenticate_user!
