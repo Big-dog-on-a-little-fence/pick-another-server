@@ -21,5 +21,9 @@
 .byebug_history
 .env
 
+# TODO: Remove these once we're on postgres
 Dockerfile
 docker-compose.yml
+
+pick_another_dev
+pick_another_test

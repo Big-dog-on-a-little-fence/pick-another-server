@@ -1,0 +1,14 @@
+language: ruby
+cache:
+  bundler: true
+rvm: 2.3.1
+sudo: false
+before_script:
+- bin/rake db:migrate
+- bin/setup
+
+script:
+- bin/rake test
+deploy:
+  api_key:
+    secure: N/UqFfoiWpjuNnT+ZARCBMoxYBqWTVTgoHoYEY5ac3UuOHjiGVHGltvMYffgmgGZu9Ik/kLzU9FofQGcq2nvJbLvJ9S2LnM2k9dTN7aLYkK1AlkCfR1z3/yceiKUE72jAR0bIohXxgbqsIGT+3eAVhTFsm9lYC88dh5HJe0PulCa8URzUbGsG9V9wAt68AEa19A34i40psL9QW1lCT1YQMwItA2UFkVcWVCmCFLKC41y30T+kLlnrITlE/JS9tMcGyrXqWuqho8yREGbdr+wFy5EHN9/yQ3ywEdhdGGQELQeaLCxHuvs7yMOyLj2YLbqmQ1ntvaRXYWUm4diRUtYTZzH03SVXVjue6NVIMVT1MAFW7DJo5nuWj1CXjMkBoed00+za1/mcA0GN2H4kMM/PdYGGePK98n0Rq/UeOAuh9WwiwSr2HjOAPUQbDUt2F3NNC+A9LASJ/K4VWnfpYevk+6FXu3y02s7z1BW8Z2kJCzNQ+G0VsyNbOUkWYwfbL3p4Kf51XelSIhfP56dKBNgUHzLS8D82lcTJVxORCRgENjuDscpK8LrooF8EC3DtAAk1Sn5uleSlks54nIo+DFYh/X1RnlIjw934FJV4o571lPeiG7NhlADHkoK6ckr+B/JarBtgNgPg8O3o3gy7phNTB3nxgNjLMOxXuZt3SxCIr4=
