@@ -1,4 +1,4 @@
-include ArticlesHelper
+include TunesHelper
 
 module ApplicationHelper
 end
