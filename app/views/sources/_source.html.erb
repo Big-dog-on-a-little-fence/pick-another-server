@@ -1,13 +1,12 @@
-<h3 align="center">Resources</h3>
+<h3 align="center" class="page-header">Resources</h3>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th></th><!-- empty for edit buttons -->
-      <th>Version</th>
-      <th>URL Link</th>
-      <th>Description/Notes</th>
-      <th>Last Update</th>
+      <th class="col-md-1"></th><!-- empty for edit buttons -->
+      <th class="col-md-2">Version</th>
+      <th class="col-md-7"></th>
+      <th class="col-md-2">Last Update</th>
     </tr>
   </thead>
   <tbody>
@@ -15,10 +14,10 @@
       <tr>
         <td><%= link_to 'Edit', edit_tune_source_path(@tune, source), class: "btn btn-xs btn-warning" %></td>
         <td><%= source.version %></td>
-        <td align="center" class="embed-container">
-        <%= embed(source.link) %> 
+        <td>
+          <%= embed(source.link) %>
+          <div><%= source.description %></div>
         </td>
-        <td><%= source.description %></td>
         <td><%= time_ago_in_words(source.updated_at) %> ago</td>
       </tr>
     <% end %>
