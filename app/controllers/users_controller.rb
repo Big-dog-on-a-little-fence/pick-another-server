@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   def repertoire
     #@user = current_user
     @q = @user.tunes.ransack(params[:q])
-    @user_tunes = @q.result.page(params[:page]).per(25)
+    @user_tunes = @q.result.page(params[:page]).per(100)
   end
 
   private  ### private functions
