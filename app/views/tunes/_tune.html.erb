@@ -5,11 +5,11 @@
     <tr>
       <th class="col-md-1"></th> <!-- empty header for known badge column -->
       <th class="col-md-1"></th> <!-- empty header for lyrics icon column -->
-      <th class="col-md-3"><%= sort_link(@q, :name, 'Name', default_order: { updated_at: 'desc' }) %></th>
-      <th class="col-md-1"><%= sort_link(@q, :key, 'Key', default_order: { updated_at: 'desc' }) %></th>
-      <th class="col-md-1"><%= sort_link(@q, :time_signature, 'Time', default_order: { updated_at: 'desc' }) %></th>
-      <th class="col-md-3"><%= sort_link(@q, :genres_name, 'Genre(s)') %></th>
-      <th class="col-md-2"><%= sort_link(@q, :updated_at, 'Last Updated', default_order: { updated_at: 'desc' }) %></th>
+      <th class="col-md-3"><%= sort_link(@q, :name, 'Name', default_order: 'asc') %></th>
+      <th class="col-md-1"><%= sort_link(@q, :key, 'Key', default_order: 'asc') %></th>
+      <th class="col-md-1"><%= sort_link(@q, :time_signature, 'Time', default_order: 'asc') %></th>
+      <th class="col-md-3"><%= sort_link(@q, :genres_name, [:genres_name, 'name asc'], 'Genre(s)') %></th>
+      <th class="col-md-2"><%= sort_link(@q, :updated_at, 'Last Updated', default_order: 'desc') %></th>
     </tr>
   </thead>
   <tbody>

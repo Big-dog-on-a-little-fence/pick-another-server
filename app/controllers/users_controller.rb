@@ -40,6 +40,7 @@ class UsersController < ApplicationController
   def repertoire
     #@user = current_user
     @q = @user.tunes.ransack(params[:q])
+    @q.sorts = 'updated_at desc' if @q.sorts.empty?
     @user_tunes = @q.result.page(params[:page]).per(100)
   end
 
