@@ -1,8 +1,11 @@
 module TunesHelper
   
-  def embed_youtube(youtube_url)
-    ## http://blog.41studio.com/embed-responsive-youtube-video-in-rails-4/
-    youtube_id = youtube_url.split("/").last
+  def embed_youtube(url)
+    if url.include?('youtu.be')
+      youtube_id = url.split("/").last
+    else
+      youtube_id = url.split("?v=").last
+    end
     content_tag(:div, content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{youtube_id}", allowfullscreen: "allowfullscreen"), class: "embed-container")
   end
   
@@ -14,6 +17,8 @@ module TunesHelper
   def embed(url)
     case
     when url.include?('youtu.be')
+      embed_youtube(url)
+    when url.include?('youtube')
       embed_youtube(url)
     when url.include?('open.spotify')
       embed_spotify(url)
