@@ -20,3 +20,16 @@
   </div><!--/.container -->
 <% end %>
 
+<br>
+<div>
+  <h2 class="page-header">Recently Learned Tunes</h2>
+  <ul class="list-group">
+  <% @recent_tunes.each do |tune| %>
+    <li class="list-group-item list-group-item-warning recent-tune">
+        <%= link_to tune.name, tune_path %>
+    </li>
+  <% end %>
+  </ul>
+</div>
+
+

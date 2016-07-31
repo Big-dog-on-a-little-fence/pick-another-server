@@ -13,9 +13,9 @@ class UsersController < ApplicationController
   end
   
   def show
-    #@user_articles = @user.articles
-    @q = @user.articles.ransack(params[:q])
-    @user_articles = @q.result.page(params[:page]).per(25)
+    # @q = @user.articles.ransack(params[:q])
+    # @user_articles = @q.result.page(params[:page]).per(25)
+    @recent_tunes = @user.tunes.order(created_at: :desc).take(10)
   end
   
   def update  ## added for devise username modification
