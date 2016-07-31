@@ -26,7 +26,7 @@
   <ul class="list-group">
   <% @recent_tunes.each do |tune| %>
     <li class="list-group-item list-group-item-warning recent-tune">
-        <%= link_to tune.name, tune_path %>
+        <%= link_to tune.name, tune_path(tune) %>
     </li>
   <% end %>
   </ul>
