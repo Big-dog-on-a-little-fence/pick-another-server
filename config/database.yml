@@ -6,6 +6,8 @@ default: &default
 development:
   <<: *default
   database: pick_another_dev
+  adapter: <%= ENV["DB_ADAPTER"] || "sqlite3" %>
+  host: <%= ENV["DB_HOST"] || "localhost" %>
 
 test:
   <<: *default
