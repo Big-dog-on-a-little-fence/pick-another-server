@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby "2.3.1"
 
-gem 'rails', '>= 5.0.0.rc1', '< 5.1'
+gem 'rails', '>= 5.0.0', '< 5.1'
 gem 'puma', '~> 3.0'
 # Use devise for authentication
 gem 'devise'
@@ -33,6 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Acitivity feed to track app recent activity
 gem 'public_activity'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
