@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   resources :genres, except: [:destroy]
   resources :jams, only: [:show, :new, :create, :destroy]
   resources :activities
-  
+
+  namespace :api do
+    resources :jams, only: [:show, :new, :create, :destroy]
+  end
 end
 
