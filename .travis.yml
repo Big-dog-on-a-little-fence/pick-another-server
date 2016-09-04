@@ -9,8 +9,3 @@ before_script:
 
 script:
   - bin/rake test
-deploy:
-  provider: heroku
-  app: <%= ENV["DEPLOY_APP"] %>
-  api_key:
-    secure: <%= ENV["DEPLOY_KEY"] %>
