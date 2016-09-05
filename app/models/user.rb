@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :jam_users
   has_many :jams, through: :jam_users
 
+  scope :starts_with, -> (username) { where("username like ?", "#{username}%")}
+
   attr_accessor :login
 
   # Only allow letter, number, underscore and punctuation.

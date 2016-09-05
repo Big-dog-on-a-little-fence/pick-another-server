@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :jams, only: [:show, :new, :create, :destroy]
+    resources :users, only: [:index]
   end
 end
 
