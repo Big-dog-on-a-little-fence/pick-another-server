@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :activities
 
   namespace :api do
-    resources :jams, only: [:show, :new, :create, :destroy]
+    resources :jams, only: [:show, :new, :create]
     resources :users, only: [:index]
   end
 end
