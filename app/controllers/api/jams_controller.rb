@@ -8,7 +8,7 @@ module Api
 
     def create
       jam = Jam.new(request_params)
-      jam.tunes = tunes_in_common_between(jam.users)
+      jam.tunes = tunes_in_common_between(jam.users).shuffle
 
       if jam.save
         render json: jam, status: :created, include: ['users', 'tunes']
