@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
 
   root 'users#dashboard'
+
   devise_for :users, controllers: { sessions: 'sessions' }
 
   resources :users do
