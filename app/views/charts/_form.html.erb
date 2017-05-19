@@ -1,0 +1,31 @@
+<%= render "shared/errors", obj: @chart %>
+
+<div class="panel-body">
+  <%= nested_form_for form_for [@tune, @chart] do |f| %>
+    <div class="form-group">
+      <%= f.label :name %><br>
+      <%= f.text_field :name, autofocus: true, class: "form-control" %>
+    </div>
+    
+    
+      <%= f.fields_for :progressions do |progressions_form| %>
+        <div class="form-group">
+          <%= progressions_form.label :part_number %>
+          <%= progressions_form.text_field :part_number, value: progressions_form.index+1 %>
+        </div>
+        <div class="form-group">
+          <%= progressions_form.label :chord_list %>
+          <%= progressions_form.text_field :chord_list %>
+        </div>
+        <div>--------------------------</div>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+        <%= f.submit %>
+    </div>
+    <div class="form-group">
+      [ <%= link_to "Cancel request and return to tune page", tune_path(@tune) %> ]
+    </div>
+  <% end %>
+</div> <!-- end panel-body -->

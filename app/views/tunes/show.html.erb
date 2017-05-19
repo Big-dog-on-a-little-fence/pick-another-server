@@ -5,7 +5,9 @@
   <% if @tune.lyric.nil? %>
     <%= link_to "Add Lyrics", new_tune_lyric_path(@tune), class: 'btn btn-md btn-primary edit-tune' %>
   <% end %>
-  </h2>
+  <%= link_to "Add Chord Chart", new_tune_chart_path(@tune), class: 'btn btn-md btn-primary edit-tune' %>
+
+</h2>
 <h3>Key: <%= @tune.key %></h3>
 <h3>Time Signature: <%= @tune.time_signature %></h3>
 <h3>Genre(s): 

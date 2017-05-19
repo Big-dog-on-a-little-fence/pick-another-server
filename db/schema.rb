@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722114044) do
+ActiveRecord::Schema.define(version: 20170519162505) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "trackable_type"
@@ -43,6 +43,20 @@ ActiveRecord::Schema.define(version: 20160722114044) do
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.string   "youtube_url"
+  end
+
+  create_table "charts", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "tune_id"
+    t.index ["tune_id"], name: "index_charts_on_tune_id"
+  end
+
+  create_table "chords", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "genres", force: :cascade do |t|
@@ -77,6 +91,15 @@ ActiveRecord::Schema.define(version: 20160722114044) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tune_id"], name: "index_notes_on_tune_id"
+  end
+
+  create_table "progressions", force: :cascade do |t|
+    t.integer  "part_number"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "chord_list"
+    t.integer  "chart_id"
+    t.index ["chart_id"], name: "index_progressions_on_chart_id"
   end
 
   create_table "repertoires", force: :cascade do |t|
