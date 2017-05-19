@@ -1,7 +1,7 @@
 <%= render "shared/errors", obj: @chart %>
 
 <div class="panel-body">
-  <%= nested_form_for form_for [@tune, @chart] do |f| %>
+  <%= nested_form_for [@tune, @chart] do |f| %>
     <div class="form-group">
       <%= f.label :name %><br>
       <%= f.text_field :name, autofocus: true, class: "form-control" %>
@@ -9,17 +9,17 @@
     
     
       <%= f.fields_for :progressions do |progressions_form| %>
-        <div class="form-group">
+        <div class="form-group well">
           <%= progressions_form.label :part_number %>
-          <%= progressions_form.text_field :part_number, value: progressions_form.index+1 %>
-        </div>
-        <div class="form-group">
+          <%= progressions_form.number_field :part_number, value: progressions_form.index.to_i+1, min: 1 %>
+
           <%= progressions_form.label :chord_list %>
           <%= progressions_form.text_field :chord_list %>
+          
+          <%= progressions_form.link_to_remove "Remove this chord progression" %>
         </div>
-        <div>--------------------------</div>
       <% end %>
-    </div>
+      <p><%= f.link_to_add "(+) Add another chord progression part to tune", :progressions %></p>
 
     <div class="form-group">
         <%= f.submit %>
