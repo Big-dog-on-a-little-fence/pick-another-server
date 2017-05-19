@@ -30,6 +30,19 @@
 <br>
 <hr>
 
+<% if @tune.charts %>
+  <div align="center" class="well">
+    <% @tune.charts.each do |chart| %>
+    <%= link_to "Edit Chord Chart", edit_tune_chart_path(@tune, chart), class: 'btn btn-sm btn-warning' %>
+      <% chart.progressions.each do |progression| %>
+        <div class="charts">
+          <%= progression.chord_list %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
 <% if @tune.lyric %>
   <div align="center" class="well">
     <div class="edit-lyrics">

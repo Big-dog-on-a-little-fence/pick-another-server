@@ -1,5 +1,5 @@
 class ProgressionsController < ApplicationController
-  
+
   def create
     @chart = Chart.find(params[:chart_id])
     @progression = @chart.progressions.create(progression_params)
