@@ -1,6 +1,9 @@
 class ChartsController < ApplicationController
   before_action :set_chart, only: [:show, :edit, :update, :destroy]
 
+  def show
+  end 
+
   def new
     @tune = Tune.find(params[:tune_id])
     @chart = @tune.charts.new

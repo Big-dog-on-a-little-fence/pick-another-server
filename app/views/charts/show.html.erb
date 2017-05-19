@@ -1,0 +1,14 @@
+<div align="center" class="jumbotron">
+  <h2 class="chart-number">Chord Chart (ver <%= @chart.id %>)</h2>
+</div>
+  
+<div class="charts">
+  <% @chart.progressions.each do |progression| %>
+    <div>
+      Part <%= progression.part_number %>: 
+      <% progression.chord_list.split(' ').each do |chord| %>
+        <span class="alert alert-success chord"><%= chord %></span>
+      <% end %>
+    </div>
+  <% end %>
+</div>
