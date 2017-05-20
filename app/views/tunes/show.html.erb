@@ -39,7 +39,7 @@
       <% end %>
       <%= link_to "Edit Chord Chart", edit_tune_chart_path(@tune, chart), class: 'btn btn-sm btn-warning align-right' %>
     </div>
-    <h2 class="chart-number">Chord Chart (ver <%= chart.id %>)</h2>
+    <h2 class="chart-number">Chord Chart (ver <%= @tune.charts.find_index(chart)+1 %>)</h2>
     <div class="charts">
     <% chart.progressions.each do |progression| %>
       <div>

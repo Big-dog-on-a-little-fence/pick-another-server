@@ -1,5 +1,8 @@
 <div align="center" class="jumbotron">
-  <h2 class="chart-number">Chord Chart (ver <%= @chart.id %>)</h2>
+  <h2 class="chart-number">Chord Chart (ver <%= @tune.charts.find_index(@chart)+1 %>)</h2>
+  <% if @chart.name %>
+    <h3><% @chart.name %></h3>
+  <% end %>
 </div>
   
 <div class="charts">
