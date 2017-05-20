@@ -7,7 +7,7 @@ class ChartsController < ApplicationController
   def new
     @tune = Tune.find(params[:tune_id])
     @chart = @tune.charts.new
-    2.times { @chart.progressions.build}
+    1.times { @chart.progressions.build}
   end
 
   def edit
