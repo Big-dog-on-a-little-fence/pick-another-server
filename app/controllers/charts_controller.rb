@@ -15,8 +15,13 @@ class ChartsController < ApplicationController
 
   def create
     @tune = Tune.find(params[:tune_id])
-    @chart = @tune.charts.create(chart_params)
-    redirect_to tune_path(@tune)
+    @chart = @tune.charts.new(chart_params)
+    if @chart.save
+      flash[:success] = "Chord chart was created successfully"
+      redirect_to tune_path(@tune)
+    else
+      render 'new'
+    end
   end
  
   def update
