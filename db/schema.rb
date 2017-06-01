@@ -76,6 +76,13 @@ ActiveRecord::Schema.define(version: 20170519162505) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "jams_tunes", id: false, force: :cascade do |t|
+    t.integer "jam_id",  null: false
+    t.integer "tune_id", null: false
+    t.index ["jam_id"], name: "index_jams_tunes_on_jam_id"
+    t.index ["tune_id"], name: "index_jams_tunes_on_tune_id"
+  end
+
   create_table "lyrics", force: :cascade do |t|
     t.string   "version"
     t.text     "body"

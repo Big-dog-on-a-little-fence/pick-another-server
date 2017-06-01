@@ -33,6 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Acitivity feed to track app recent activity
 gem 'public_activity'
+gem 'rack-cors', :require => 'rack/cors'
 # Nested form helpers, easy to dynamically add/remove nested records
 gem "nested_form"
 
