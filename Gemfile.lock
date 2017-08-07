@@ -134,6 +134,7 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.9.0)
     multi_json (1.12.1)
+    nested_form (0.3.2)
     nio4r (1.2.1)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -161,6 +162,7 @@ GEM
     puma (3.4.0)
     rack (2.0.0.rc1)
       json
+    rack-cors (0.4.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.rc1)
@@ -269,9 +271,11 @@ DEPENDENCIES
   jquery-rails
   kaminari
   listen (~> 3.0.5)
+  nested_form
   pg
   public_activity
   puma (~> 3.0)
+  rack-cors
   rails (>= 5.0.0.rc1, < 5.1)
   rails_12factor
   ransack!

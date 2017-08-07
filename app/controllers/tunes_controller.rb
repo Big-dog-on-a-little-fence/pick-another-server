@@ -50,7 +50,7 @@ class TunesController < ApplicationController
   end
 
   def tune_params
-    params.require(:tune).permit(:name, :key, :time_signature, genre_ids: [], user_ids: [])
+    params.require(:tune).permit(:name, :key, :time_signature, genre_ids: [], user_ids: [], chart_ids: [])
   end
 
 end

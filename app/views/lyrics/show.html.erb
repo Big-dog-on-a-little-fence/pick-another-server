@@ -1,0 +1,10 @@
+<div align="center" class="jumbotron">
+  <h1>Lyrics to "<%= @lyric.tune.name %>"</h1>
+  <% if @lyric.version %>
+    <h2>(<%= @lyric.version %>)</h2>
+  <% end %>
+</div>
+
+<div align="center" class="well lyrics">
+  <%= simple_format(@tune.lyric.body) %>
+</div>
