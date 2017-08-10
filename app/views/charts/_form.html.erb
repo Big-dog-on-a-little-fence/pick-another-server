@@ -11,9 +11,12 @@
         <div class="form-group well">
           <%= progressions_form.label :part_number %>
           <%= progressions_form.number_field :part_number, value: progressions_form.index.to_i+1, min: 1 %>
-
-          <%= progressions_form.label :chord_list %>
-          <%= progressions_form.text_field :chord_list %>
+          
+          <%= progressions_form.fields_for :measures do |measures_form| %>
+            <%= measures_form.text_field :body %>
+            <%= measures_form.link_to_remove "(-) remove" %>
+          <% end %>
+          <p><%= progressions_form.link_to_add "(+) Add measure", :measures %></p>
           
           <%= progressions_form.link_to_remove "Remove this chord progression" %>
         </div>
