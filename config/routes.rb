@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
 
   root 'users#dashboard'
-  devise_for :users
+
+  devise_for :users, controllers: { sessions: 'sessions' }
 
   resources :users do
     member do
@@ -18,6 +20,10 @@ Rails.application.routes.draw do
   resources :genres, except: [:destroy]
   resources :jams, only: [:show, :new, :create, :destroy]
   resources :activities
-  
+
+  namespace :api do
+    resources :jams, only: [:show, :new, :create]
+    resources :users, only: [:index]
+  end
 end
 

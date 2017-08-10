@@ -1,9 +1,9 @@
 class Tune < ApplicationRecord
   #include PublicActivity::Model
   # tracked owner: ->(controller, model) { controller && controller.current_user }
-  
+
   include PublicActivity::Common
-  
+
   has_many :repertoires
   has_many :users, through: :repertoires
   has_many :tune_genres

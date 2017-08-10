@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby "2.3.1"
 
-gem 'rails', '>= 5.0.0.rc1', '< 5.1'
+gem 'rails', '>= 5.0.0', '< 5.1'
 gem 'puma', '~> 3.0'
 # Use devise for authentication
 gem 'devise'

@@ -11,5 +11,18 @@ module PickAnotherServer
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    config.middleware.insert_before 0, 'Rack::Cors' do
+      allow do
+        if Rails.env.development?
+          origins 'localhost:4200'
+        else
+          origins 'pickanother.one', 'www.pickanother.one'
+        end
+
+        resource '*',
+          :headers => :any,
+          :methods => :any
+      end
+    end
   end
 end

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   ### Convention methods order ==> Index, Show, New, Edit, Create, Update, Destroy
   before_action :set_user, only: [:update, :show, :destroy, :repertoire, :recordings]
   before_action :require_admin, only: [:destroy]
-  
+
   def dashboard
     redirect_to user_path(current_user)
   end
