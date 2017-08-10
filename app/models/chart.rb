@@ -2,7 +2,7 @@ class Chart < ApplicationRecord
   belongs_to :tune
   has_many :progressions, :dependent => :destroy
   
-  accepts_nested_attributes_for :progressions, allow_destroy: true, reject_if: proc { |attributes| attributes[:chord_list].blank? }
+  accepts_nested_attributes_for :progressions, allow_destroy: true #reject_if: proc { |attributes| attributes[:chord_list].blank? }
   # attr_accessible :progressions_attributes
 
   validate :require_at_least_one_progression

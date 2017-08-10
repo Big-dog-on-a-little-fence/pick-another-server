@@ -42,8 +42,9 @@ class ChartsController < ApplicationController
 
   def chart_params
     #params.require(:chart).permit(:name, :tune_id, progression_ids: [])
-    params.require(:chart).permit(:name, :tune_id, progressions_attributes: [:id, :chord_list, :part_number, :_destroy])
-  
+    params.require(:chart).permit(:name, :tune_id, 
+                   progressions_attributes: [:id, :chord_list, :part_number, :_destroy, 
+                   measures_attributes: [:id, :body, :_destroy]])
   end
 
 end

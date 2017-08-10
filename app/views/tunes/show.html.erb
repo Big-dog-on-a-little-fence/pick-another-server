@@ -44,8 +44,8 @@
     <% chart.progressions.each do |progression| %>
       <div>
         Part <%= progression.part_number %>: 
-        <% progression.chord_list.split(' ').each do |chord| %>
-          <span class="alert alert-success chord"><%= chord %></span>
+        <% progression.measures.each do |measure| %>
+          <span class="alert alert-success measure"><%= measure.body %></span>
         <% end %>
       </div>
     <% end %>

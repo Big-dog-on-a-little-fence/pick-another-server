@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170519162505) do
+ActiveRecord::Schema.define(version: 20170810181933) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "trackable_type"
@@ -90,6 +90,14 @@ ActiveRecord::Schema.define(version: 20170519162505) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tune_id"], name: "index_lyrics_on_tune_id"
+  end
+
+  create_table "measures", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "progression_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["progression_id"], name: "index_measures_on_progression_id"
   end
 
   create_table "notes", force: :cascade do |t|
