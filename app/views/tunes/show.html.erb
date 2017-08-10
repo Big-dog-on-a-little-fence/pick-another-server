@@ -39,14 +39,16 @@
       <% end %>
       <%= link_to "Edit Chord Chart", edit_tune_chart_path(@tune, chart), class: 'btn btn-sm btn-warning align-right' %>
     </div>
-    <h2 class="chart-number">Chord Chart (ver <%= @tune.charts.find_index(chart)+1 %>)</h2>
+    <h3 class="chart-number">Chord Chart (v<%= @tune.charts.find_index(chart)+1 %>)</h3>
     <div class="charts">
     <% chart.progressions.each do |progression| %>
       <div>
         Part <%= progression.part_number %>: 
-        <% progression.measures.each do |measure| %>
-          <span class="alert alert-success measure"><%= measure.body %></span>
-        <% end %>
+        <div>
+            <% progression.measures.each do |measure| %>
+              <span class="alert alert-success measure"><%= measure.body %></span>
+            <% end %>
+        </div>
       </div>
     <% end %>
     </div>
