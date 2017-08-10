@@ -164,16 +164,10 @@ GEM
       activerecord (>= 3.0)
       i18n (>= 0.5.0)
       railties (>= 3.0.0)
-<<<<<<< HEAD
     puma (3.4.0)
     rack (2.0.0.rc1)
       json
     rack-cors (0.4.1)
-=======
-    puma (3.6.0)
-    rack (2.0.1)
-    rack-cors (0.4.0)
->>>>>>> 30174a41ea68d60cd77302eea3069d12786f698b
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0)
