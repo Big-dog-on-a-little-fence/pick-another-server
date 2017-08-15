@@ -30,6 +30,15 @@
 <br>
 <hr>
 
+<br><br><br><br>
+JS charts:
+<%#= content_tag "div", id: "charts", data: {charts: @tune.charts.map {|chart| chart.progressions.map {|progression| progression.measures.map {|measure| measure} } } } do %>
+<%= content_tag "div", class: "well charts", id: "charts", data: @tune.as_json(:include => { :charts => { :include => {:progressions => { :include => { :measures => {:only => :body}}}}}}) do %>
+  Loading charts...
+<% end %>
+
+<br><br><br><br>
+Ruby charts:
 <% if @tune.charts %>
   <% @tune.charts.each do |chart| %>
   <div align="center" class="well">
