@@ -1,37 +1,53 @@
-function displayChart(i) {
-  var chartDiv = document.getElementById("charts");
-  var button = document.createElement('button');
-  chartDiv.innerHTML = '';
-  button.innerHTML = "Cycle";
-  button.addEventListener("click", cycleChart);
-  chartDiv.appendChild(button);
-  
-  var chartData = JSON.parse(chartDiv.dataset.charts);
-  var chart = chartData[i];
-  chart.progressions.forEach(displayProgression);
+window.onload = function() {
 
-  function displayProgression(progression, index) {
-    var progressionDiv = document.createElement('div');
-    progressionDiv.innerHTML = "Part " + progression.part_number.toString()+':  ';
-    progression.measures.forEach(displayMeasure);
-    chartDiv.appendChild(progressionDiv);
+  var chartDiv = document.getElementById("charts");
+  var chartData = JSON.parse(chartDiv.dataset.charts);
+  var cycleDiv = document.getElementById("cycle");
+  var button = document.createElement('button');
   
-    function displayMeasure(measure, index) {
-      var measuresSpan = document.createElement('span');
-      measuresSpan.setAttribute("class", "alert alert-success measure");
-      measuresSpan.innerHTML = measure.body;
-      progressionDiv.appendChild(measuresSpan);
+  var currentChart = 0;
+  button.innerHTML = "Cycle";
+  button.onclick = function() {
+    currentChart = cycleChart(chartDiv, chartData, currentChart);
+  }
+  cycleDiv.appendChild(button);
+  displayChart(chartDiv, chartData, currentChart);
+
+  function displayChart(chartDiv, chartData, i) {
+    var chart = chartData[i];
+    chart.progressions.forEach(function(progression, index) {
+      displayProgression(chartDiv, progression, index);
+    });
+
+    function displayProgression(chartDiv, progression, index) {
+      var progressionDiv = document.createElement('div');
+      progressionDiv.innerHTML = "Part " + progression.part_number.toString()+':  ';
+      chartDiv.appendChild(progressionDiv);
+      progression.measures.forEach(function(measure, index) {
+        displayMeasure(progressionDiv, measure, index);
+        });
+
+      function displayMeasure(progressionDiv, measure, index) {
+        var measuresSpan = document.createElement('span');
+        measuresSpan.setAttribute("class", "alert alert-success measure");
+        measuresSpan.innerHTML = measure.body;
+        progressionDiv.appendChild(measuresSpan);
+      }
     }
   }
 
-  function cycleChart() {
-    alert('clicked');
+  function cycleChart(chartDiv, chartData, currentChart) {
+    while(chartDiv.firstChild) {
+      chartDiv.removeChild(chartDiv.firstChild);
+    }
+    console.log('before:'+currentChart.toString());
+    currentChart++;
+    if (currentChart >= (chartData.length)) {
+      currentChart = 0;
+    }
+    console.log('after:'+currentChart.toString());
+    displayChart(chartDiv, chartData, currentChart);
+    return currentChart;
   }
 
-}
-
-window.onload = function() {
-  // var charts = document.getElementById("charts");
-  // alert(charts);
-  displayChart(0);
 }; // onload
