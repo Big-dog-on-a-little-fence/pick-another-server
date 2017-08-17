@@ -1,16 +1,19 @@
-window.onload = function() {
+// window.onload = function() {
+$( document ).ready(function() {
 
   var chartDiv = document.getElementById("charts");
   var chartData = JSON.parse(chartDiv.dataset.charts);
   var cycleDiv = document.getElementById("cycle");
   var button = document.createElement('button');
-  
   var currentChart = 0;
-  button.innerHTML = "Cycle";
+  
+  chartDiv.innerHTML = "";
+  button.innerHTML = "Next Chart";
   button.onclick = function() {
     currentChart = cycleChart(chartDiv, chartData, currentChart);
   }
   cycleDiv.appendChild(button);
+  
   displayChart(chartDiv, chartData, currentChart);
 
   function displayChart(chartDiv, chartData, i) {
@@ -50,4 +53,6 @@ window.onload = function() {
     return currentChart;
   }
 
-}; // onload
+
+});
+// }; // onload

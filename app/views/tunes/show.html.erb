@@ -31,11 +31,14 @@
 <hr>
 
 <br><br><br><br>
-JS charts:
-<div id="cycle"></div>
-<%= content_tag "div", class: "well charts", id: "charts", data: @tune.as_json(:include => { :charts => { :include => {:progressions => { :include => { :measures => {:only => :body}}}}}}) do %>
-  Loading charts...
-<% end %>
+
+<div align="center" class="well">
+  <h3 align="center" class="chart-number">JS Chord Chart</h3>
+  <div align="center" id="cycle"></div>
+  <%= content_tag "div", class: "charts", id: "charts", data: @tune.as_json(:include => { :charts => { :include => {:progressions => { :include => { :measures => {:only => :body}}}}}}) do %>
+    Loading charts...
+  <% end %>
+</div>
 
 <br><br><br><br>
 Ruby charts:
