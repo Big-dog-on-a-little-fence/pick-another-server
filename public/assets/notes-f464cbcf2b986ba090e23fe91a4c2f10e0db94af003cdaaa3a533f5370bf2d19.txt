@@ -1,0 +1,12 @@
+g.articles.collect { |article| article.title }
+
+in jam controller maybe:
+@users = ....
+@tunes = intersect_tunes(@users)
+
+def intersect_tunes(users)
+    tunes = users[0].tunes
+    users[1:].each do |user|
+        tunes = tunes & user.tunes
+    end
+    return tunes
