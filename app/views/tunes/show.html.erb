@@ -33,40 +33,14 @@
 <br><br><br><br>
 
 <div align="center" class="well">
-  <h3 align="center" class="chart-number">JS Chord Chart</h3>
+  <h3 align="center" class="chart-number">Chord Chart</h3>
   <div align="center" id="cycle"></div>
   <%= content_tag "div", class: "charts", id: "charts", data: @tune.as_json(:include => { :charts => { :include => {:progressions => { :include => { :measures => {:only => :body}}}}}}) do %>
     Loading charts...
   <% end %>
 </div>
 
-<br><br><br><br>
-Ruby charts:
-<% if @tune.charts %>
-  <% @tune.charts.each do |chart| %>
-  <div align="center" class="well">
-    <div class="align-right">
-      <%= link_to tune_chart_path(@tune, chart), class: 'btn btn-sm btn-primary', target: :_blank do %>
-        <i class="fa fa-external-link" aria-hidden="true"></i>
-      <% end %>
-      <%= link_to "Edit Chord Chart", edit_tune_chart_path(@tune, chart), class: 'btn btn-sm btn-warning align-right' %>
-    </div>
-    <h3 class="chart-number">Chord Chart (v<%= @tune.charts.find_index(chart)+1 %>)</h3>
-    <div class="charts">
-    <% chart.progressions.each do |progression| %>
-      <div>
-        Part <%= progression.part_number %>: 
-        <div>
-            <% progression.measures.each do |measure| %>
-              <span class="alert alert-success measure"><%= measure.body %></span>
-            <% end %>
-        </div>
-      </div>
-    <% end %>
-    </div>
-  </div>
-  <% end %>
-<% end %>
+<br><br>
 
 <% if @tune.lyric %>
   <div align="center" class="well">
