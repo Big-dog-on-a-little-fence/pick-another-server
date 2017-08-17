@@ -5,20 +5,24 @@ $( document ).ready(function() {
   var chartDiv = document.getElementById("charts");
   var chartData = JSON.parse(chartDiv.dataset.charts);
   var cycleDiv = document.getElementById("cycle");
-  var cycleLeft = createArrowButton(cycleDiv, 'fa fa-arrow-left fa-3x');
-  var cycleRight = createArrowButton(cycleDiv, 'fa fa-arrow-right fa-3x');
   var currentChart = 0;
 
-  cycleLeft.onclick = function() {
-    currentChart = cycleChart(chartDiv, chartData, currentChart, -1);
-  };
-  cycleDiv.appendChild(cycleLeft);
-  
-  cycleRight.onclick = function() {
-    currentChart = cycleChart(chartDiv, chartData, currentChart, 1);
-  };
-  cycleDiv.appendChild(cycleRight);  
+  // create cycle buttons if more than 1 chord chart
+  if (chartData.length > 1) {
+    var cycleLeft = createArrowButton(cycleDiv, 'fa fa-arrow-left fa-3x');
+    var cycleRight = createArrowButton(cycleDiv, 'fa fa-arrow-right fa-3x');
+    cycleLeft.onclick = function() {
+      currentChart = cycleChart(chartDiv, chartData, currentChart, -1);
+    };
+    cycleDiv.appendChild(cycleLeft);
+    
+    cycleRight.onclick = function() {
+      currentChart = cycleChart(chartDiv, chartData, currentChart, 1);
+    };
+    cycleDiv.appendChild(cycleRight);
+  }
 
+  // display first chart if there are any
   chartDiv.innerHTML = "";
   if (chartData.length < 1) {
     cycleDiv.innerHTML = "No chord charts have been created for this tune";
@@ -26,6 +30,7 @@ $( document ).ready(function() {
     displayChart(chartDiv, chartData, currentChart);
   }
 
+  // helper functions
   function displayChart(chartDiv, chartData, i) {
     var chart = chartData[i];
     chart.progressions.forEach(function(progression, index) {
