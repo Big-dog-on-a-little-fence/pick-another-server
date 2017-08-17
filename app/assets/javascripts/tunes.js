@@ -1,7 +1,7 @@
 // window.onload = function() {
 $( document ).ready(function() {
   
-  var partLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P']
+  var partLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'];
   var chartDiv = document.getElementById("charts");
   var chartData = JSON.parse(chartDiv.dataset.charts);
   var cycleDiv = document.getElementById("cycle");
@@ -71,8 +71,8 @@ $( document ).ready(function() {
   }
 
   function createArrowButton(cycleDiv, classString) {
-    let arrowButton = document.createElement('button');
-    let arrowIcon = document.createElement('i');
+    var arrowButton = document.createElement('button');
+    var arrowIcon = document.createElement('i');
     arrowIcon.className += classString;
     arrowButton.appendChild(arrowIcon);
     cycleDiv.appendChild(arrowButton);
