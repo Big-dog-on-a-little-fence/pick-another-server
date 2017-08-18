@@ -1,30 +1,13 @@
-// window.onload = function() {
 $( document ).ready(function() {
   var partLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'];
   var chartDiv = document.getElementById("charts");
   var chartData = JSON.parse(chartDiv.dataset.charts);
-  var cycleDiv = document.getElementById("cycle");
   var currentChart = 0;
-
-  // create cycle buttons if more than 1 chord chart
-  if (chartData.length > 1) {
-    var cycleLeft = createArrowButton(cycleDiv, 'fa fa-arrow-left fa-3x');
-    var cycleRight = createArrowButton(cycleDiv, 'fa fa-arrow-right fa-3x');
-    cycleLeft.onclick = function() {
-      currentChart = cycleChart(chartDiv, chartData, currentChart, -1);
-    };
-    cycleDiv.appendChild(cycleLeft);
-    
-    cycleRight.onclick = function() {
-      currentChart = cycleChart(chartDiv, chartData, currentChart, 1);
-    };
-    cycleDiv.appendChild(cycleRight);
-  }
 
   // display first chart if any
   chartDiv.innerHTML = "";
   if (chartData.length < 1) {
-    cycleDiv.innerHTML = "No chord charts have been created for this tune";
+    chartDiv.innerHTML = "No chord charts have been created for this tune";
   } else {
     displayChart(chartDiv, chartData, currentChart);
   }
@@ -32,12 +15,25 @@ $( document ).ready(function() {
   // helper functions
   function displayChart(chartDiv, chartData, i) {
     var chart = chartData[i];
-
+    
+    // edit chart link
+    var linkDiv = document.createElement('div');
     var editLink = document.createElement('a');
-    editLink.className = 'btn btn-sm btn-warning align-right';
+    linkDiv.className = "align-right";
+    editLink.className = "btn btn-sm btn-warning";
     editLink.innerHTML = "Edit Chart";
     editLink.setAttribute('href', window.location.origin+'/tunes/'+chart.tune_id+'/charts/'+chart.id+'/edit');
-    chartDiv.appendChild(editLink);
+    linkDiv.appendChild(editLink);
+    chartDiv.appendChild(linkDiv);
+
+    // chart title
+    var chartTitle = document.createElement('h3');
+    chartTitle.innerHTML = "Chord Chart ver" + (i+1).toString();
+    chartTitle.className = "chart-title";
+    chartDiv.appendChild(chartTitle);
+
+    // cycle chart arrow buttons
+    createCycleArrowButtons(chartDiv);
 
     // display chord progressions
     chart.progressions.forEach(function(progression, index) {
@@ -82,14 +78,35 @@ $( document ).ready(function() {
     return currentChart;
   }
 
-  function createArrowButton(cycleDiv, classString) {
-    var arrowButton = document.createElement('button');
-    var arrowIcon = document.createElement('i');
-    arrowIcon.className += classString;
-    arrowButton.appendChild(arrowIcon);
-    cycleDiv.appendChild(arrowButton);
-    return arrowButton;
-  }
+  function createCycleArrowButtons(chartDiv) {
+    var cycleDiv = document.createElement('div');
+  
+    // create cycle buttons if more than 1 chord chart
+    if (chartData.length > 1) {
+      var cycleLeft = createArrowButton(cycleDiv, 'fa fa-arrow-left fa-3x');
+      var cycleRight = createArrowButton(cycleDiv, 'fa fa-arrow-right fa-3x');
+      cycleLeft.onclick = function() {
+        currentChart = cycleChart(chartDiv, chartData, currentChart, -1);
+      };
+      cycleDiv.appendChild(cycleLeft);
+      
+      cycleRight.onclick = function() {
+        currentChart = cycleChart(chartDiv, chartData, currentChart, 1);
+      };
+      cycleDiv.appendChild(cycleRight);
+    }
+    
+    chartDiv.appendChild(cycleDiv);
+  
+      function createArrowButton(cycleDiv, classString) {
+        var arrowButton = document.createElement('button');
+        var arrowIcon = document.createElement('i');
+        arrowIcon.className += classString;
+        arrowButton.appendChild(arrowIcon);
+        cycleDiv.appendChild(arrowButton);
+        return arrowButton;
+      }
+}
 
-});
-// }; // onload
+
+}); // on document ready

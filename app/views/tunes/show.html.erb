@@ -33,8 +33,6 @@
 <br><br><br><br>
 
 <div align="center" class="well">
-  <h3 align="center" class="chart-number">Chord Chart</h3>
-  <div align="center" id="cycle"></div>
   <%= content_tag "div", class: "charts", id: "charts", data: @tune.as_json(:include => { :charts => { :include => {:progressions => { :include => { :measures => {:only => :body}}}}}}) do %>
     Loading charts...
   <% end %>
@@ -50,7 +48,7 @@
       <% end %>
       <%= link_to "Edit Lyrics", edit_tune_lyric_path(@tune), class: 'btn btn-sm btn-warning' %>
     </div>
-    <h2 class="chart-number"><i class="fa fa-lg fa-microphone tune-icon"></i>  Lyrics  <i class="fa fa-lg fa-microphone tune-icon"></i></h2>
+    <h2 class="chart-title"><i class="fa fa-lg fa-microphone tune-icon"></i>  Lyrics  <i class="fa fa-lg fa-microphone tune-icon"></i></h2>
     <br>
     <div class="lyrics">
       <%= simple_format(@tune.lyric.body) %>
