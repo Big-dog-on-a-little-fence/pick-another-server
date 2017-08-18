@@ -1,6 +1,5 @@
 // window.onload = function() {
 $( document ).ready(function() {
-  
   var partLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'];
   var chartDiv = document.getElementById("charts");
   var chartData = JSON.parse(chartDiv.dataset.charts);
@@ -22,7 +21,7 @@ $( document ).ready(function() {
     cycleDiv.appendChild(cycleRight);
   }
 
-  // display first chart if there are any
+  // display first chart if any
   chartDiv.innerHTML = "";
   if (chartData.length < 1) {
     cycleDiv.innerHTML = "No chord charts have been created for this tune";
@@ -33,6 +32,14 @@ $( document ).ready(function() {
   // helper functions
   function displayChart(chartDiv, chartData, i) {
     var chart = chartData[i];
+
+    var editLink = document.createElement('a');
+    editLink.className = 'btn btn-sm btn-warning align-right';
+    editLink.innerHTML = "Edit Chart";
+    editLink.setAttribute('href', window.location.origin+'/tunes/'+chart.tune_id+'/charts/'+chart.id+'/edit');
+    chartDiv.appendChild(editLink);
+
+    // display chord progressions
     chart.progressions.forEach(function(progression, index) {
       displayProgression(chartDiv, progression, index);
     });
