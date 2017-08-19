@@ -1,4 +1,7 @@
 $( document ).ready(function() {
+  
+  if (!(page.controller() === 'tunes' && page.action() === 'show')) { return; }
+  
   var partLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'];
   var chartDiv = document.getElementById("charts");
   var chartData = JSON.parse(chartDiv.dataset.charts);

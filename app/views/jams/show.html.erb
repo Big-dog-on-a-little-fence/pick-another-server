@@ -1,4 +1,12 @@
 <!-- JAM SHOW PAGE -->
+
+<!-- this is the js data pass structure used for chord charts -->
+<%= content_tag "div", class: "jam-tunes", id: "jam-tunes", data: @tunes.as_json(:include => { :charts => { :include => {:progressions => { :include => { :measures => {:only => :body}}}}}}) do %>
+  Loading shared tunes...
+<% end %>
+
+
+
 <div align="center">
   <%= link_to "Generate Random Tune", jam_path(@jam), class: 'btn btn-lg btn-danger'%>
 </div>
@@ -19,16 +27,6 @@
   </div>
 </div>
 
-<% if @tune.lyric %>
-  <div align="center" class="well">
-    <div class="edit-lyrics">
-      <%= link_to "Edit Lyrics", edit_tune_lyric_path(@tune), class: 'btn btn-sm btn-warning' %>
-    </div>
-    <div class="lyrics">
-      <%= simple_format(@tune.lyric.body) %>
-    </div>
-  </div>
-<% end %>
 
 <hr>
 <div class="row">
