@@ -13,9 +13,10 @@ $( document ).ready(function() {
   var tuneDiv = document.createElement('div');
   jamDiv.appendChild(tuneDiv);
   
+  grabRandomTune(jamList, playedJamList, tuneDiv);
+  
   generateTuneButton.onclick = function() {
     if (jamList.length < 1) {
-      console.log("RESET RESET RESET!!!");
       jamList = SHARED_TUNES.slice(0);
       playedJamList = [];
     }
@@ -23,19 +24,23 @@ $( document ).ready(function() {
   };
     
   function grabRandomTune(jamList, playedJamList, tuneDiv) {
-
-    // clearDiv(tuneDiv);
+    clearDiv(tuneDiv);
     var selectedTune = jamList.splice(Math.floor(Math.random() * jamList.length), 1)[0];
     playedJamList.push(selectedTune);
-    tuneDiv.innerHTML = selectedTune.name;
-    // var tuneTitle = document.createElement('h3');
-    // tuneTitle.innerHTML = selectedTune.name;
-    // tuneDiv.appendChild(tuneTitle);
     
-    console.log(selectedTune);
-    console.log("jamList (length = " + jamList.length.toString() +"): ");
-    console.log("playedJamList (length = " + playedJamList.length +"): ");
-    console.log("");
+    var tuneTitle = document.createElement('h2');
+    tuneTitle.innerHTML = selectedTune.name;
+    tuneTitle.className = "jam-tune";
+    tuneDiv.appendChild(tuneTitle);
+    
+    var tuneKey = document.createElement('h3');
+    tuneKey.innerHTML = "Key: "+ selectedTune.key;
+    tuneDiv.appendChild(tuneKey);
+    
+    var chartDiv = document.createElement('div');
+    showChart(chartDiv, selectedTune.charts, 0);
+    tuneDiv.append(chartDiv);
+    
   }
 
   function clearDiv(div) {

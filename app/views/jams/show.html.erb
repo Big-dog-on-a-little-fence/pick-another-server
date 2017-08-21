@@ -5,28 +5,6 @@
 <% end %>
 
 
-
-<div align="center">
-  <%= link_to "Generate Random Tune", jam_path(@jam), class: 'btn btn-lg btn-danger'%>
-</div>
-<br><br>
-
-<div class="well">
-  <h1 align="center"><strong><%= link_to @tune.name, tune_path(@tune), class: 'jam-tune' %></strong></h1>
-  <div class="row">
-    <h1 align="center">
-      <%= @tune.key %> 
-      <%= @tune.time_signature if @tune.time_signature %>
-    </h1>
-    <h2 align="center">
-      <% @tune.genres.each do |genre| %>
-        <%= genre.name %>
-      <% end %>
-    </h2>
-  </div>
-</div>
-
-
 <hr>
 <div class="row">
   <ul class="list-group col-md-8 col-md-offset-2">
