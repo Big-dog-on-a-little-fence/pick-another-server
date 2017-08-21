@@ -9,6 +9,7 @@ $( document ).ready(function() {
   var playedJamList = [];
   var generateTuneButton = document.createElement('button');
   generateTuneButton.innerHTML = 'Next Tune!';
+  generateTuneButton.className = 'btn btn-lg btn-info';
   jamDiv.appendChild(generateTuneButton);
   var tuneDiv = document.createElement('div');
   jamDiv.appendChild(tuneDiv);
@@ -28,13 +29,13 @@ $( document ).ready(function() {
     var selectedTune = jamList.splice(Math.floor(Math.random() * jamList.length), 1)[0];
     playedJamList.push(selectedTune);
     
-    var tuneTitle = document.createElement('h2');
+    var tuneTitle = document.createElement('h1');
     tuneTitle.innerHTML = selectedTune.name;
-    tuneTitle.className = "jam-tune";
+    tuneTitle.className = "jam-tune-title";
     tuneDiv.appendChild(tuneTitle);
     
-    var tuneKey = document.createElement('h3');
-    tuneKey.innerHTML = "Key: "+ selectedTune.key;
+    var tuneKey = document.createElement('h2');
+    tuneKey.innerHTML = "Key of "+ selectedTune.key;
     tuneDiv.appendChild(tuneKey);
     
     var chartDiv = document.createElement('div');

@@ -19,31 +19,9 @@
       </h4>
     </li>
     <hr>
-    
-    <% if @jam.users.length >= 2 %>
-      <li align="center"  class="list-group-item list-group-item-success">
-        <h4><strong>Kickoff: </strong><%= @j_struct['Kickoff'].username %></h4>
-      </li>
-      <li align="center"  class="list-group-item list-group-item-success">
-        <h4><strong>Trade: </strong>
-        <% @j_struct['Trade'].each do |user| %>
-          <%= "#{user.username}" %>
-        <% end %></h4>
-      </li>
-      <li align="center"  class="list-group-item list-group-item-success">
-        <h4><strong>Unison: </strong>
-        <% @j_struct['Unison'].each do |user| %>
-          <%= "#{user.username}" %>
-        <% end %></h4>
-      </li>
-      <li align="center"  class="list-group-item list-group-item-success">
-        <h4><strong>Tag: </strong><%= @j_struct['Tag'].username %></h4>
-      </li>
-    <% end %>
-
   </ul>
 </div><!-- /row -->
-<br>
+
 
 <h3>You have <%= @tunes.count %> tunes in common:</h3>
 <br>
