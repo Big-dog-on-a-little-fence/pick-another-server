@@ -1,7 +1,6 @@
 <!-- JAM SHOW PAGE -->
 
-<!-- this is the js data pass structure used for chord charts -->
-<%= content_tag "div", class: "jam-tunes", id: "jam-tunes", data: @tunes.as_json(:include => { :charts => { :include => {:progressions => { :include => { :measures => {:only => :body}}}}}}) do %>
+<%= content_tag "div", class: "jam-tunes", id: "jam-tunes", data: {"tunes" => @tunes}.as_json(:include => { :charts => { :include => {:progressions => { :include => { :measures => {:only => :body}}}}}}) do %>
   Loading shared tunes...
 <% end %>
 
