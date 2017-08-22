@@ -15,6 +15,5 @@ function translateMeasureToNumeral(chord_scale, input_measure) {
     var numeral = translateChordToNumeral(chord_scale, chord);
     numeral_measure += ' '+numeral;
   });
-  console.log(numeral_measure);
   input_measure.innerHTML = numeral_measure;
 }

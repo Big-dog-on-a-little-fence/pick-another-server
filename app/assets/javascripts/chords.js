@@ -22,7 +22,6 @@ function translateChordToNumeral(chord_scale, input_chord) {
     seven = true;
   }
   var index = chord_scale.indexOf(chord);
-  console.log(input_chord + ' ' + index);
   switch (index+1) {
     case 1: 
       chord = 'I';

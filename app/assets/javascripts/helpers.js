@@ -113,7 +113,6 @@ function createNumeralsButton(chartDiv, chartData, currentChart) {
   numeralButton.innerHTML = 'Switch to Roman Numerals';
   chartDiv.appendChild(numeralButton);
   numeralButton.onclick = function() {
-    console.log('switch value: ' + numeralButton.value);
     switch (numeralButton.value) {
       case 'letter':
         var key = chartDiv.dataset.key;
