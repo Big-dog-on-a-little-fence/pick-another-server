@@ -1,3 +1,15 @@
 // Place all the styles related to the Measures controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.measure {
+    font-family: Verdana, sans-serif;
+    font-size: 4.5em;
+    margin: -6px 2px 15px -6px;
+    border-left: 3px solid #404040;
+    border-right: 3px solid #404040;
+    padding: 0.4em;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 0 !important;
+}
