@@ -37,7 +37,7 @@ function displayChart(chartDiv, chartData, currentChart) {
   // cycle chart arrow buttons
   createCycleArrowButtons(chartDiv, chartData, currentChart);
 
-  // translate to numerals button
+  // toggle button from letters to roman numerals
   createNumeralsButton(chartDiv, chartData, currentChart);
 
   // display chord progressions
@@ -67,7 +67,6 @@ function displayChart(chartDiv, chartData, currentChart) {
 
 function cycleChart(chartDiv, chartData, currentChart, adder) {
   clearDiv(chartDiv);
-  console.log('before:'+currentChart.toString());
   currentChart += adder;
   
   if (currentChart >= (chartData.length)) {
@@ -76,7 +75,6 @@ function cycleChart(chartDiv, chartData, currentChart, adder) {
     currentChart = chartData.length - 1;
   }
   
-  console.log('after:'+currentChart.toString());
   displayChart(chartDiv, chartData, currentChart);
   return currentChart;
 }
@@ -131,7 +129,6 @@ function createNumeralsButton(chartDiv, chartData, currentChart) {
     }
   };
 }
-
 
 function clearDiv(div) {
   while(div.firstChild) {
