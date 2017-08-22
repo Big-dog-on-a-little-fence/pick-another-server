@@ -39,15 +39,10 @@ $( document ).ready(function() {
     tuneDiv.appendChild(tuneKey);
     
     var chartDiv = document.createElement('div');
-    showChart(chartDiv, selectedTune.charts, 0);
+    chartDiv.dataset.key = selectedTune.key;
     tuneDiv.append(chartDiv);
+    showChart(chartDiv, selectedTune.charts, 0);
     
-  }
-
-  function clearDiv(div) {
-    while(div.firstChild) {
-      div.removeChild(div.firstChild);
-    }
   }
 
 }); // on document ready

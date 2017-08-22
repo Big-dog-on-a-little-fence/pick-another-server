@@ -13,6 +13,9 @@ function showChart(chartDiv, chartData, currentChart) {
 }
 
 function displayChart(chartDiv, chartData, currentChart) {
+  clearDiv(chartDiv);
+  
+  // set chart
   var chart = chartData[currentChart];
   
   // edit chart link
@@ -33,6 +36,9 @@ function displayChart(chartDiv, chartData, currentChart) {
 
   // cycle chart arrow buttons
   createCycleArrowButtons(chartDiv, chartData, currentChart);
+
+  // toggle button from letters to roman numerals
+  createNumeralsButton(chartDiv, chartData, currentChart);
 
   // display chord progressions
   chart.progressions.forEach(function(progression, index) {
@@ -60,10 +66,7 @@ function displayChart(chartDiv, chartData, currentChart) {
 }
 
 function cycleChart(chartDiv, chartData, currentChart, adder) {
-  while(chartDiv.firstChild) {
-    chartDiv.removeChild(chartDiv.firstChild);
-  }
-  console.log('before:'+currentChart.toString());
+  clearDiv(chartDiv);
   currentChart += adder;
   
   if (currentChart >= (chartData.length)) {
@@ -72,7 +75,6 @@ function cycleChart(chartDiv, chartData, currentChart, adder) {
     currentChart = chartData.length - 1;
   }
   
-  console.log('after:'+currentChart.toString());
   displayChart(chartDiv, chartData, currentChart);
   return currentChart;
 }
@@ -99,10 +101,36 @@ function createCycleArrowButtons(chartDiv, chartData, currentChart) {
 
     function createArrowButton(cycleDiv, classString) {
       var arrowButton = document.createElement('button');
-      var arrowIcon = document.createElement('i');
-      arrowIcon.className += classString;
-      arrowButton.appendChild(arrowIcon);
-      cycleDiv.appendChild(arrowButton);
+      arrowButton.className += classString +' btn btn-default chart-button';
       return arrowButton;
     }
+}
+
+function createNumeralsButton(chartDiv, chartData, currentChart) {
+  var numeralButton = document.createElement('button');
+  numeralButton.className = 'btn btn-default chart-button numeral';
+  numeralButton.value = 'letter';
+  numeralButton.innerHTML = 'Switch to Roman Numerals';
+  chartDiv.appendChild(numeralButton);
+  numeralButton.onclick = function() {
+    switch (numeralButton.value) {
+      case 'letter':
+        var key = chartDiv.dataset.key;
+        translateAllMeasuresToNumerals(key);
+        numeralButton.value = 'numeral';
+        numeralButton.innerHTML = 'Switch to Letters';
+        break;
+      case 'numeral':
+        displayChart(chartDiv, chartData, currentChart);
+        numeralButton.value = 'letter';
+        numeralButton.innerHTML = 'Switch to Roman Numerals';
+        break;
+    }
+  };
+}
+
+function clearDiv(div) {
+  while(div.firstChild) {
+    div.removeChild(div.firstChild);
+  }
 }
