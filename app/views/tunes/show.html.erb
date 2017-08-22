@@ -1,6 +1,6 @@
 <!-- TUNE SHOW PAGE -->
 <div align="center" class="jumbotron">
-  <h1 class="tune-title"><%= @tune.name %></h1>
+  <h2 class="tune-title"><%= @tune.name %></h2>
   <div>
     <%= link_to "Edit Tune", edit_tune_path(@tune), class: 'btn btn-md btn-warning edit-tune' %>
     <% if @tune.lyric.nil? %>
