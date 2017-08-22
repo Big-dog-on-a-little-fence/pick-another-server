@@ -1,13 +1,14 @@
 <!-- TUNE SHOW PAGE -->
-<h2 align="center" class="jumbotron">
-  <%= @tune.name %>
-  <%= link_to "Edit Tune", edit_tune_path(@tune), class: 'btn btn-md btn-warning edit-tune' %>
-  <% if @tune.lyric.nil? %>
-    <%= link_to "Add Lyrics", new_tune_lyric_path(@tune), class: 'btn btn-md btn-primary edit-tune' %>
-  <% end %>
-  <%= link_to "Add Chord Chart", new_tune_chart_path(@tune), class: 'btn btn-md btn-primary edit-tune' %>
-
-</h2>
+<div align="center" class="jumbotron">
+  <h1 class="tune-title"><%= @tune.name %></h1>
+  <div>
+    <%= link_to "Edit Tune", edit_tune_path(@tune), class: 'btn btn-md btn-warning edit-tune' %>
+    <% if @tune.lyric.nil? %>
+      <%= link_to "Add Lyrics", new_tune_lyric_path(@tune), class: 'btn btn-md btn-primary edit-tune' %>
+    <% end %>
+    <%= link_to "Add Chord Chart", new_tune_chart_path(@tune), class: 'btn btn-md btn-primary edit-tune' %>
+  </div>
+</div>
 <h3>Key: <%= @tune.key %></h3>
 <h3>Time Signature: <%= @tune.time_signature %></h3>
 <h3>Genre(s): 
@@ -27,10 +28,8 @@
 <% end %>
 </h3>
 
-<br>
 <hr>
 
-<br><br><br><br>
 
 <div align="center" class="well">
   <%= content_tag "div", class: "charts", id: "charts", data: @tune.as_json(:include => { :charts => { :include => {:progressions => { :include => { :measures => {:only => :body}}}}}}) do %>
@@ -38,7 +37,6 @@
   <% end %>
 </div>
 
-<br><br>
 
 <% if @tune.lyric %>
   <div align="center" class="well">
