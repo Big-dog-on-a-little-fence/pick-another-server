@@ -44,10 +44,4 @@ $( document ).ready(function() {
     
   }
 
-  function clearDiv(div) {
-    while(div.firstChild) {
-      div.removeChild(div.firstChild);
-    }
-  }
-
 }); // on document ready

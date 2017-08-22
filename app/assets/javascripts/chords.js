@@ -1,6 +1,7 @@
 const CHORD_SCALE = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
 
-function resetScale(root) {
+function resetScale(input_root) {
+  var root = stripChord(input_root);
   var index = CHORD_SCALE.indexOf(root);
   var chord_scale = CHORD_SCALE.slice(index, CHORD_SCALE.length).concat(CHORD_SCALE.slice(0, index));
   return chord_scale;
@@ -9,12 +10,16 @@ function resetScale(root) {
 function translateChordToNumeral(chord_scale, input_chord) {
   var chord = input_chord;
   var minor = false;
+  var seven = false;
   if (chord.includes('mod')) {
     chord = chord.replace('mod', '');
     
   } else if (chord.includes('m')) {
     chord = chord.replace('m', '');
     minor = true;
+  } else if (chord.includes('7')) {
+    chord = chord.replace('7', '');
+    seven = true;
   }
   var index = chord_scale.indexOf(chord);
   console.log(input_chord + ' ' + index);
@@ -59,7 +64,19 @@ function translateChordToNumeral(chord_scale, input_chord) {
       chord = chord;
   }
     
-  if (minor) {chord.toLowerCase();}
+  if (minor) {chord = chord.toLowerCase();}
+  if (seven) {chord += '7';}
   return chord;
-  
+
 } // translateChordToNumeral()
+
+function stripChord(input_chord) {
+  var chord = input_chord;
+  if (chord.includes('mod')) {
+    chord = chord.replace('mod', '');
+    
+  } else if (chord.includes('m')) {
+    chord = chord.replace('m', '');
+  }
+  return chord;
+}
