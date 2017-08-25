@@ -84,8 +84,8 @@ function createCycleArrowButtons(chartDiv, chartData, currentChart) {
 
   // create cycle buttons if more than 1 chord chart
   if (chartData.length > 1) {
-    var cycleLeft = createArrowButton(cycleDiv, 'fa fa-arrow-left fa-3x');
-    var cycleRight = createArrowButton(cycleDiv, 'fa fa-arrow-right fa-3x');
+    var cycleLeft = createArrowButton(cycleDiv, 'fa fa-arrow-left fa-2x');
+    var cycleRight = createArrowButton(cycleDiv, 'fa fa-arrow-right fa-2x');
     cycleLeft.onclick = function() {
       currentChart = cycleChart(chartDiv, chartData, currentChart, -1);
     };
