@@ -6,15 +6,15 @@ class TunesController < ApplicationController
     @q = Tune.ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
     #@tunes = @q.result(distinct: true).includes(:genres).page(params[:page]).per(100)
-    @tunes = @q.result.includes(:genres).page(params[:page]).per(100)
+    @tunes = @q.result.includes(:genres, :lyric, :charts).page(params[:page]).per(100)
   end
-  
+
   def show
     if current_user.tunes.include?(@tune)
       @repertoire = Repertoire.where(tune_id: @tune.id, user_id: current_user.id).take
     end
   end
-  
+
   def new
     @tune = Tune.new
   end
@@ -46,11 +46,10 @@ class TunesController < ApplicationController
   private  ## private functions
 
   def set_tune
-    @tune = Tune.find(params[:id])
+    @tune = Tune.includes(charts: [progressions: [:measures]]).find(params[:id])
   end
 
   def tune_params
     params.require(:tune).permit(:name, :key, :time_signature, genre_ids: [], user_ids: [], chart_ids: [])
   end
-
 end
