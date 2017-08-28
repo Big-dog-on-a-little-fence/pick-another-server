@@ -53,7 +53,14 @@ class JamsController < ApplicationController
   
   def set_tunes
     @tunes = Tune.all
-    unless @jam.users.length < 1
+    user_includes = [
+      :repertoires,
+      tunes: [
+        :genres,
+        charts: [progressions: :measures]
+      ]
+    ]
+    unless @jam.users.includes(user_includes).length < 1
       @jam.users.each do |user|
         @tunes &= user.tunes
       end
