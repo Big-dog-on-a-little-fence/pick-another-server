@@ -1,5 +1,13 @@
 <%= render "shared/errors", obj: @chart %>
 
+<br>
+<div class="container">
+  <p>A chord chart can be dynamically populated with as many progressions and measures as desired. 
+  Use "m" for minor chords, "dim" for diminished chords, "7" for seventh chords, and "mod" for modal chords. 
+  It can be helpful to fill out a measure field with one or more dash characters ("-") if a chord is played 
+  over an entire measure or for multiple measures.</p>
+</div>
+
 <div class="panel-body">
   <%= nested_form_for [@tune, @chart] do |f| %>
     <div class="form-group">
