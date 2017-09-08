@@ -10,14 +10,20 @@ function resetScale(input_root) {
 function translateChordToNumeral(chord_scale, input_chord) {
   var chord = input_chord;
   var minor = false;
+  var dim = false;
   var seven = false;
   if (chord.includes('mod')) {
     chord = chord.replace('mod', '');
-    
-  } else if (chord.includes('m')) {
+  }
+  if (chord.includes('dim')) {
+    chord = chord.replace('dim', '');
+    dim = true;
+  } 
+  if (chord.includes('m')) {
     chord = chord.replace('m', '');
     minor = true;
-  } else if (chord.includes('7')) {
+  } 
+  if (chord.includes('7')) {
     chord = chord.replace('7', '');
     seven = true;
   }
@@ -64,6 +70,7 @@ function translateChordToNumeral(chord_scale, input_chord) {
   }
     
   if (minor) {chord = chord.toLowerCase();}
+  if (dim) {chord += '°';}
   if (seven) {chord += '7';}
   return chord;
 
