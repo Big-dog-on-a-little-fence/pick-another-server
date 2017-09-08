@@ -100,8 +100,8 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.18)
-    font-awesome-sass (4.7.0)
-      sass (>= 3.2)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hirb (0.7.3)
@@ -292,7 +292,7 @@ DEPENDENCIES
   devise
   devise-bootstrap-views
   dotenv
-  font-awesome-sass
+  font-awesome-rails
   jazz_fingers
   jbuilder (~> 2.0)
   jquery-rails
