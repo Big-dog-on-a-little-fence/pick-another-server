@@ -1,9 +1,8 @@
 class Chart < ApplicationRecord
   belongs_to :tune
-  has_many :progressions, -> { order(part_number: :asc) }, :dependent => :destroy 
+  has_many :progressions, inverse_of: :chart, :dependent => :destroy 
   
-  accepts_nested_attributes_for :progressions, allow_destroy: true #reject_if: proc { |attributes| attributes[:chord_list].blank? }
-  # attr_accessible :progressions_attributes
+  accepts_nested_attributes_for :progressions, allow_destroy: true
 
   validate :require_at_least_one_progression
 
