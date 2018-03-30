@@ -3,3 +3,7 @@
 one:
   name: Random Named Tune
   key: G
+
+two:
+  name: Big Town Barndance
+  key: C

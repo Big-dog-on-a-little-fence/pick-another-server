@@ -18,7 +18,6 @@ class UsersController < ApplicationController
     #@recent_tunes = @user.tunes.order(created_at: :desc).take(10)
     @recent_repertoires = Repertoire.where(user_id: @user.id).order(id: :desc).take(10)
     @recent_tunes = @recent_repertoires.map { |r| r.tune }
-    
   end
   
   def update  ## added for devise username modification
@@ -47,7 +46,7 @@ class UsersController < ApplicationController
     @user_tunes = @q.result.page(params[:page]).per(100)
   end
 
-  private  ### private functions
+  private
   
   def set_user
     @user = User.find(params[:id])
