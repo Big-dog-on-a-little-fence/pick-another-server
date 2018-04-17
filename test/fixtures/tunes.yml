@@ -1,9 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: Random Named Tune
+  name: Generic Bluegrass Tune
   key: G
+  genres: blugrass
 
 two:
   name: Big Town Barndance
   key: C
+  genres: oldtime
+
+three:
+  name: Eclectic Song
+  key: Bbmin
+  genres: folk, world

@@ -1,7 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+jazz:
+  name: Jazz
 
-two:
-  name: MyString
+bluegrass:
+  name: Bluegrass
+
+celtic:
+  name: Celtic
+
+scottish:
+  name: Scottish
+
+oldtime:
+  name: Old Time
+
+folk:
+  name: Folk
+
+cajun:
+  name: Cajun
+
+world:
+  name: World
