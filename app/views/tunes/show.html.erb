@@ -58,3 +58,19 @@
   <%= render "sources/source", obj: @tune.sources %>
   <%= link_to '(+) Add Resource', new_tune_source_path(@tune), class: "button-link" %>
 </div>
+
+<div class="well">
+  <h3 align="center" class="page-header">Comments</h3>
+  <div>
+    <%= form_for [@tune, Comment.new] do |f| %>
+    <%= f.text_area :body, placeholder: "Add a comment", class: "form-control"%>
+    <%= f.submit "Add Comment" %>
+    <% end %>
+  </div>
+  <br/>
+  <div>
+    <ul>
+      <%= render(partial: 'comments/comment', collection: @tune.comments) %>
+    </ul>
+  </div>
+</div>

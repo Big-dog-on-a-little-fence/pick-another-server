@@ -1,0 +1,28 @@
+<li>
+  <div class="well comment">
+    <%= comment.body %> -
+    <small>
+      <% if comment.user_id %>
+        <strong><%= User.find(comment.user_id).username %></strong>
+      <% else %>
+        Submitted 
+      <% end %>
+      (<%= time_ago_in_words(comment.created_at) %> ago)
+    </small>
+    <div>
+      <button class="show-reply" data-id=<%= comment.id.to_s %>>reply</button>
+    </div>
+  </div>
+
+  <div class="form-group reply-form" id=<%= comment.id.to_s %>>
+    <%= form_for [comment, Comment.new] do |f| %>
+      <%= f.text_area :body, placeholder: "Add a reply", class: "form-control" %>
+      <%= f.submit "Reply", class: "reply-button" %>
+    <% end %>
+    <button class="cancel-reply" data-id=<%= comment.id.to_s %>>Cancel</button>
+  </div>
+
+  <ul>
+    <%= render partial: 'comments/comment', collection: comment.comments %>
+  </ul>
+</li>
