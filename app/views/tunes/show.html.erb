@@ -64,7 +64,7 @@
   <div>
     <%= form_for [@tune, Comment.new] do |f| %>
     <%= f.text_area :body, placeholder: "Add a comment", class: "form-control"%>
-    <%= f.submit "Add Comment" %>
+    <%= f.submit "Add Comment", class: "btn btn-primary" %>
     <% end %>
   </div>
   <br/>
