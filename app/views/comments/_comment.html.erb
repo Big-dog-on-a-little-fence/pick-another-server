@@ -1,5 +1,5 @@
 <li>
-  <div class="well comment">
+  <div class="well well-sm comment">
     <%= comment.body %> -
     <small>
       <% if comment.user_id %>
@@ -8,6 +8,14 @@
         Submitted 
       <% end %>
       (<%= time_ago_in_words(comment.created_at) %> ago)
+      <% if comment.user_id == current_user.id %>
+        <%= link_to "edit", edit_tune_comment_path(comment), class: 'btn btn-xs btn-warning' %>
+        <% if comment.comments.empty? %>
+          <%= link_to "delete", comment_path(comment), method: :delete,
+                          data: {confirm: "Are you sure you want to delete the article?"},
+                          class: "btn btn-xs btn-danger" %>
+        <% end %>
+      <% end %>
     </small>
     <div>
       <button class="show-reply" data-id=<%= comment.id.to_s %>>reply</button>

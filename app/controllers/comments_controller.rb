@@ -7,11 +7,21 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @commentable.comments.new comment_params.merge(user_id: current_user.id)
-
     if @comment.save
       redirect_to :back, notice: 'Your comment was successfully posted!'
     else
       redirect_to :back, notice: "Your comment wasn't posted"
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @commentable.update(comment_params)
+      redirect_to :back, notice: "Your comment was updated"
+    else
+      render 'edit'
     end
   end
 
