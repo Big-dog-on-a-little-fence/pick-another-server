@@ -14,12 +14,17 @@ Rails.application.routes.draw do
   end
 
   resources :tunes, except: [:destroy] do
-    resources :sources, :repertoires, :lyrics, :charts
+    resources :sources, :repertoires, :lyrics, :charts, :comments
   end
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
   resources :genres, except: [:destroy]
   resources :jams, only: [:show, :new, :create, :destroy]
   resources :activities
+  resources :comments do
+    resources :comments
+  end
 
   namespace :api do
     resources :jams, only: [:show, :new, :create]

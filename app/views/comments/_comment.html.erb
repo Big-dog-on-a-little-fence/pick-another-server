@@ -1,0 +1,39 @@
+<li>
+  <div class="well well-sm comment">
+    <%= comment.body %> -
+    <small>
+      <% if comment.user %>
+        <strong><%= comment.user.username %></strong>
+      <% else %>
+        Submitted 
+      <% end %>
+      (<%= time_ago_in_words(comment.created_at) %> ago)
+      <% if comment.user_id == current_user.id %>
+        <% url = "#{request.protocol}#{request.host_with_port}#{request.fullpath}" %>
+        <%= link_to "edit", polymorphic_url([comment.commentable, comment], action: "edit",
+                          :url => Base64.encode64(url)), class: 'btn btn-xs btn-warning' %>
+        <% if comment.comments.empty? %>
+          <%= link_to "delete", polymorphic_url([comment.commentable, comment], 
+                          :url => Base64.encode64(url)), :method => :delete,
+                          data: {confirm: "Are you sure you want to delete the article?"},
+                          class: "btn btn-xs btn-danger" %>
+        <% end %>
+      <% end %>
+    </small>
+    <div>
+      <button class="show-reply" data-id=<%= comment.id.to_s %>>reply</button>
+    </div>
+  </div>
+
+  <div class="form-group reply-form" id=<%= comment.id.to_s %>>
+    <%= form_for [comment, Comment.new] do |f| %>
+      <%= f.text_area :body, placeholder: "Add a reply", class: "form-control" %>
+      <%= f.submit "Reply", class: "reply-button" %>
+    <% end %>
+    <button class="cancel-reply" data-id=<%= comment.id.to_s %>>Cancel</button>
+  </div>
+
+  <ul>
+    <%= render partial: 'comments/comment', collection: comment.comments %>
+  </ul>
+</li>
