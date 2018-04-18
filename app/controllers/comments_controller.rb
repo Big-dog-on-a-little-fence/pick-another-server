@@ -1,12 +1,13 @@
 class CommentsController < ApplicationController
-  before_action :find_commentable, :authenticate_user!
+  before_action :set_commentable, :authenticate_user!
 
   def new
     @comment = Comment.new
   end
 
   def create
-    @comment = @commentable.comments.new comment_params.merge(user_id: current_user.id)
+    @comment = @commentable.comments.new comment_params
+    @comment.user = current_user
     if @comment.save
       redirect_to :back, notice: 'Your comment was successfully posted!'
     else
@@ -15,20 +16,39 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment = @commentable.comments.find(params[:id])
   end
-
+  
   def update
-    if @commentable.update(comment_params)
-      redirect_to :back, notice: "Your comment was updated"
+    @comment = @commentable.comments.find(params[:id])
+    redirection = nil
+    if params[:url].present?
+      redirection = Base64.decode64(params[:url].to_s)
+    end
+    if @comment.update(comment_params)
+      if redirection.present?
+        redirect_to redirection, notice: "Your comment was succesfully updated"
+      else
+        redirect_to root_path
+      end
     else
-      render 'edit'
+      link_to :back, notice: "Your comment was not updated"
     end
   end
 
   def destroy
-    if @commentable.comments.empty? and (@commentable.user_id == current_user)
-      @commentable.destroy
-      redirect_to :back, notice: "Your comment was deleted"
+    @comment = @commentable.comments.find(params[:id])
+    redirection = nil
+    if params[:url].present?
+      redirection = Base64.decode64(params[:url].to_s)
+    end
+    if @comment.comments.empty? and (@comment.user == current_user)
+      @comment.destroy
+      if redirection.present?
+        redirect_to redirection, notice: "Your comment was succesfully deleted"
+      else
+        redirect_to root_path
+      end
     else
       redirect_to :back, notice: "Comment was not deleted"
     end
@@ -40,7 +60,7 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:body)
   end
 
-  def find_commentable
+  def set_commentable
     @commentable = Comment.find_by_id(params[:comment_id]) if params[:comment_id]
     @commentable = Tune.find_by_id(params[:tune_id]) if params[:tune_id]
   end

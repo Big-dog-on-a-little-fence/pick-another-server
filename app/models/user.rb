@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :tunes, through: :repertoires
   has_many :jam_users
   has_many :jams, through: :jam_users
+  has_many :comments
 
   scope :starts_with, -> (username) { where("username like ?", "#{username}%")}
 
