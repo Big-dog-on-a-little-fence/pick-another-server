@@ -7,8 +7,8 @@ class JamsController < ApplicationController
   def show
     @tune = @tunes.sample
     @j_struct = jam_structure(@jam.users)
-    ## @q = @tunes.ransack(params[:q])
-    ## @jam_tunes = @q.result.page(params[:page]).per(25)
+    # @q = @tunes.ransack(params[:q])
+    # @jam_tunes = @q.result.page(params[:page]).per(25)
   end
   
   def new
@@ -23,6 +23,10 @@ class JamsController < ApplicationController
     else
       render 'new'  ## render new article template in case of failure for another try
     end
+  end
+
+  def index
+    @jams = Jam.all.order('created_at DESC')
   end
 
   def destroy
@@ -45,7 +49,7 @@ class JamsController < ApplicationController
     return j
   end
 
-  private  ## private methods
+  private
   
   def set_jam
     @jam = Jam.find(params[:id])

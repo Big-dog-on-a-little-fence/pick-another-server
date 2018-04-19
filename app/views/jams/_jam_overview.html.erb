@@ -1,0 +1,25 @@
+<% @jams.each do |jam| %>
+  <ul class="listing">
+    <div class="row">
+      <div class="well col-md-4 col-md-offset-4">
+        <li>
+          <div>
+            <% if jam.name.empty? %>
+              <%= link_to "(No Name)", jam_path(jam) %>
+            <% else %>
+              <%= link_to jam.name, jam_path(jam) %>
+            <% end %>
+          </div>
+        </li>
+        <li><%= jam.created_at.strftime("%B %d, %Y") %></li>
+        <li>
+          <small>
+            <% jam.users.each do |user| %>
+              <%= user.username %>
+            <% end %>
+          </small>
+        </li>
+      </div>
+    </div>
+  </ul>
+<% end %>
