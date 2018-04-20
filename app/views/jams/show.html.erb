@@ -27,3 +27,20 @@
 <br>
 
 <%= render 'jam', obj: @tunes %>
+
+<div class="well">
+  <h3 align="center" class="page-header">Comments</h3>
+  <div>
+    <%= form_for [@jam, Comment.new] do |f| %>
+    <%= f.text_area :body, placeholder: "Add a comment", class: "form-control"%>
+    <%= f.submit "Add Comment", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <br/>
+  <div>
+    <ul>
+      <%= render(partial: 'comments/comment', collection: @jam.comments) %>
+    </ul>
+  </div>
+</div>
+
