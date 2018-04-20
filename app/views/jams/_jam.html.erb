@@ -4,6 +4,7 @@
       <th>Name</th>
       <th>Key</th>
       <th>Genre(s)</th>
+      <th>Resource</th>
       <th>Last Updated</th>
     </tr>
   </thead>
@@ -17,6 +18,11 @@
             <% tune.genres.each do |genre| %>
               <%= "#{genre.name}" %>
             <% end %>
+          <% end %>
+        </td>
+        <td>
+          <% if tune.sources.any? %>
+            <%= embed(tune.sources.first.link, pixels="80") %>
           <% end %>
         </td>
         <td><%= time_ago_in_words(tune.updated_at) %> ago</td>

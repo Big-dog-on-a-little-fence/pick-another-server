@@ -5,10 +5,11 @@
     <tr>
       <th class="col-md-1"></th> <!-- empty header for known badge column -->
       <th class="col-md-1"></th> <!-- empty header for lyrics icon column -->
-      <th class="col-md-3"><%= sort_link(@q, :name, 'Name', default_order: 'asc') %></th>
+      <th class="col-md-2"><%= sort_link(@q, :name, 'Name', default_order: 'asc') %></th>
       <th class="col-md-1"><%= sort_link(@q, :key, 'Key', default_order: 'asc') %></th>
       <th class="col-md-1"><%= sort_link(@q, :time_signature, 'Time', default_order: 'asc') %></th>
-      <th class="col-md-3"><%= sort_link(@q, :genres_name, [:genres_name, 'name asc'], 'Genre(s)') %></th>
+      <th class="col-md-2"><%= sort_link(@q, :genres_name, [:genres_name, 'name asc'], 'Genre(s)') %></th>
+      <th class="col-md-2">Resource</th>
       <th class="col-md-2"><%= sort_link(@q, :updated_at, 'Last Updated', default_order: 'desc') %></th>
     </tr>
   </thead>
@@ -24,8 +25,6 @@
         <% if tune.lyric %>
           <i class="fa fa-lg fa-microphone tune-icon"></i>
         <% end %>
-        <!--</td>-->
-        <!--<td>-->
         <% unless tune.charts.empty? %>
           <i class="fa fa-lg fa-pencil-square-o tune-icon"></i>
         <% end %>
@@ -38,6 +37,11 @@
             <% tune.genres.each do |genre| %>
               <%= "#{genre.name}" %>
             <% end %>
+          <% end %>
+        </td>
+        <td>
+          <% if tune.sources.any? %>
+            <%= embed(tune.sources.first.link, pixels="80") %>
           <% end %>
         </td>
         <td><%= time_ago_in_words(tune.updated_at) %> ago</td>
