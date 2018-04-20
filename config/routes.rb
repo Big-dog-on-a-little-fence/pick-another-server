@@ -20,7 +20,9 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :genres, except: [:destroy]
-  resources :jams, only: [:show, :new, :create, :destroy]
+  resources :jams, only: [:show, :new, :create, :index, :destroy] do
+    resources :comments
+  end
   resources :activities
   resources :comments do
     resources :comments

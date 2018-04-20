@@ -62,6 +62,7 @@ class CommentsController < ApplicationController
 
   def set_commentable
     @commentable = Comment.find_by_id(params[:comment_id]) if params[:comment_id]
+    @commentable = Jam.find_by_id(params[:jam_id]) if params[:jam_id]
     @commentable = Tune.find_by_id(params[:tune_id]) if params[:tune_id]
   end
 end
