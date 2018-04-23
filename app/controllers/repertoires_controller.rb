@@ -1,5 +1,5 @@
 class RepertoiresController < ApplicationController
-  ### Convention methods order ==> Index, Show, New, Edit, Create, Update, Destroy 
+  # Convention methods order ==> Index, Show, New, Edit, Create, Update, Destroy 
   before_action :set_repertoire, only: [:show, :destroy]
   
   def show
@@ -30,11 +30,11 @@ class RepertoiresController < ApplicationController
     redirect_to tune_path(@tune)
   end
 
-  private  ## private methods
+  private  # private methods
   
   def set_repertoire
-    @repertoire = Repertoire.find(params[:id])
-    @tune = @repertoire.tune
+    @repertoire = Repertoire.includes(:tune).find(params[:id])
+    # @tune = @repertoire.tune
   end
   
 end

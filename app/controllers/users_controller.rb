@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  ### Convention methods order ==> Index, Show, New, Edit, Create, Update, Destroy
+  # Convention methods order ==> Index, Show, New, Edit, Create, Update, Destroy
   before_action :set_user, only: [:update, :show, :destroy, :repertoire, :recordings]
   before_action :require_admin, only: [:destroy]
 
@@ -8,15 +8,11 @@ class UsersController < ApplicationController
   end
   
   def index
-    #@users = User.all
     @users = User.page(params[:page])
   end
   
   def show
-    # @q = @user.articles.ransack(params[:q])
-    # @user_articles = @q.result.page(params[:page]).per(25)
-    #@recent_tunes = @user.tunes.order(created_at: :desc).take(10)
-    @recent_repertoires = Repertoire.where(user_id: @user.id).order(id: :desc).take(10)
+    @recent_repertoires = Repertoire.includes(:tune).where(user_id: @user.id).order(id: :desc).take(10)
     @recent_tunes = @recent_repertoires.map { |r| r.tune }
   end
   
@@ -34,14 +30,13 @@ class UsersController < ApplicationController
   end
 
   def recordings
-    #@user = current_user
     @q = @user.articles.ransack(params[:q])
     @user_articles = @q.result.page(params[:page]).per(25)
   end
   
   def repertoire
-    #@user = current_user
-    @q = @user.tunes.ransack(params[:q])
+    tune_includes = [:lyric, :charts, :genres, :tune_genres, :sources]
+    @q = @user.tunes.includes(tune_includes).ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
     @user_tunes = @q.result.page(params[:page]).per(100)
   end
@@ -51,7 +46,18 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
-    
+  
+  def set_user_and_repertoire
+    user_includes = [
+      :repertoires,
+      tunes: [
+        :genres,
+        :sources
+      ]
+    ]
+    @user = User.includes(user_includes).find(params[:id])
+  end
+  
   def require_admin
     if user_signed_in? and !current_user.admin?
       flash[:danger] = "Only admin users can perform that action" 

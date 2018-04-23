@@ -1,5 +1,5 @@
 class JamsController < ApplicationController
-  ### Convention methods order ==> Index, Show, New, Edit, Create, Update, Destroy 
+  # Convention methods order ==> Index, Show, New, Edit, Create, Update, Destroy 
   before_action :set_jam, only: [:show, :destroy]
   before_action :set_tunes, only: [:show]
   helper_method :jam_structure
@@ -26,7 +26,7 @@ class JamsController < ApplicationController
   end
 
   def index
-    @jams = Jam.all.order('created_at DESC')
+    @jams = Jam.includes(:users).all.order('created_at DESC')
   end
 
   def destroy
@@ -52,20 +52,15 @@ class JamsController < ApplicationController
   private
   
   def set_jam
-    @jam = Jam.find(params[:id])
+    jam_includes = [{comments: :user}, {comments: :commentable}, {comments: :comments}]
+    @jam = Jam.includes(jam_includes).find(params[:id])
   end
   
   def set_tunes
-    @tunes = Tune.all
-    user_includes = [
-      :repertoires,
-      tunes: [
-        :genres,
-        charts: [progressions: :measures]
-      ]
-    ]
-    unless @jam.users.includes(user_includes).length < 1
-      @jam.users.each do |user|
+    user_includes = [:repertoires, :tunes]
+    unless @jam.users.length < 1
+      @tunes = @jam.users[0].tunes.includes(:genres, :sources, charts: [progressions: :measures])
+      @jam.users.includes(user_includes).each do |user|
         @tunes &= user.tunes
       end
     end

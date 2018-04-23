@@ -2,13 +2,12 @@ class GenresController < ApplicationController
   before_action :set_genre, only: [:show]
   
   def index
-    #@genres = Genre.all
     @genres = Genre.page(params[:page])
   end
 
   def show
-    #@genre_articles = @genre.articles
-    @q = @genre.tunes.ransack(params[:q])
+    tunes_includes = [:lyric, :charts, :genres, :sources]
+    @q = @genre.tunes.includes(tunes_includes).ransack(params[:q])
     @genre_tunes = @q.result.page(params[:page]).per(25)
   end
   

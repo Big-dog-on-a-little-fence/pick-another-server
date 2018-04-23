@@ -1,12 +1,11 @@
 class TunesController < ApplicationController
-  ### Convention methods order ==> Index, Show, New, Edit, Create, Update, Destroy
+  # Convention methods order ==> Index, Show, New, Edit, Create, Update, Destroy
   before_action :set_tune, only: [:show, :edit, :update, :destroy]
 
   def index
     @q = Tune.ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
-    #@tunes = @q.result(distinct: true).includes(:genres).page(params[:page]).per(100)
-    @tunes = @q.result.includes(:genres, :lyric, :charts).page(params[:page]).per(100)
+    @tunes = @q.result.includes(:sources, :genres, :lyric, :charts).page(params[:page]).per(100)
   end
 
   def show
@@ -43,10 +42,11 @@ class TunesController < ApplicationController
     end
   end
 
-  private  ## private functions
+  private
 
   def set_tune
-    @tune = Tune.includes(charts: [progressions: [:measures]]).find(params[:id])
+    tune_includes = [{comments: :user}, {comments: :commentable}, {comments: :comments}, charts: [progressions: [:measures]]]
+    @tune = Tune.includes(tune_includes).find(params[:id])
   end
 
   def tune_params
