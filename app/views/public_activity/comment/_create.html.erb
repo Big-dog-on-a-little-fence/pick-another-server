@@ -1,0 +1,11 @@
+<!-- COMMENT (CREATE) ACTIVITY PARTIAL-->
+
+<div class="alert alert-info" role="alert">
+  <i class="fa fa-lg fa-quote-left activity-icon"></i>
+  <%= link_to activity.owner.username, activity.owner if activity.owner %>
+  <% if activity.trackable %>
+    commented on <%= link_to get_parent_commentable(activity.trackable).name, get_parent_commentable(activity.trackable) %>
+  <% else %>
+    made a comment that has since been deleted
+  <% end %>
+</div>

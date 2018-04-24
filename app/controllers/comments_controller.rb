@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.new comment_params
     @comment.user = current_user
     if @comment.save
+      @comment.create_activity :create, owner: current_user
       redirect_to :back, notice: 'Your comment was successfully posted!'
     else
       redirect_to :back, notice: "Your comment wasn't posted"

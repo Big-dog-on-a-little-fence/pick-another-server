@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  body: MyText
-  commentable_id: 1
-  commentable_type: MyString
+  id: 1
+  body: This tune is cray fun times
+  commentable: four (Tune)
 
 two:
-  body: MyText
-  commentable_id: 1
-  commentable_type: MyString
+  id: 2
+  body: Yeah. At our house! Wee haaa yayy!
+  commentable: one (Comment)
