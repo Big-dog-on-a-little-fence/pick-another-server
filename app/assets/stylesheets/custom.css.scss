@@ -1,3 +1,7 @@
+body {
+  display: grid;
+}
+
 ul {
   list-style-type: none; /* remove list bullets */
 }
@@ -43,7 +47,6 @@ footer {
   color: #2e618d;
   background-color: #D6BF86;
   border-color: #141414;
-  // border-style: solid;
 }
 .btn-db:hover,
 .btn-db:focus,
@@ -77,34 +80,3 @@ fieldset[disabled] .btn-db.active {
   background-color: #ff0000;
   border-color: #008000;
 }
-
-
-/* GENRE CHECKBOX BUTTONS */
-// .btn-genre {
-//   background-color: #faebd7; /* antique-white */
-//   border-color: #141414; /* matte black */
-// }
-
-// .input_checkbox input {
-//   width: auto !important;
-// }
-
-// .btn-genre > input[type="checkbox"]:checked + label {
-//   background-color: #428bca; /* bootstrap blue */
-//   color: #faebd7; /* antique-white */
-//   font-weight: bold;
-// }
-
-
-// .btn-genre > input[type="checkbox"]:checked + label {
-//   background-color: #428bca; /* bootstrap blue */
-//   color: #faebd7; /* antique-white */
-//   font-weight: bold;
-// }
-
-
-// input[type="checkbox"]:checked + label {
-//   background-color: #428bca; /* bootstrap blue */
-//   color: #f00;
-//   font-style: normal;
-// } 
