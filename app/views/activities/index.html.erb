@@ -2,6 +2,7 @@
   <h1>Recent Activity</h1>
 </div>
 
+<%= paginate @activities %>
 <div align="left">
   <% @activities.each do |activity| %>
     <div class="activity">
@@ -9,3 +10,5 @@
     </div>
   <% end %>
 </div>
+<%= paginate @activities %>
+<%= page_entries_info @activities %>
