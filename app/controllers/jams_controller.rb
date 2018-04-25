@@ -5,14 +5,13 @@ class JamsController < ApplicationController
   helper_method :jam_structure
   
   def index
-    @jams = Jam.includes(:users).all.order('created_at DESC').page(params[:page]).per(5)
+    @jams = Jam.includes(:users).all.order('created_at DESC')
+    @jams = @jams.page(params[:page]).per(50)
   end
   
   def show
     @tune = @tunes.sample
     @j_struct = jam_structure(@jam.users)
-    # @q = @tunes.ransack(params[:q])
-    # @jam_tunes = @q.result.page(params[:page]).per(25)
   end
   
   def new
