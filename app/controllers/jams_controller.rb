@@ -4,6 +4,10 @@ class JamsController < ApplicationController
   before_action :set_tunes, only: [:show]
   helper_method :jam_structure
   
+  def index
+    @jams = Jam.includes(:users).all.order('created_at DESC').page(params[:page]).per(5)
+  end
+  
   def show
     @tune = @tunes.sample
     @j_struct = jam_structure(@jam.users)
@@ -23,10 +27,6 @@ class JamsController < ApplicationController
     else
       render 'new'  ## render new article template in case of failure for another try
     end
-  end
-
-  def index
-    @jams = Jam.includes(:users).all.order('created_at DESC')
   end
 
   def destroy
