@@ -2,9 +2,11 @@
 
 <div class="alert alert-info" role="alert">
   <i class="fa fa-lg fa-edit activity-icon"></i>
-  <%= link_to activity.owner.username, activity.owner if activity.owner %> edited  
+  <% if activity.owner %>
+    <%= link_to activity.owner.username, activity.owner, {:class => "alert-link"} %> edited 
+  <% end %>
   <% if activity.trackable %>
-    the tune <%= link_to activity.trackable.name, activity.trackable %>
+    the tune <%= link_to activity.trackable.name, activity.trackable, {:class => "alert-link"} %>
   <% else %>
     a tune which has since been removed
   <% end %>
