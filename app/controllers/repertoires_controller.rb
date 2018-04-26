@@ -34,7 +34,7 @@ class RepertoiresController < ApplicationController
   
   def set_repertoire
     @repertoire = Repertoire.includes(:tune).find(params[:id])
-    # @tune = @repertoire.tune
+    @tune = @repertoire.tune
   end
   
 end
