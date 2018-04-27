@@ -1,0 +1,2 @@
+class Fiddle < Instrument
+end

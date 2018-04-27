@@ -1,0 +1,18 @@
+<h1>Instruments</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Family</th>
+      <th></th>
+
+    </tr>
+</thead>
+  <tbody>
+    <% @instruments.each do |animal| %>
+      <tr>
+        <td><%= animal.family %></td>
+        <td><%= link_to 'Show', "" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

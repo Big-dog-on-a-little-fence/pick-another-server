@@ -1,0 +1,2 @@
+class Banjo < Instrument
+end
