@@ -1,0 +1,2 @@
+class Violin < Instrument
+end

@@ -1,0 +1,2 @@
+class Trombone < Instrument
+end

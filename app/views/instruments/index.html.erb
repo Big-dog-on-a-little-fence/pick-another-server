@@ -1,0 +1,23 @@
+<h1>Instruments</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Logo</th>
+      <th>Instrument</th>
+      <th>Musician</th>
+      <th></th>
+    </tr>
+</thead>
+  <tbody>
+    <% @instruments.each do |instrument| %>
+      <tr>
+        <td>
+          <%= image_tag(instrument.type + '.svg', :class => 'svg-xs') %>
+        </td>
+        <td><%= instrument.type %></td>
+        <td><%= instrument.user.username %></td>
+        <td><%= link_to 'Show', "" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

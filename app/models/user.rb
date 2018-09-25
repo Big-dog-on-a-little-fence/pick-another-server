@@ -11,9 +11,17 @@ class User < ApplicationRecord
   has_many :jam_users
   has_many :jams, through: :jam_users
   has_many :comments
-  has_many :instruments
   
-  delegate :banjos, :basses, :cellos, :fiddles, :guitars, :mandolins, :voices, to: :instruments
+  has_many :instruments
+  has_one :banjo
+  has_one :bass
+  has_one :cello
+  has_one :guitar
+  has_one :mandolin
+  has_one :violin
+  has_one :voice  
+  
+  # delegate :banjos, :basses, :cellos, :guitars, :mandolins, :violins, :voices, to: :instruments
 
   scope :starts_with, -> (username) { where("username like ?", "#{username}%")}
 

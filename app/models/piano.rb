@@ -1,0 +1,2 @@
+class Piano < Instrument
+end

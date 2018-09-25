@@ -1,2 +1,0 @@
-class Fiddle < Instrument
-end

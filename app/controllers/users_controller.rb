@@ -50,6 +50,7 @@ class UsersController < ApplicationController
   def set_user_and_repertoire
     user_includes = [
       :repertoires,
+      :instruments,
       tunes: [
         :genres,
         :sources
