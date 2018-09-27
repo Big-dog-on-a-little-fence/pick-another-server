@@ -37,6 +37,10 @@ gem 'rack-cors', :require => 'rack/cors'
 # Nested form helpers, easy to dynamically add/remove nested records
 gem "nested_form"
 
+group :test do
+  gem 'database_cleaner'
+end
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
@@ -47,6 +51,9 @@ group :development, :test do
   gem 'bullet', group: 'development'
   gem "better_errors"
   gem "binding_of_caller"
+  gem 'rspec-rails', '~> 3.8'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do

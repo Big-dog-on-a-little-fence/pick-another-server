@@ -1,15 +1,5 @@
-<h1 align="center" class="jumbotron">
-  <% if @user == current_user %>
-    My Repertoire
-  <% else %>
-    <%= @user.username %>'s Repertoire
-  <% end %>
-</h1>
-
 <div>
-  <% @user.instruments.each do |instrument| %>
-    <%= link_to instrument.type, eval("#{instrument.type.downcase}_path(instrument)") %>
-  <% end %>
+  <h2><%= @user.username %>'s Repertoire (all instruments)</h2>
 </div>
 
 <div class="row well">
