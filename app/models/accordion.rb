@@ -1,0 +1,2 @@
+class Accordion < Instrument
+end

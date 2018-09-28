@@ -1,0 +1,2 @@
+class Saxophone < Instrument
+end

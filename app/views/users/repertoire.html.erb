@@ -1,23 +1,19 @@
-<h1 align="center" class="jumbotron">
-  <% if @user == current_user %>
-    My Repertoire
-  <% else %>
-    <%= @user.username %>'s Repetoire
-  <% end %>
-</h1>
+<div>
+  <h2><%= @user.username %>'s Repertoire (all instruments)</h2>
+</div>
 
 <div class="row well">
   <div class="col-lg-6">
     <div class="input-group">
       <%= search_form_for @q do |f| %>
-            <!-- Search if the name field contains...-->
-            <div class="form-group">
-              <%= f.label :name_cont, "Name contains" %>
-              <%= f.search_field :name_cont, autofocus: true, class: "form-control" %>
-            </div>
-            <div class="actions">
-                <%= f.submit "Search"%>
-            </div>
+        <!-- Search if the name field contains...-->
+        <div class="form-group">
+          <%= f.label :name_cont, "Name contains" %>
+          <%= f.search_field :name_cont, autofocus: true, class: "form-control" %>
+        </div>
+        <div class="actions">
+          <%= f.submit "Search"%>
+        </div>
       <% end %>
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->

@@ -1,0 +1,2 @@
+class Clarinet < Instrument
+end

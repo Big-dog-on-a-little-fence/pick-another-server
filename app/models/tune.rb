@@ -3,6 +3,7 @@ class Tune < ApplicationRecord
 
   has_many :repertoires
   has_many :users, through: :repertoires
+  has_and_belongs_to_many :instruments
   has_many :tune_genres
   has_many :genres, through: :tune_genres
   has_many :sources

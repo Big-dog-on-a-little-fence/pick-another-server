@@ -20,6 +20,7 @@
 </h3>
 <h3>
 <% if current_user.tunes.include?(@tune) %>
+  <%= link_to "Edit repertoire", edit_tune_repertoire_path(@tune, @repertoire), class: 'btn btn-md btn-warning' %>
   <%= link_to "(-) Remove from repertoire", tune_repertoire_path(@tune, @repertoire), method: :delete,
                 data: {confirm: "Are you sure you want to remove this tune from your repertoire?"},
                 class: "btn btn-md btn-danger" %>

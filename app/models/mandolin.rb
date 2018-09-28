@@ -1,0 +1,2 @@
+class Mandolin < Instrument
+end

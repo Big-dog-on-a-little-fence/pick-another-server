@@ -1,0 +1,44 @@
+<div align="center" class="container">
+  <h2 class="jumbotron"><%= @user.username %>'s Dashboard</h2>
+</div>
+
+<div align="center" class="container">
+  <h2 class="page-header">Repertoire</h2>
+  <div>
+    <%= link_to "Repertoire (all instruments)", repertoire_user_path, class: 'btn btn-db btn-lg' %>
+  </div>
+  <br>
+
+  <% if @user.instruments.any? %>
+    <div class="btn-group-vertical">
+    <% @user.instruments.each do |instrument| %>
+      <%= link_to image_tag(instrument.type + '.svg', :class => 'svg-xs svg-padding-right') + instrument.type, 
+          eval("#{instrument.type.downcase}_path(instrument)"), class: 'btn btn-db btn-md' %>
+    <% end %>
+    </div>
+  <% else %>
+    <div>(no instruments identified)</div>
+  <% end %>
+</div>
+
+<br>
+<div>
+  <h2 class="page-header">Recently Learned Tunes</h2>
+  <ul class="list-group">
+  <% @recent_tunes.each do |tune| %>
+    <li class="list-group-item list-group-item-warning recent-tune">
+        <%= link_to tune.name, tune_path(tune) %>
+    </li>
+  <% end %>
+  </ul>
+</div>
+
+<br>
+<div>
+  <h2 class="page-header">Recordings</h2>
+  <% if @user.articles.any? %>
+    <%= link_to "Recordings", recordings_user_path, class: 'btn btn-db btn-lg' %>
+  <% else %>
+    (<%= @user.username %> doesn't have any recordings yet)
+  <% end %>
+</div>

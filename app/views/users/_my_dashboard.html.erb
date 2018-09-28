@@ -1,0 +1,61 @@
+<div align="center" class="container">
+  <h1 class="jumbotron">Dashboard</h1>
+</div>
+
+<div align="center" class="container">
+  <h2 class="page-header">My Repertoire</h2>
+  <p>View your repertoire by instrument or in its entirety.</p>
+  <div>
+    <%= link_to "Repertoire (all instruments)", repertoire_user_path, class: 'btn btn-db btn-lg' %>
+  </div>
+  <br>
+  <div>
+  <% if @user.instruments.any? %>
+    <div class="btn-group-vertical">
+    <% @user.instruments.each do |instrument| %>
+      <%= link_to image_tag(instrument.type + '.svg', :class => 'svg-xs svg-padding-right') + instrument.type, 
+          eval("#{instrument.type.downcase}_path(instrument)"), class: 'btn btn-db text-bump' %>
+    <% end %>
+    </div>
+  <% else %>
+    <div>(no instruments identified)</div>
+  <% end %>
+  </div>
+</div><!--/container-->
+
+<br>
+<% if @user == current_user %>
+  <div align="center">
+    <%= link_to "(+) Add instrument", new_user_instrument_path(current_user), class: "btn btn-md btn-primary" %>
+  </div>
+<% end %>
+
+<br>
+<div>
+  <h2 class="page-header">Recently Learned Tunes</h2>
+  <ul class="list-group">
+  <% @recent_tunes.each do |tune| %>
+    <li class="list-group-item list-group-item-warning recent-tune">
+      <%= link_to tune.name, tune_path(tune) %>
+    </li>
+  <% end %>
+  </ul>
+</div>
+
+<br>
+<div>
+  <h2 class="page-header">My Recordings</h2>
+  <p>Here you can view your recordings. Record yourself playing tunes to document your progress and
+  set up a youtube account to link your videos.</p>
+  <%= link_to "Recordings", recordings_user_path, class: 'btn btn-db btn-lg' %>
+</div>
+
+<br>
+<div>
+  <h2 class="page-header">Jams</h2>
+  <p>Take a look at past jams to see the tunes folks have been playing or start a new one. </p>
+  <%= link_to "Past Jams", jams_path, class: 'btn btn-db btn-lg' %>
+  <%= link_to "Start a New Jam", new_jam_path, class: 'btn btn-db btn-lg' %>
+</div>
+
+<%#= link_to "New Genre", new_genre_path, class: 'btn btn-primary btn-lg' if current_user.admin? %>

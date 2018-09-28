@@ -4,12 +4,13 @@
   <thead>
     <tr>
       <th class="col-md-1"></th> <!-- empty header for known badge column -->
-      <th class="col-md-1"></th> <!-- empty header for lyrics icon column -->
+      <th class="col-md-2">Instruments</th> <!-- instruments column -->
+      <th class="col-md-1">Lyrics/Charts</th> <!-- lyrics/charts icons column -->
       <th class="col-md-2"><%= sort_link(@q, :name, 'Name', default_order: 'asc') %></th>
       <th class="col-md-1"><%= sort_link(@q, :key, 'Key', default_order: 'asc') %></th>
       <th class="col-md-1"><%= sort_link(@q, :time_signature, 'Time', default_order: 'asc') %></th>
       <th class="col-md-2"><%= sort_link(@q, :genres_name, [:genres_name, 'name asc'], 'Genre(s)') %></th>
-      <th class="col-md-2">Resource</th>
+      <!--<th class="col-md-2">Resource</th>-->
       <th class="col-md-2"><%= sort_link(@q, :updated_at, 'Last Updated', default_order: 'desc') %></th>
     </tr>
   </thead>
@@ -17,16 +18,25 @@
     <% obj.each do |tune| %>
       <tr>
         <td>
-        <% if current_user.tunes.include?(tune) %>
-          <span id='rep-id' class='label label-default'>Known</span>
+        <% if current_user.tunes.include?(tune) && current_user != @user %>
+          <span id='rep-id' class='label label-default'>You Know This!</span>
+        <% end %>
+        </td>
+        <td>
+        <% if @user.instruments.any? %>
+          <% @user.instruments.each do |instrument| %>
+            <% if instrument.tunes.include?(tune) %>
+              <%= image_tag(instrument.type + '.svg', :class => 'svg-xs', :title => instrument.type.downcase) %>
+            <% end %>
+          <% end %>
         <% end %>
         </td>
         <td>
         <% if tune.lyric %>
-          <i class="fa fa-lg fa-microphone tune-icon"></i>
+          <i class="fa fa-lg fa-microphone tune-icon", title="has lyrics"></i>
         <% end %>
         <% unless tune.charts.empty? %>
-          <i class="fa fa-lg fa-pencil-square-o tune-icon"></i>
+          <i class="fa fa-lg fa-pencil-square-o tune-icon", title="has chord chart(s)"></i>
         <% end %>
         </td>
         <td><%= link_to tune.name, tune_path(tune) %></td>
@@ -39,11 +49,11 @@
             <% end %>
           <% end %>
         </td>
-        <td>
-          <% if tune.sources.any? %>
-            <%= embed(tune.sources.first.link, pixels="80") %>
-          <% end %>
-        </td>
+        <!--<td>-->
+          <%# if tune.sources.any? %>
+            <%#= embed(tune.sources.first.link, pixels="80") %>
+          <%# end %>
+        <!--</td>-->
         <td><%= time_ago_in_words(tune.updated_at) %> ago</td>
       </tr>
     <% end %>

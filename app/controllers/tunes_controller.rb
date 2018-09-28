@@ -3,6 +3,7 @@ class TunesController < ApplicationController
   before_action :set_tune, only: [:show, :edit, :update, :destroy]
 
   def index
+    @user = current_user
     @q = Tune.ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
     @tunes = @q.result.includes(:sources, :genres, :lyric, :charts).page(params[:page]).per(100)

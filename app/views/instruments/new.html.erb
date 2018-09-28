@@ -1,0 +1,15 @@
+<div class="panel-heading">
+  <% if current_user.instruments.any? %>
+    <div>
+      <h4>Instruments you already know include:</h3>
+      <ul>
+        <% @user_instrument_types.each do |instrument| %>
+          <li><%= instrument %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <h4>What instrument would you like to add to your arsenal?</h4>
+  <%= render "form" %>
+</div>
