@@ -1,9 +1,9 @@
 namespace :instruments do
 
   desc "adds tunes to instrument"
-  task :add_tunes_to_instrument, [:email] => [:environment] do |task, args|
+  task :add_tunes_to_instrument, [:email, :instrument_type] => [:environment] do |task, args|
     user = User.find_by_email(args[:email])
-    instrument = user.instruments.first
+    instrument = user.instruments.create(:type => args[:instrument_type])
     if user && instrument
       count = 0
       user.tunes.each do |tune|
