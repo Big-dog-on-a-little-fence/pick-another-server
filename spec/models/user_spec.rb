@@ -33,4 +33,11 @@ RSpec.describe User, type: :model do
     user2 = build(:user, email: nil)
     expect(user2).to_not be_valid
   end
+  
+  it "has correct number of instruments" do
+    @instrument1 = create(:mandolin, user: @user1)
+    @instrument2 = create(:cello, user: @user1)
+    @instrument3 = create(:violin, user: @user1)
+    expect(@user1.instruments.count).to eq(3)
+  end
 end

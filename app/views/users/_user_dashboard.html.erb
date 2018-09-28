@@ -1,28 +1,23 @@
-<div align="center">
-  <h2><%= @user.username %>'s Dashboard</h2>
-  <%= link_to "Repertoire", repertoire_user_path, class: 'btn btn-db btn-lg' %>
-  <%= link_to "Recordings", recordings_user_path, class: 'btn btn-db btn-lg' %>
-</div>
 <div align="center" class="container">
-  <h4><%= @user.username %>'s Instruments</h4>
-  <p></p>
-  <% if @user.instruments.any? %>
-    <% @user.instruments.each do |instrument| %>
-      <%= link_to image_tag(instrument.type + '.svg', :class => 'svg-sm') + instrument.type, 
-          eval("#{instrument.type.downcase}_path(instrument)"), class: 'btn btn-db btn-md' %>
-    <% end %>
-  <% else %>
-    (no instruments created yet)
-  <% end %>
+  <h2 class="jumbotron"><%= @user.username %>'s Dashboard</h2>
 </div>
 
-<br>
-<div>
-  <h2 class="page-header">Recordings</h2>
-  <% if @user.articles.any? %>
-    <%= link_to "Recordings", recordings_user_path, class: 'btn btn-db btn-lg' %>
+<div align="center" class="container">
+  <h2 class="page-header">Repertoire</h2>
+  <div>
+    <%= link_to "Repertoire (all instruments)", repertoire_user_path, class: 'btn btn-db btn-lg' %>
+  </div>
+  <br>
+
+  <% if @user.instruments.any? %>
+    <div class="btn-group-vertical">
+    <% @user.instruments.each do |instrument| %>
+      <%= link_to image_tag(instrument.type + '.svg', :class => 'svg-xs svg-padding-right') + instrument.type, 
+          eval("#{instrument.type.downcase}_path(instrument)"), class: 'btn btn-db btn-md' %>
+    <% end %>
+    </div>
   <% else %>
-    (<%= @user.username %> doesn't have any recordings yet)
+    <div>(no instruments identified)</div>
   <% end %>
 </div>
 
@@ -36,4 +31,14 @@
     </li>
   <% end %>
   </ul>
+</div>
+
+<br>
+<div>
+  <h2 class="page-header">Recordings</h2>
+  <% if @user.articles.any? %>
+    <%= link_to "Recordings", recordings_user_path, class: 'btn btn-db btn-lg' %>
+  <% else %>
+    (<%= @user.username %> doesn't have any recordings yet)
+  <% end %>
 </div>

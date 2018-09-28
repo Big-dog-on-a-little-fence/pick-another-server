@@ -1,8 +1,6 @@
 class Instrument < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :tunes
-  
-  # validates_presence_of :user
 
   scope :accordions, -> { where(type: 'Accordion') } 
   scope :banjos, -> { where(type: 'Banjo') } 

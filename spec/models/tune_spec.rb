@@ -10,7 +10,7 @@ RSpec.describe Tune, type: :model do
   end
 
   it "has a unique name" do
-    tune2 = build(:tune)
+    tune2 = build(:tune, name: @tune1.name)
     expect(tune2).to_not be_valid
   end
 

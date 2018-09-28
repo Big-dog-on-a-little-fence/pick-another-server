@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :tune do
-    name { "The Fancy Boat"}
-    key { "Em" }
+    name { Faker::Music.unique.album }
+    key { Faker::Music.key }
   end
 end
