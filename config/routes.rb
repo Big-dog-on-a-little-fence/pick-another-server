@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :voices, controller: 'instruments', type: 'Voice', except: [:index, :show]
   end
   resources :tunes, except: [:destroy] do
-    resources :sources, :repertoires, :lyrics, :charts, :comments
+    resources :repertoires, :user_starred_tunes, :sources, :lyrics, :charts, :comments
   end
   resources :articles do
     resources :comments

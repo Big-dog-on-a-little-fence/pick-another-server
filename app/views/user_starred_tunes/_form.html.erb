@@ -1,0 +1,14 @@
+<div class="panel-body">
+  <%= form_for [:tune, @user_starred_tune] do |f| %>
+    <div class="form-group required">
+      <%= f.label "What's your goal with this tune?", class: "control-label" %><br>
+      <%= f.select :goal, @goal_options, class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.submit %>
+    </div>
+    <div class="form-group">
+      [ <%= link_to "Cancel request and return to tunes listing", tunes_path %> ]
+    </div>
+  <% end %>
+</div> <!-- end panel-body -->

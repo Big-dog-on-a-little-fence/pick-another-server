@@ -1,0 +1,2 @@
+module UserStarredTunesHelper
+end

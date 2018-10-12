@@ -3,7 +3,9 @@
 </div>
 
 <div align="center" class="container">
-  <h2 class="page-header">My Repertoire</h2>
+  <h2 class="page-header">
+    <i class="fa fa-music" aria-hidden="true"></i> My Repertoire
+  </h2>
   <p>View your repertoire by instrument or in its entirety.</p>
   <div>
     <%= link_to "Repertoire (all instruments)", repertoire_user_path, class: 'btn btn-db btn-lg' %>
@@ -45,7 +47,27 @@
 
 <br>
 <div>
-  <h2 class="page-header">My Recordings</h2>
+  <h2 class="page-header">
+    <i class="fa fa-star" aria-hidden="true"></i> Starred Tunes
+  </h2>
+  <% if @user.starred_tunes.any? %>
+    <ul class="list-group">
+    <% @user.starred_tunes.each do |tune| %>
+      <li class="list-group-item list-group-item-warning recent-tune">
+        <%= link_to tune.name, tune_path(tune) %>
+      </li>
+    <% end %>
+    </ul>
+  <% else %>
+    (no starred tunes)
+  <% end %>
+</div>
+
+<br>
+<div>
+  <h2 class="page-header">
+    <i class="fa fa-film" aria-hidden="true"></i> My Recordings
+  </h2>
   <p>Here you can view your recordings. Record yourself playing tunes to document your progress and
   set up a youtube account to link your videos.</p>
   <%= link_to "Recordings", recordings_user_path, class: 'btn btn-db btn-lg' %>
@@ -59,4 +81,6 @@
   <%= link_to "Start a New Jam", new_jam_path, class: 'btn btn-db btn-lg' %>
 </div>
 
-<%#= link_to "New Genre", new_genre_path, class: 'btn btn-primary btn-lg' if current_user.admin? %>
+<%# if current_user.admin? %>
+  <%#= link_to "New Genre", new_genre_path, class: 'btn btn-primary btn-lg' %>
+<%# end %>

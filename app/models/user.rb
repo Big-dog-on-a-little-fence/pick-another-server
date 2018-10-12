@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :articles, dependent: :destroy
   has_many :repertoires
   has_many :tunes, through: :repertoires
+  has_many :user_starred_tunes
+  has_many :starred_tunes, through: :user_starred_tunes, source: :tune
   has_many :jam_users
   has_many :jams, through: :jam_users
   has_many :comments
