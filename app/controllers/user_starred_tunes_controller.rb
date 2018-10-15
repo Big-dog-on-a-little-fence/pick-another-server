@@ -1,5 +1,5 @@
 class UserStarredTunesController < ApplicationController
-  before_action :set_repertoire, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_starred_tune, only: [:show, :edit, :update, :destroy]
 
   def show
   end
@@ -7,15 +7,14 @@ class UserStarredTunesController < ApplicationController
   def new
     @user_starred_tune = UserStarredTune.new
     @user_starred_tune.tune = Tune.find(params[:tune_id])
-    @goal_options = ["want to learn", "reinforce", "practice variations", "work on improvisation",
-                     "learn harmonizing melody", "other"]
+    @goal_options = UserStarredTune::GOALS
   end
 
   def edit
   end
 
   def create
-    @user_starred_tune = UserStarredTune.new
+    @user_starred_tune = UserStarredTune.new(user_starred_tune_params)
     @user_starred_tune.tune = Tune.find(params[:tune_id])
     @user_starred_tune.user = current_user
     if @user_starred_tune.save
@@ -39,12 +38,12 @@ class UserStarredTunesController < ApplicationController
 
   private
   
-  def set_repertoire
+  def set_user_starred_tune
     @user_starred_tune = UserStarredTune.includes(:tune).find(params[:id])
     @tune = @user_starred_tune.tune
   end
 
-  def repertoire_params
-    params.require(:user_starred_tune).permit(:user_id, :tune_id, :goal)
+  def user_starred_tune_params
+    params.require(:user_starred_tune).permit(:tune_id, :goal)
   end
 end

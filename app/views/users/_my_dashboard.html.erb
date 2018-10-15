@@ -35,7 +35,9 @@
 
 <br>
 <div>
-  <h2 class="page-header">Recently Learned Tunes</h2>
+  <h2 class="page-header">
+    <i class="fa fa-leaf" aria-hidden="true"></i> Recently Learned Tunes
+  </h2>
   <ul class="list-group">
   <% @recent_tunes.each do |tune| %>
     <li class="list-group-item list-group-item-warning recent-tune">
@@ -50,11 +52,14 @@
   <h2 class="page-header">
     <i class="fa fa-star" aria-hidden="true"></i> Starred Tunes
   </h2>
-  <% if @user.starred_tunes.any? %>
-    <ul class="list-group">
-    <% @user.starred_tunes.each do |tune| %>
-      <li class="list-group-item list-group-item-warning recent-tune">
-        <%= link_to tune.name, tune_path(tune) %>
+  <% if @user_starred_tunes.any? %>
+    <ul class="list-group row">
+    <% @user_starred_tunes.each do |user_starred_tune| %>
+      <li class="list-group-item list-group-item-warning recent-tune col-xs-6">
+        <%= link_to user_starred_tune.tune.name, tune_path(user_starred_tune.tune) %>
+      </li>
+      <li class="list-group-item list-group-item-warning recent-tune col-xs-6">
+        <%= user_starred_tune.goal || "(not specified)" %>
       </li>
     <% end %>
     </ul>
@@ -75,7 +80,9 @@
 
 <br>
 <div>
-  <h2 class="page-header">Jams</h2>
+  <h2 class="page-header">
+    <i class="fa fa-beer" aria-hidden="true"></i> Jams
+  </h2>
   <p>Take a look at past jams to see the tunes folks have been playing or start a new one. </p>
   <%= link_to "Past Jams", jams_path, class: 'btn btn-db btn-lg' %>
   <%= link_to "Start a New Jam", new_jam_path, class: 'btn btn-db btn-lg' %>

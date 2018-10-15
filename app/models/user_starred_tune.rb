@@ -3,4 +3,7 @@ class UserStarredTune < ApplicationRecord
   
   belongs_to :user
   belongs_to :tune
+  
+  GOALS = ["want to learn", "reinforce", "practice variations", "work on improvisation",
+           "learn harmonizing melody", "other"].freeze
 end

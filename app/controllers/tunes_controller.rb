@@ -13,6 +13,9 @@ class TunesController < ApplicationController
     if current_user.tunes.include?(@tune)
       @repertoire = Repertoire.where(tune_id: @tune.id, user_id: current_user.id).take
     end
+    if current_user.tunes.include?(@tune)
+      @user_starred_tune = UserStarredTune.where(tune_id: @tune.id, user_id: current_user.id).take
+    end
   end
 
   def new
