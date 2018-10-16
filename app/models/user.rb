@@ -6,7 +6,7 @@ class User < ApplicationRecord
   before_save :ensure_authentication_token
 
   has_many :articles, dependent: :destroy
-  has_many :repertoires
+  has_many :repertoires, -> { order(id: :desc) }
   has_many :tunes, through: :repertoires
   has_many :user_starred_tunes
   has_many :starred_tunes, through: :user_starred_tunes, source: :tune

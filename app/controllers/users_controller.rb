@@ -12,10 +12,9 @@ class UsersController < ApplicationController
   end
   
   def show
-    @recent_repertoires = Repertoire.includes(:tune).where(user_id: @user.id).order(id: :desc).take(10)
+    @recent_repertoires = @user.repertoires.take(10) # reps ordered by id desc in user model
     @recent_tunes = @recent_repertoires.map { |r| r.tune }
     @instruments = @user.instruments.left_joins(:tunes).group(:id).order('COUNT(tunes.id) DESC')
-    @user_starred_tunes = UserStarredTune.where(user: @user)
   end
   
   def update  ## added for devise username modification
@@ -46,19 +45,7 @@ class UsersController < ApplicationController
   private
   
   def set_user
-    # user_includes = [:instruments, :tunes, :starred_tunes]
-    @user = User.find(params[:id])
-  end
-  
-  def set_user_and_repertoire
-    user_includes = [
-      :repertoires,
-      :instruments,
-      tunes: [
-        :genres,
-        :sources
-      ]
-    ]
+    user_includes = [:instruments, repertoires: :tune, user_starred_tunes: :tune]
     @user = User.includes(user_includes).find(params[:id])
   end
   
