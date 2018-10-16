@@ -46,6 +46,7 @@ class UsersController < ApplicationController
   private
   
   def set_user
+    # user_includes = [:instruments, :tunes, :starred_tunes]
     @user = User.find(params[:id])
   end
   

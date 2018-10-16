@@ -1,8 +1,14 @@
 <div class="panel-body">
   <%= form_for [:tune, @user_starred_tune] do |f| %>
     <div class="form-group required">
-      <%= f.label "What's your goal with this tune?", class: "control-label" %><br>
-      <%= f.select :goal, @goal_options, class: "form-control" %>
+      <%= f.label "What's your goal with this tune? Pick one from the list or type in custom notes:", class: "control-label" %><br>
+      <%#= f.select :goal, @goal_options, class: "form-control" %>
+      <%= f.text_field :goal, list: 'goal' %>
+      <datalist id="goal">
+        <% @goal_options.each do |goal| %>
+          <option value="<%= goal %>"></option>
+        <% end %>
+      </datalist>
     </div>
     <div class="form-group">
         <%= f.submit %>

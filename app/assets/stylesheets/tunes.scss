@@ -19,3 +19,11 @@
 .star-yellow {
   color: #FFFF00;
 }
+
+.add-to-starred {
+  display: none;
+}
+
+.tune-row:hover .add-to-starred {
+  display: inherit;
+}
