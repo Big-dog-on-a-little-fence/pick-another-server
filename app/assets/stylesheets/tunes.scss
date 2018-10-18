@@ -25,5 +25,6 @@
 }
 
 .tune-row:hover .add-to-starred {
-  display: inherit;
+  display: inline-block;
+  line-height: inherit;
 }
