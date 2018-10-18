@@ -1,6 +1,7 @@
 class Instrument < ApplicationRecord
   belongs_to :user
-  has_and_belongs_to_many :tunes
+  has_many :instrument_tunes
+  has_many :tunes, through: :instrument_tunes
 
   scope :accordions, -> { where(type: 'Accordion') } 
   scope :banjos, -> { where(type: 'Banjo') } 

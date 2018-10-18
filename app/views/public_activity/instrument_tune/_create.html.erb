@@ -1,4 +1,4 @@
-<!-- REPERTOIRE (CREATE) ACTIVITY PARTIAL -->
+<!-- INSTRUMENT_TUNE (CREATE) ACTIVITY PARTIAL -->
 
 <div class="alert alert-warning" role="alert">
   <i class="fa fa-lg fa-user-plus activity-icon"></i>
@@ -7,7 +7,8 @@
   <% end %>
   <% if activity.trackable %>
     <%= link_to Tune.find(activity.trackable.tune_id).name, tune_path(Tune.find(activity.trackable.tune_id)), {:class => "alert-link"} %>
+    <%= "on #{Instrument.find(activity.trackable.instrument_id).type}" %>
   <% else %>
-    a tune which has since been removed from their repertoire
+    a tune on one of their instruments and has since been removed from their repertoire
   <% end %>
 </div>
