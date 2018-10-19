@@ -43,6 +43,18 @@ $( document ).ready(function() {
     tuneDiv.append(chartDiv);
     showChart(chartDiv, selectedTune.charts, 0);
     
+    var linkDiv = document.createElement('div');
+    var frame = document.createElement('iframe');
+    if (selectedTune.sources.length < 1) {
+      linkDiv.innerHTML = "No audio resources for this tune";
+    } else {
+      frame.src = selectedTune.sources[0].link;
+      frame.height = 200;
+      frame.frameborder = 0;
+      frame.allowtransparency = true;
+      linkDiv.appendChild(frame);
+    }
+    tuneDiv.appendChild(linkDiv);
   }
 
 }); // on document ready
