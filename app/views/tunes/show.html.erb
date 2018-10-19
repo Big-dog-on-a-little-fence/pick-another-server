@@ -2,6 +2,18 @@
 <div align="center" class="jumbotron">
   <h2 class="tune-title"><%= @tune.name %></h2>
   <div>
+    <h3>Key: <%= @tune.key %></h3>
+    <h3>Time Signature: <%= @tune.time_signature %></h3>
+    <h3>Genre(s): 
+      <% if @tune.genres.any? %>
+        <% @tune.genres.each do |genre| %>
+          <%= "#{genre.name}" %>
+        <% end %>
+      <% end %>
+    </h3>
+  </div>
+  <br>
+  <div>
     <%= link_to "Edit Tune", edit_tune_path(@tune), class: 'btn btn-md btn-warning edit-tune' %>
     <% if @tune.lyric.nil? %>
       <%= link_to "Add Lyrics", new_tune_lyric_path(@tune), class: 'btn btn-md btn-primary edit-tune' %>
@@ -9,17 +21,14 @@
     <%= link_to "Add Chord Chart", new_tune_chart_path(@tune), class: 'btn btn-md btn-primary edit-tune' %>
   </div>
 </div>
-<h3>Key: <%= @tune.key %></h3>
-<h3>Time Signature: <%= @tune.time_signature %></h3>
-<h3>Genre(s): 
-  <% if @tune.genres.any? %>
-    <% @tune.genres.each do |genre| %>
-      <%= "#{genre.name}" %>
-    <% end %>
-  <% end %>
-</h3>
 
 <div>
+  <h3>Repertoire status:</h3>
+  <% (@tune.instruments & current_user.instruments).each do |instrument| %>
+    <%= image_tag(instrument.type + '.svg', :class => 'svg-xxxs', 
+                :title => instrument.type.downcase) %>
+  <% end %>
+  <br>
   <h3>
   <% if current_user.tunes.include?(@tune) %>
     <%= link_to "Edit repertoire", edit_tune_repertoire_path(@tune, @repertoire), class: 'btn btn-md btn-warning' %>
@@ -33,8 +42,16 @@
 </div>
 
 <div>
-  <h3>
   <% if current_user.starred_tunes.include?(@tune) %>
+    <div>
+      <h3>Star goal:</h3>
+      <%= @user_starred_tune.goal %>
+    </div>
+    <br>
+    <%= link_to edit_tune_user_starred_tune_path(@tune, @user_starred_tune),
+        class: "btn btn-md btn-warning" do %>
+      <i class="fa fa-star" aria-hidden="true"></i> Edit goal
+    <% end %>
     <%= link_to tune_user_starred_tune_path(@tune, @user_starred_tune), method: :delete,
                   data: {confirm: "Are you sure you want to unstar this tune?"},
                   class: "btn btn-md btn-danger" do %>
@@ -45,7 +62,6 @@
       <i class="fa fa-star star-yellow" aria-hidden="true"></i> Add to starred tunes
     <% end %>
   <% end %>
-  </h3>
 </div>
 
 <hr>
