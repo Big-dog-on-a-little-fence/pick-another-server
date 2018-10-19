@@ -7,7 +7,6 @@ class UserStarredTunesController < ApplicationController
   def new
     @user_starred_tune = UserStarredTune.new
     @user_starred_tune.tune = Tune.find(params[:tune_id])
-    @goal_options = UserStarredTune::GOALS
   end
 
   def edit
@@ -26,6 +25,13 @@ class UserStarredTunesController < ApplicationController
   end
 
   def update
+    @user_starred_tune.goal = params[:user_starred_tune][:goal]
+    if @user_starred_tune.save
+      flash[:success] = "Updated goal for starred tune successfully"
+      redirect_to root_path
+    else
+      render 'new'
+    end
   end
 
   def destroy
@@ -41,6 +47,7 @@ class UserStarredTunesController < ApplicationController
   def set_user_starred_tune
     @user_starred_tune = UserStarredTune.includes(:tune).find(params[:id])
     @tune = @user_starred_tune.tune
+    @goal_options = UserStarredTune::GOALS
   end
 
   def user_starred_tune_params
