@@ -39,22 +39,61 @@ $( document ).ready(function() {
     tuneDiv.appendChild(tuneKey);
     
     var chartDiv = document.createElement('div');
+    chartDiv.classList.add("jam-chord-chart");
     chartDiv.dataset.key = selectedTune.key;
     tuneDiv.append(chartDiv);
     showChart(chartDiv, selectedTune.charts, 0);
     
     var linkDiv = document.createElement('div');
-    var frame = document.createElement('iframe');
+    linkDiv.classList.add("jam-first-source");
     if (selectedTune.sources.length < 1) {
       linkDiv.innerHTML = "No audio resources for this tune";
-    } else {
-      frame.src = selectedTune.sources[0].link;
-      frame.height = 200;
-      frame.frameborder = 0;
-      frame.allowtransparency = true;
+    } 
+    else if (embedSourceLink(selectedTune.sources[0].link)) {
+      var sourceTitle = document.createElement('h3');
+      sourceTitle.innerHTML = "Audio Source";
+      linkDiv.appendChild(sourceTitle);
+      var frame = document.createElement('iframe');
+      frame.setAttribute("src", embedSourceLink(selectedTune.sources[0].link));
+      frame.setAttribute("frameborder", 0);
+      frame.setAttribute("allowtransparency", true);
+      frame.setAttribute("width", 380);
+      frame.setAttribute("height", 300);
       linkDiv.appendChild(frame);
+    } 
+    else {
+      var linkTag = document.createElement('a');
+      var linkBody = document.createElement('h5');
+      linkTag.setAttribute("href", selectedTune.sources[0].link);
+      linkTag.innerHTML = selectedTune.sources[0].link;
+      linkBody.appendChild(linkTag);
+      linkDiv.appendChild(linkBody);
     }
     tuneDiv.appendChild(linkDiv);
   }
+
+  // source helper
+  function embedSourceLink(link) {
+    var embedLink = '';
+    var splitLink = [];
+    if (link.includes('youtu.be')) {
+      splitLink = link.split('/');
+      embedLink = '//www.youtube.com/embed/' + splitLink[splitLink.length - 1];
+      return embedLink;
+    } 
+    else if (link.includes('youtube')) {
+      splitLink = link.split('?v=');
+      embedLink = '//www.youtube.com/embed/' + splitLink[splitLink.length - 1];
+      return embedLink;
+    } 
+    else if (link.includes('open.spotify')) {
+      splitLink = link.split('%3A');
+      embedLink = 'https://embed.spotify.com/?uri=spotify%3Atrack%3A' + splitLink[splitLink.length - 1];
+      return embedLink;
+    } 
+    else {
+      return 0;
+    }
+  } 
 
 }); // on document ready
