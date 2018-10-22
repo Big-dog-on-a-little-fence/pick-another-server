@@ -1,5 +1,10 @@
-<h1 align = "center" class="jumbotron">All Genres</h1>
-<div align = "center">
+<h1 align="center" class="jumbotron">All Genres</h1>
+<div align="center">
   <%= paginate @genres %>
   <%= render 'genre', obj: @genres %>
+</div>
+<br>
+<div align="center">
+  <%= button_to "(+) Add Genre", new_genre_path, :method => "get", class: "btn btn-lg btn-primary" %>
+<br>
 </div>
