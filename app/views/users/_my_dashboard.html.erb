@@ -3,7 +3,9 @@
 </div>
 
 <div align="center" class="container">
-  <h2 class="page-header">My Repertoire</h2>
+  <h2 class="page-header">
+    <i class="fa fa-music header-icon-pad-right" aria-hidden="true"></i> My Repertoire
+  </h2>
   <p>View your repertoire by instrument or in its entirety.</p>
   <div>
     <%= link_to "Repertoire (all instruments)", repertoire_user_path, class: 'btn btn-db btn-lg' %>
@@ -33,7 +35,9 @@
 
 <br>
 <div>
-  <h2 class="page-header">Recently Learned Tunes</h2>
+  <h2 class="page-header">
+    <i class="fa fa-leaf header-icon-pad-right" aria-hidden="true"></i> Recently Learned Tunes
+  </h2>
   <ul class="list-group">
   <% @recent_tunes.each do |tune| %>
     <li class="list-group-item list-group-item-warning recent-tune">
@@ -45,7 +49,37 @@
 
 <br>
 <div>
-  <h2 class="page-header">My Recordings</h2>
+  <h2 class="page-header">
+    <i class="fa fa-star header-icon-pad-right" aria-hidden="true"></i> Starred Tunes
+  </h2>
+  <% if @user.user_starred_tunes.any? %>
+    <ul class="list-group row">
+    <% @user.user_starred_tunes.each do |user_starred_tune| %>
+      <li class="list-group-item list-group-item-warning recent-tune col-xs-4">
+        <%= link_to user_starred_tune.tune.name, tune_path(user_starred_tune.tune) %>
+      </li>
+      <li class="list-group-item list-group-item-warning recent-tune col-xs-7">
+        <% if user_starred_tune.goal? %> 
+          <%= user_starred_tune.goal %>
+        <% else %>
+          (goal not specified)
+        <% end %>
+      </li>
+      <li class="list-group-item list-group-item-warning recent-tune col-xs-1">
+        <%= link_to "Edit goal", edit_tune_user_starred_tune_path(user_starred_tune.tune, user_starred_tune) %>
+      </li>
+    <% end %>
+    </ul>
+  <% else %>
+    (no starred tunes)
+  <% end %>
+</div>
+
+<br>
+<div>
+  <h2 class="page-header">
+    <i class="fa fa-film header-icon-pad-right" aria-hidden="true"></i> My Recordings
+  </h2>
   <p>Here you can view your recordings. Record yourself playing tunes to document your progress and
   set up a youtube account to link your videos.</p>
   <%= link_to "Recordings", recordings_user_path, class: 'btn btn-db btn-lg' %>
@@ -53,10 +87,14 @@
 
 <br>
 <div>
-  <h2 class="page-header">Jams</h2>
+  <h2 class="page-header">
+    <i class="fa fa-beer header-icon-pad-right" aria-hidden="true"></i> Jams
+  </h2>
   <p>Take a look at past jams to see the tunes folks have been playing or start a new one. </p>
   <%= link_to "Past Jams", jams_path, class: 'btn btn-db btn-lg' %>
   <%= link_to "Start a New Jam", new_jam_path, class: 'btn btn-db btn-lg' %>
 </div>
 
-<%#= link_to "New Genre", new_genre_path, class: 'btn btn-primary btn-lg' if current_user.admin? %>
+<%# if current_user.admin? %>
+  <%#= link_to "New Genre", new_genre_path, class: 'btn btn-primary btn-lg' %>
+<%# end %>

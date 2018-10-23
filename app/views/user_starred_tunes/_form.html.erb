@@ -1,0 +1,20 @@
+<div class="panel-body">
+  <%= form_for [:tune, @user_starred_tune] do |f| %>
+    <div class="form-group required">
+      <%= "What's your goal with this #{@user_starred_tune.tune.name}? Pick one from the list or type in custom notes:" %>
+      <br>
+      <%= f.text_field :goal, list: 'goal' %>
+      <datalist id="goal">
+        <% @goal_options.each do |goal| %>
+          <option value="<%= goal %>"></option>
+        <% end %>
+      </datalist>
+    </div>
+    <div class="form-group">
+        <%= f.submit form_submit_text, class: "btn btn-md btn-primary" %>
+    </div>
+    <div class="form-group">
+      [ <%= link_to "Cancel request and return to tunes listing", tunes_path %> ]
+    </div>
+  <% end %>
+</div> <!-- end panel-body -->

@@ -3,6 +3,8 @@ class Tune < ApplicationRecord
 
   has_many :repertoires
   has_many :users, through: :repertoires
+  has_many :user_starred_tunes
+  has_many :users_that_have_starred, through: :user_starred_tunes, source: :user
   has_many :instrument_tunes
   has_many :instruments, through: :instrument_tunes
   has_many :tune_genres

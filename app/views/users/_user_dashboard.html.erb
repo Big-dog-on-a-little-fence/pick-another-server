@@ -36,6 +36,31 @@
 
 <br>
 <div>
+  <h2 class="page-header">
+    <i class="fa fa-star header-icon-pad-right" aria-hidden="true"></i> Starred Tunes
+  </h2>
+  <% if @user.user_starred_tunes.any? %>
+    <ul class="list-group row">
+    <% @user.user_starred_tunes.each do |user_starred_tune| %>
+      <li class="list-group-item list-group-item-warning recent-tune col-xs-4">
+        <%= link_to user_starred_tune.tune.name, tune_path(user_starred_tune.tune) %>
+      </li>
+      <li class="list-group-item list-group-item-warning recent-tune col-xs-8">
+        <% if user_starred_tune.goal? %> 
+          <%= user_starred_tune.goal %>
+        <% else %>
+          (goal not specified)
+        <% end %>
+      </li>
+    <% end %>
+    </ul>
+  <% else %>
+    (no starred tunes)
+  <% end %>
+</div>
+
+<br>
+<div>
   <h2 class="page-header">Recordings</h2>
   <% if @user.articles.any? %>
     <%= link_to "Recordings", recordings_user_path, class: 'btn btn-db btn-lg' %>

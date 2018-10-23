@@ -7,7 +7,7 @@
             <%= link_to genre.name, genre_path(genre) %>
           </span>
         </li>
-        <li><small><%= pluralize(genre.tunes.count, "tunes") %></small></li>
+        <li><small><%= pluralize(genre.tunes.size, "tunes") %></small></li>
       </div>
     </div>
   </ul>

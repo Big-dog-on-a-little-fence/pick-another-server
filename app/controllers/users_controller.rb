@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    @recent_repertoires = Repertoire.includes(:tune).where(user_id: @user.id).order(id: :desc).take(10)
+    @recent_repertoires = @user.repertoires.take(10) # reps ordered by id desc in user model
     @recent_tunes = @recent_repertoires.map { |r| r.tune }
     @instruments = @user.instruments.left_joins(:tunes).group(:id).order('COUNT(tunes.id) DESC')
   end
@@ -36,7 +36,8 @@ class UsersController < ApplicationController
   end
   
   def repertoire
-    tune_includes = [:lyric, :charts, :genres, :tune_genres, :sources]
+    tune_includes = [:users, :users_that_have_starred, :instruments, :lyric, 
+                     :charts, :genres, :tune_genres, :sources]
     @q = @user.tunes.includes(tune_includes).ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
     @user_tunes = @q.result.page(params[:page]).per(100)
@@ -45,18 +46,7 @@ class UsersController < ApplicationController
   private
   
   def set_user
-    @user = User.find(params[:id])
-  end
-  
-  def set_user_and_repertoire
-    user_includes = [
-      :repertoires,
-      :instruments,
-      tunes: [
-        :genres,
-        :sources
-      ]
-    ]
+    user_includes = [:instruments, repertoires: :tune, user_starred_tunes: :tune]
     @user = User.includes(user_includes).find(params[:id])
   end
   
