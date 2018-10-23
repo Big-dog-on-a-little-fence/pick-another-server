@@ -15,3 +15,19 @@
   font-size: 3em;
   margin-bottom: 20px;
 }
+
+.star-yellow {
+  color: #FFFF00;
+}
+
+.add-to-starred {
+  display: none;
+}
+
+.tune-row:hover .add-to-starred {
+  display: inline-block;
+}
+
+.add-to-starred:hover {
+  color: #CCCC00;
+}

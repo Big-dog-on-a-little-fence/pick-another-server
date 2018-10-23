@@ -3,8 +3,8 @@
     <tr>
       <th>Name</th>
       <th>Key</th>
+      <th>Time Signature</th>
       <th>Genre(s)</th>
-      <th>Resource</th>
       <th>Last Updated</th>
     </tr>
   </thead>
@@ -13,16 +13,12 @@
       <tr>
         <td><%= link_to tune.name, tune_path(tune) %></td>
         <td><%= tune.key %></td>
+        <td><%= tune.time_signature %></td>
         <td>
           <% if tune.genres.any? %>
             <% tune.genres.each do |genre| %>
               <%= "#{genre.name}" %>
             <% end %>
-          <% end %>
-        </td>
-        <td>
-          <% if tune.sources.any? %>
-            <%= embed(tune.sources.first.link, pixels="80") %>
           <% end %>
         </td>
         <td><%= time_ago_in_words(tune.updated_at) %> ago</td>

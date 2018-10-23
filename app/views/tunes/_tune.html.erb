@@ -3,41 +3,56 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th class="col-md-1"></th> <!-- empty header for known badge column -->
+      <th class="col-md-1">Status</th> <!-- empty header for known badge column -->
       <th class="col-md-2">Instruments</th> <!-- instruments column -->
-      <th class="col-md-1">Lyrics/Charts</th> <!-- lyrics/charts icons column -->
+      <th class="col-md-1">Resources</th> <!-- source/charts/lyrics icons column -->
       <th class="col-md-2"><%= sort_link(@q, :name, 'Name', default_order: 'asc') %></th>
       <th class="col-md-1"><%= sort_link(@q, :key, 'Key', default_order: 'asc') %></th>
       <th class="col-md-1"><%= sort_link(@q, :time_signature, 'Time', default_order: 'asc') %></th>
       <th class="col-md-2"><%= sort_link(@q, :genres_name, [:genres_name, 'name asc'], 'Genre(s)') %></th>
-      <!--<th class="col-md-2">Resource</th>-->
       <th class="col-md-2"><%= sort_link(@q, :updated_at, 'Last Updated', default_order: 'desc') %></th>
     </tr>
   </thead>
   <tbody>
     <% obj.each do |tune| %>
-      <tr>
+      <%= content_tag :tr, class: "tune-row", id: tune.id do %>
         <td>
-        <% if current_user.tunes.include?(tune) && current_user != @user %>
-          <span id='rep-id' class='label label-default'>You Know This!</span>
-        <% end %>
-        </td>
-        <td>
-        <% if @user.instruments.any? %>
-          <% @user.instruments.each do |instrument| %>
-            <% if instrument.tunes.include?(tune) %>
-              <%= image_tag(instrument.type + '.svg', :class => 'svg-xs', :title => instrument.type.downcase) %>
+          <% if tune.users.include?(current_user) %>
+            <i class="fa fa-check" aria-hidden="true" title="in your repertoire"></i>
+          <% end %>
+          <% if tune.users_that_have_starred.include?(current_user) %>
+            <span class="fa-stack">
+              <i class="fa fa-star fa-stack-1x star-yellow"></i>
+              <i class="fa fa-star-o fa-stack-1x" aria-hidden="true" title="in your starred list"></i>
+            </span>
+          <% else %>
+            <%= link_to new_tune_user_starred_tune_path(tune) do %>
+              <span class="fa-stack" align="center">
+                <i class="fa fa-star add-to-starred" aria-hidden="true" title="add to starred tunes"></i>
+              </span>
             <% end %>
           <% end %>
-        <% end %>
         </td>
         <td>
-        <% if tune.lyric %>
-          <i class="fa fa-lg fa-microphone tune-icon", title="has lyrics"></i>
-        <% end %>
-        <% unless tune.charts.empty? %>
-          <i class="fa fa-lg fa-pencil-square-o tune-icon", title="has chord chart(s)"></i>
-        <% end %>
+          <% if @user.instruments.any? %>
+            <% @user.instruments.each do |instrument| %>
+              <% if tune.instruments.include?(instrument) %>
+                <%= image_tag(instrument.type + '.svg', :class => 'svg-xs', 
+                :title => instrument.type.downcase) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <% unless tune.sources.empty? %>
+            <i class="fa fa-lg fa-link tune-icon", title="has audio/video resource(s)"></i>
+          <% end %>
+          <% unless tune.charts.empty? %>
+            <i class="fa fa-lg fa-pencil-square-o tune-icon", title="has chord chart(s)"></i>
+          <% end %>
+          <% if tune.lyric %>
+            <i class="fa fa-lg fa-microphone tune-icon", title="has lyrics"></i>
+          <% end %>
         </td>
         <td><%= link_to tune.name, tune_path(tune) %></td>
         <td><%= tune.key %></td>
@@ -49,14 +64,9 @@
             <% end %>
           <% end %>
         </td>
-        <!--<td>-->
-          <%# if tune.sources.any? %>
-            <%#= embed(tune.sources.first.link, pixels="80") %>
-          <%# end %>
-        <!--</td>-->
         <td><%= time_ago_in_words(tune.updated_at) %> ago</td>
-      </tr>
-    <% end %>
+      <% end %> <!-- end tr content tag -->
+    <% end %> <!-- end tune -->
   </tbody>
 </table>
 
