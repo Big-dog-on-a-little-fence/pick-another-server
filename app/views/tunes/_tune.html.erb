@@ -3,7 +3,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th class="col-md-1"></th> <!-- empty header for known badge column -->
+      <th class="col-md-1">Status</th> <!-- empty header for known badge column -->
       <th class="col-md-2">Instruments</th> <!-- instruments column -->
       <th class="col-md-1">Resources</th> <!-- source/charts/lyrics icons column -->
       <th class="col-md-2"><%= sort_link(@q, :name, 'Name', default_order: 'asc') %></th>
@@ -17,7 +17,7 @@
     <% obj.each do |tune| %>
       <%= content_tag :tr, class: "tune-row", id: tune.id do %>
         <td>
-          <% if tune.users.include?(current_user) && current_user != @user %>
+          <% if tune.users.include?(current_user) %>
             <i class="fa fa-check" aria-hidden="true" title="in your repertoire"></i>
           <% end %>
           <% if tune.users_that_have_starred.include?(current_user) %>
