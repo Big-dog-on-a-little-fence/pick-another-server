@@ -2,7 +2,8 @@ class GenresController < ApplicationController
   before_action :set_genre, only: [:show]
   
   def index
-    @genres = Genre.includes(:tunes).page(params[:page])
+    @ordered_genres = Genre.all.left_joins(:tunes).group(:id).order('COUNT(tunes.id) DESC')
+    @genres = @ordered_genres.includes(:tunes).page(params[:page])
   end
 
   def show
