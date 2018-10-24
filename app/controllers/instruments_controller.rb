@@ -15,6 +15,7 @@ class InstrumentsController < ApplicationController
     @q = @instrument.tunes.ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
     @instrument_tunes = @q.result.includes(tune_includes).page(params[:page]).per(100)
+    @path = eval("#{@instrument.type.downcase}_path(@instrument)")
   end
 
   def new

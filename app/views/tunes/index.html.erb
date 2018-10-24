@@ -1,37 +1,6 @@
 <h1 align="center" class="jumbotron">Tunes</h1>
 
 <%= button_to "(+) Add tune to database", new_tune_path, :method => "get", class: "btn btn-lg btn-primary" %>
-<br>
 
-<div class="row well">
-  <div class="container">
-    <%= search_form_for @q do |f| %>
-      <div class="form-group form-inline">
-        <%= f.label :name_cont, "Name contains" %>
-        <%= f.search_field :name_cont, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="form-group form-inline">
-        <%= f.label :key_cont, "Key contains" %>
-        <%= f.search_field :key_cont, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="form-group form-inline">
-        <%= f.label :time_signature_cont, "Time sig. contains" %>
-        <%= f.search_field :time_signature_cont, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="form-group form-inline">
-        <%= f.label :genres_name_cont, "Genre(s) contains" %>
-        <%= f.search_field :genres_name_cont, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="actions">
-        <button type="submit" class="btn btn-default">
-          <i class="fa fa-search header-icon-pad-right" aria-hidden="true"></i>
-          Search
-        </button>
-      </div>
-    <% end %>
-  </div><!-- /input-group -->
-</div><!-- /row -->
-
-<div align="center">
-  <%= render 'tune', obj: @tunes %>
-</div>
+<%= render 'search', path: @path, q_obj: @q %>
+<%= render 'tune', tunes: @tunes, q_obj: @q %>

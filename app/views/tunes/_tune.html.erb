@@ -1,4 +1,4 @@
-<%= paginate obj %>
+<%= paginate tunes %>
 
 <table class="table table-striped">
   <thead>
@@ -6,15 +6,15 @@
       <th class="col-md-1">Status</th> <!-- empty header for known badge column -->
       <th class="col-md-2">Instruments</th> <!-- instruments column -->
       <th class="col-md-1">Resources</th> <!-- source/charts/lyrics icons column -->
-      <th class="col-md-2"><%= sort_link(@q, :name, 'Name', default_order: 'asc') %></th>
-      <th class="col-md-1"><%= sort_link(@q, :key, 'Key', default_order: 'asc') %></th>
-      <th class="col-md-1"><%= sort_link(@q, :time_signature, 'Time', default_order: 'asc') %></th>
-      <th class="col-md-2"><%= sort_link(@q, :genres_name, [:genres_name, 'name asc'], 'Genre(s)') %></th>
-      <th class="col-md-2"><%= sort_link(@q, :updated_at, 'Last Updated', default_order: 'desc') %></th>
+      <th class="col-md-2"><%= sort_link(q_obj, :name, 'Name', default_order: 'asc') %></th>
+      <th class="col-md-1"><%= sort_link(q_obj, :key, 'Key', default_order: 'asc') %></th>
+      <th class="col-md-1"><%= sort_link(q_obj, :time_signature, 'Time', default_order: 'asc') %></th>
+      <th class="col-md-2"><%= sort_link(q_obj, :genres_name, [:genres_name, 'name asc'], 'Genre(s)') %></th>
+      <th class="col-md-2"><%= sort_link(q_obj, :updated_at, 'Last Updated', default_order: 'desc') %></th>
     </tr>
   </thead>
   <tbody>
-    <% obj.each do |tune| %>
+    <% tunes.each do |tune| %>
       <%= content_tag :tr, class: "tune-row", id: tune.id do %>
         <td>
           <% if tune.users.include?(current_user) %>
@@ -70,5 +70,5 @@
   </tbody>
 </table>
 
-<%= paginate obj %>
-<%= page_entries_info obj %>
+<%= paginate tunes %>
+<%= page_entries_info tunes %>
