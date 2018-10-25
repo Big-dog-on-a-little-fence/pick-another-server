@@ -58,7 +58,7 @@
             <i class="fa fa-lg fa-microphone tune-icon", title="has lyrics"></i>
           <% end %>
         </td>
-        <td><%= link_to tune.name, tune_path(tune) %></td>
+        <td><%= link_to tune.name, tune_path(tune), value: tune.name %></td>
         <td><%= tune.key %></td>
         <td><%= tune.time_signature %></td>
         <td>

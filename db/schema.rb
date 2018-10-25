@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 20181012194117) do
   end
 
   create_table "instrument_tunes", force: :cascade do |t|
-    t.integer  "instrument_id"
-    t.integer  "tune_id"
+    t.integer  "instrument_id", null: false
+    t.integer  "tune_id",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["instrument_id"], name: "index_instrument_tunes_on_instrument_id"

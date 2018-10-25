@@ -39,6 +39,9 @@ gem "nested_form"
 
 group :test do
   gem 'database_cleaner'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 group :development, :test do
