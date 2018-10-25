@@ -31,3 +31,15 @@
 .add-to-starred:hover {
   color: #CCCC00;
 }
+
+.add-to-repertoire {
+  display: none;
+}
+
+.tune-row:hover .add-to-repertoire {
+  display: inline-block;
+}
+
+.add-to-repertoire:hover {
+  color: #228B22;
+}
