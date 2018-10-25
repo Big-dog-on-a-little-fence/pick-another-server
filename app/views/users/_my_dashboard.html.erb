@@ -58,7 +58,7 @@
       <li class="list-group-item list-group-item-warning recent-tune col-xs-4">
         <%= link_to user_starred_tune.tune.name, tune_path(user_starred_tune.tune) %>
       </li>
-      <li class="list-group-item list-group-item-warning recent-tune col-xs-7">
+      <li class="list-group-item list-group-item-warning recent-tune col-xs-6">
         <% if user_starred_tune.goal? %> 
           <%= user_starred_tune.goal %>
         <% else %>
@@ -67,6 +67,10 @@
       </li>
       <li class="list-group-item list-group-item-warning recent-tune col-xs-1">
         <%= link_to "Edit goal", edit_tune_user_starred_tune_path(user_starred_tune.tune, user_starred_tune) %>
+      </li>
+      <li class="list-group-item list-group-item-warning recent-tune col-xs-1">
+        <%= link_to "Remove", tune_user_starred_tune_path(user_starred_tune.tune, user_starred_tune), 
+                    method: :delete, data: {confirm: "Are you sure you want to remove this tune from your starred list?"} %>
       </li>
     <% end %>
     </ul>
