@@ -16,15 +16,16 @@ RSpec.feature "AddDeleteRepertoires", type: :feature do
 
   scenario "Delete repertoire without instruments from user", js: true do
     @user1 = create(:user_with_tunes)
-    @tune = @user1.tunes.first
+    tune = @user1.tunes.first
     login_as @user1
     visit "/tunes"
-    click_link @tune.name
+    save_screenshot
+    click_link tune.name
     accept_confirm do
       click_link_or_button "Remove from repertoire"
     end
     visit "/users/#{@user1.id}"
-    expect(page).not_to have_text(@tune.name)
+    expect(page).not_to have_text(tune.name)
   end
 
 end
