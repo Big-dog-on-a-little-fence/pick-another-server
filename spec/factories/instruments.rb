@@ -1,8 +1,7 @@
 FactoryBot.define do
   factory :instrument do
-    type { 'Mandolin' }
+    type { 'Instrument' }
     user { association :user }
-    # tunes
   end
 
   factory :accordion, class: Accordion do

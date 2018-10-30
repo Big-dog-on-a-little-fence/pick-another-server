@@ -19,7 +19,6 @@ RSpec.feature "AddDeleteRepertoires", type: :feature do
     tune = @user1.tunes.first
     login_as @user1
     visit "/tunes"
-    save_screenshot
     click_link tune.name
     accept_confirm do
       click_link_or_button "Remove from repertoire"

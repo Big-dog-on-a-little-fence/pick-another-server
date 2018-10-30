@@ -15,11 +15,16 @@ class User < ApplicationRecord
   has_many :comments
   
   has_many :instruments
+  has_one :accordion
   has_one :banjo
   has_one :bass
   has_one :cello
+  has_one :clarinet
   has_one :guitar
   has_one :mandolin
+  has_one :piano
+  has_one :saxophone
+  has_one :trombone
   has_one :violin
   has_one :voice  
   

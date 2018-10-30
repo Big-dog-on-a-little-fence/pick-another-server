@@ -13,6 +13,21 @@ FactoryBot.define do
         create_list(:tune, evaluator.tunes_count, users: [user])
       end
     end
+    
+    factory :user_with_all_instruments do
+      accordion
+      banjo
+      bass
+      cello
+      clarinet
+      guitar
+      mandolin
+      piano
+      saxophone
+      trombone
+      violin
+      voice
+    end
   end
   
   factory :unique_user, class: User do
