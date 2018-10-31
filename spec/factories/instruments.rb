@@ -1,8 +1,4 @@
 FactoryBot.define do
-  factory :instrument do
-    type { 'Instrument' }
-    user { association :user }
-  end
 
   factory :accordion, class: Accordion do
     type { 'Accordion' }
@@ -63,4 +59,19 @@ FactoryBot.define do
     type { 'Voice' }
     user { association :user }
   end
+
+  factory :instrument, class: Instrument do
+    type { Instrument.types.sample }
+    user { association :user }
+    
+    factory :instrument_with_tunes do
+      transient do
+        tunes_count { 5 }
+      end
+      after(:create) do |instrument, evaluator|
+        create_list(:tune, evaluator.tunes_count, instruments: [instrument], users:[instrument.user])
+      end
+    end
+  end
+
 end

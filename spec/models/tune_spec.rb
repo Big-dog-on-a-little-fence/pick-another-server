@@ -14,12 +14,12 @@ RSpec.describe Tune, type: :model do
     expect(tune2).to_not be_valid
   end
 
-  it "has a long enough name" do
+  it "doesn't have a long enough name" do
     tune2 = build(:tune, name: "hi")
     expect(tune2).to_not be_valid
   end
 
-  it "has a valid key" do
+  it "doesn't have a valid key" do
     tune2 = build(:tune, name: "The Long Journey", key: "AminorLike")
     expect(tune2).to_not be_valid
   end

@@ -1,19 +1,19 @@
 require 'rails_helper'
 
-RSpec.feature "CreateInstrumentRepertoires", type: :feature do
+RSpec.feature "InstrumentRepertoireRequests", type: :feature do
   
-  scenario "Create user with all instruments and add instrument tunes" do
+  scenario "Create user with all instruments and add a tune to each instrument" do
     50.times do
-      create(:tune) 
+      create(:tune)
     end
-    @user = create(:user_with_all_instruments)
-    login_as @user
-    visit "/users/#{@user.id}"
-    @user.instruments.each do |instrument|
+    user = create(:user_with_all_instruments)
+    login_as user
+    visit "/users/#{user.id}"
+    user.instruments.each do |instrument|
       expect(page).to have_text(instrument.type)
     end
     count = 1
-    @user.instruments.each do |instrument|
+    user.instruments.each do |instrument|
       visit "/tunes"
       @tune = Tune.find count
       click_link @tune.name
