@@ -10,15 +10,15 @@ RSpec.feature "InstrumentRequests", type: :feature do
   scenario "Create instrument" do 
     visit user_path(@user)
     click_on "Add instrument"
-    instrument_type = Instrument.type.sample
+    instrument_type = Instrument.types.sample
     select instrument_type, from: 'instrument_type'
     click_on "Add instrument"
-    
+    expect(page).to have_current_path(user_path(@user))
     expect(page).to have_content(instrument_type)
   end
   
   scenario "Delete instrument" do
-    
+    # TODO
   end
   
   scenario "Get instrument tunes index" do
