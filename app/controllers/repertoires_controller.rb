@@ -8,6 +8,9 @@ class RepertoiresController < ApplicationController
   def new
     @repertoire = Repertoire.new
     @repertoire.tune = Tune.find(params[:tune_id])
+    # current_user.instrument.each do |instrument|
+    #   @repertoire.instrument_tunes.build(instrument: instrument, tune: @repertoire.tune)
+    # end
   end
 
   def edit
@@ -23,7 +26,8 @@ class RepertoiresController < ApplicationController
       @repertoire.create_activity :create, owner: current_user
       @checked_instruments.each do |instrument|
         unless instrument.tunes.include?(@repertoire.tune)
-          instrument.tunes << @repertoire.tune
+          # instrument.tunes << @repertoire.tune
+          InstrumentTune.create(instrument: instrument, tune: @repertoire.tune, repertoire: @repertoire)
         end
       end
       @unchecked_instruments.each do |instrument|
@@ -40,13 +44,14 @@ class RepertoiresController < ApplicationController
   end
 
   def update
-    @checked_instruments = Instrument.find(params[:repertoire][:instrument_ids].drop(1)) # drop first blank hidden
+    @checked_instruments = Instrument.find(params[:repertoire][:instrument_tunes].drop(1)) # drop first blank hidden
     @unchecked_instruments = current_user.instruments - @checked_instruments
     if @repertoire.update(repertoire_params)
       # @repertoire.create_activity :update, owner: current_user
       @checked_instruments.each do |instrument|
         unless instrument.tunes.include?(@repertoire.tune)
-          instrument.tunes << @repertoire.tune
+          # instrument.tunes << @repertoire.tune
+          InstrumentTune.create(instrument: instrument, tune: @repertoire.tune, repertoire: @repertoire)
         end
       end
       @unchecked_instruments.each do |instrument|
@@ -78,8 +83,9 @@ class RepertoiresController < ApplicationController
   private
   
   def set_repertoire
-    @repertoire = Repertoire.includes(:tune, :instruments).find(params[:id])
+    @repertoire = Repertoire.includes(:tune, :instrument_tunes).find(params[:id])
     @tune = @repertoire.tune
+    @repertoire_instrument_ids = @repertoire.instrument_tunes.map {|it| it.instrument.id}
   end
 
   def repertoire_params

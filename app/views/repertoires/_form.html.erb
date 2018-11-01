@@ -4,8 +4,8 @@
   <%= form_for [:tune, @repertoire] do |f| %>
     <div class="form-group">
       <%= f.label "Instruments (check all that apply)" %><br>
-      <%= f.collection_check_boxes :instrument_ids, current_user.instruments.all, :id, :type do |cb| %>
-        <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
+      <%= f.collection_check_boxes :instrument_tunes, current_user.instruments.all, :id, :type do |cb| %>
+        <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(checked: @repertoire.has_instrument_by_id?(cb.value)) + cb.text} %>
       <% end %>
     </div>
     <div class="form-group">
