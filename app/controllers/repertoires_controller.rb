@@ -8,9 +8,6 @@ class RepertoiresController < ApplicationController
   def new
     @repertoire = Repertoire.new
     @repertoire.tune = Tune.find(params[:tune_id])
-    # current_user.instrument.each do |instrument|
-    #   @repertoire.instrument_tunes.build(instrument: instrument, tune: @repertoire.tune)
-    # end
   end
 
   def edit
@@ -20,7 +17,7 @@ class RepertoiresController < ApplicationController
     @repertoire = Repertoire.new(repertoire_params)
     @repertoire.user = current_user
     @repertoire.tune = Tune.find(params[:tune_id])
-    @checked_instruments = Instrument.find(params[:repertoire][:instrument_ids].drop(1)) # drop first blank hidden
+    @checked_instruments = Instrument.find(params[:repertoire][:instrument_tunes].drop(1)) # drop first blank hidden
     @unchecked_instruments = current_user.instruments - @checked_instruments
     if @repertoire.save
       @repertoire.create_activity :create, owner: current_user
