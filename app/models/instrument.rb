@@ -1,7 +1,9 @@
 class Instrument < ApplicationRecord
   belongs_to :user
-  has_many :instrument_tunes
-  has_many :tunes, through: :instrument_tunes
+  # has_many :instrument_tunes
+  # has_many :tunes, through: :instrument_tunes
+  has_many :instrument_repertoires
+  has_many :repertoires, through: :instrument_repertoires
 
   scope :accordions, -> { where(type: 'Accordion') } 
   scope :banjos, -> { where(type: 'Banjo') } 
@@ -19,5 +21,12 @@ class Instrument < ApplicationRecord
   def self.types
     %w(Accordion Banjo Bass Cello Clarinet Guitar Mandolin Piano Saxophone Trombone Violin Voice)
   end
-
+  
+  def tunes
+    self.repertoires.map {|r| r.tune}
+  end
+  
+  def tune_ids
+    self.repertoires.map {|r| r.tune.id}
+  end
 end

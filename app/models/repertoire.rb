@@ -5,18 +5,8 @@ class Repertoire < ActiveRecord::Base
   
   belongs_to :user
   belongs_to :tune
-  has_many :instrument_tunes
+  has_many :instrument_repertoires
+  has_many :instruments, through: :instrument_repertoires
   
-  def instruments
-    self.instrument_tunes.map {|it| it.instrument}
-  end
-  
-  def has_instrument?(instrument)
-    instruments.include?(instrument)
-  end
-  
-  def has_instrument_by_id?(instrument_id)
-    instrument_ids = instruments.map {|instrument| instrument.id}
-    instrument_ids.include?(instrument_id)
-  end
+  accepts_nested_attributes_for :instrument_repertoires, allow_destroy: true
 end

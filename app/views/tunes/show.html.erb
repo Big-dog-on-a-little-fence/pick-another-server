@@ -24,13 +24,17 @@
 
 <div>
   <h3>Repertoire status:</h3>
-  <% (@tune.instruments & current_user.instruments).each do |instrument| %>
-    <%= image_tag(instrument.type + '.svg', :class => 'svg-xxxs', 
-                :title => instrument.type.downcase) %>
+  <% if @repertoire.nil? %>
+    (none)
+  <% else %>
+    <% @repertoire.instruments.each do |instrument| %>
+      <%= image_tag(instrument.type + '.svg', :class => 'svg-xxxs', 
+                    :title => instrument.type.downcase) %>
+    <% end %>
   <% end %>
   <br>
   <h3>
-  <% if current_user.tunes.include?(@tune) %>
+  <% if @tune.users.include?(current_user) %>
     <%= link_to "Edit repertoire", edit_tune_repertoire_path(@tune, @repertoire), class: 'btn btn-md btn-warning' %>
     <%= link_to "(-) Remove from repertoire", tune_repertoire_path(@tune, @repertoire), method: :delete,
                   data: {confirm: "Are you sure you want to remove this tune from your repertoire?"},
@@ -43,7 +47,7 @@
 </div>
 
 <div>
-  <% if current_user.starred_tunes.include?(@tune) %>
+  <% if @tune.users_that_have_starred.include?(current_user) %>
     <div>
       <h3>Star goal:</h3>
       <%= @user_starred_tune.goal %>

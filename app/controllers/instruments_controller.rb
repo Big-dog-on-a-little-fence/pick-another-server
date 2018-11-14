@@ -9,10 +9,11 @@ class InstrumentsController < ApplicationController
   end
   
   def show
-    tune_includes = [:users, :instruments, :users_that_have_starred, :sources, :charts, :lyric,
-                     :genres]
+    tune_includes = [:users, :users_that_have_starred, :sources, :charts, :lyric,
+                     :genres, repertoires: [:instruments]]
     @user = @instrument.user
-    @q = @instrument.tunes.ransack(params[:q])
+    tunes = Tune.where(id: @instrument.tune_ids)
+    @q = tunes.ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
     @instrument_tunes = @q.result.includes(tune_includes).page(params[:page]).per(100)
     @path = eval("#{@instrument.type.downcase}_path(@instrument)")
@@ -52,7 +53,7 @@ class InstrumentsController < ApplicationController
   private
 
   def set_instrument
-    @instrument = Instrument.includes(:user).find(params[:id])
+    @instrument = Instrument.includes(:user, repertoires: [:tune]).find(params[:id])
   end
 
   def set_type

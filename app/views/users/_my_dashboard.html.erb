@@ -16,7 +16,7 @@
     <div class="btn-group-vertical">
     <% @instruments.each do |instrument| %>
       <%= link_to image_tag(instrument.type + '.svg', :class => 'svg-xs svg-padding-right') +
-          "#{instrument.type} (#{instrument.tunes.size} tunes)", 
+          "#{instrument.type} (#{instrument.repertoires.size} tunes)", 
           eval("#{instrument.type.downcase}_path(instrument)"), class: 'btn btn-db text-bump' %>
     <% end %>
     </div>

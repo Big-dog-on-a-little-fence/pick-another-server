@@ -12,9 +12,9 @@ class UsersController < ApplicationController
   end
   
   def show
-    @recent_repertoires = @user.repertoires.take(10) # reps ordered by id desc in user model
+    @recent_repertoires = @user.repertoires.includes(:tune).take(10) # reps ordered by id desc in user model
     @recent_tunes = @recent_repertoires.map { |r| r.tune }
-    @instruments = @user.instruments.left_joins(:tunes).group(:id).order('COUNT(tunes.id) DESC')
+    @instruments = @user.instruments.left_joins(:repertoires).group(:id).order('COUNT(repertoires.id) DESC')
   end
   
   def update  ## added for devise username modification
@@ -36,8 +36,8 @@ class UsersController < ApplicationController
   end
   
   def repertoire
-    tune_includes = [:users, :users_that_have_starred, :instruments, :lyric, 
-                     :charts, :genres, :tune_genres, :sources]
+    tune_includes = [:users, :users_that_have_starred, :lyric, :charts, :genres,
+                    :sources, repertoires: [:instruments]]
     @q = @user.tunes.includes(tune_includes).ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
     @user_tunes = @q.result.page(params[:page]).per(100)
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   private
   
   def set_user
-    user_includes = [:instruments, repertoires: :tune, user_starred_tunes: :tune]
+    user_includes = [:repertoires, :user_starred_tunes]
     @user = User.includes(user_includes).find(params[:id])
   end
   
