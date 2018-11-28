@@ -24,23 +24,21 @@
 
 <div>
   <h3>Repertoire status:</h3>
-  <% if @repertoire.nil? %>
-    (none)
-  <% else %>
-    <% @repertoire.instruments.each do |instrument| %>
+  <% if @tune.has_user?(current_user) %>
+    <% @instruments.each do |instrument| %>
       <%= image_tag(instrument.type + '.svg', :class => 'svg-xxxs', 
                     :title => instrument.type.downcase) %>
     <% end %>
+  <% else %>
+    (none)
   <% end %>
   <br>
   <h3>
-  <% if @tune.users.include?(current_user) %>
-    <%= link_to "Edit repertoire", edit_tune_repertoire_path(@tune, @repertoire), class: 'btn btn-md btn-warning' %>
-    <%= link_to "(-) Remove from repertoire", tune_repertoire_path(@tune, @repertoire), method: :delete,
-                  data: {confirm: "Are you sure you want to remove this tune from your repertoire?"},
-                  class: "btn btn-md btn-danger", value: "Remove from repertoire" %>
+  <% if @tune.has_user?(current_user) %>
+    <%= link_to "Edit repertoire", edit_multiple_tune_instrument_tunes_path(@tune), 
+        class: 'btn btn-md btn-warning' %>
   <% else %>
-    <%= link_to "(+) Add to repertoire", new_tune_repertoire_path(@tune), 
+    <%= link_to "(+) Add to repertoire", new_multiple_tune_instrument_tunes_path(@tune), 
         class: 'btn btn-md btn-primary', value: "Add to repertoire" %>
   <% end %>
   </h3>

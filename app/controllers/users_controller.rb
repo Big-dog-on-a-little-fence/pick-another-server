@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def show
     @recent_repertoires = @user.repertoires.includes(:tune).take(10) # reps ordered by id desc in user model
     @recent_tunes = @recent_repertoires.map { |r| r.tune }
-    @instruments = @user.instruments.left_joins(:repertoires).group(:id).order('COUNT(repertoires.id) DESC')
+    @instruments = @user.instruments.left_joins(:tunes).group(:id).order('COUNT(tunes.id) DESC')
   end
   
   def update  ## added for devise username modification

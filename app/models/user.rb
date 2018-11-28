@@ -54,6 +54,22 @@ class User < ApplicationRecord
     end
   end
 
+  # def unique_tunes
+  #   user_tunes = []
+  #   self.instruments.each do |i|
+  #     user_tunes << i.tunes
+  #   end
+  #   user_tunes.uniq!
+  # end
+
+  def instrument_tunes
+    InstrumentTune.where(instrument: self.instruments)
+  end
+
+  def instrument_tunes_for_tune(tune)
+    InstrumentTune.where(instrument: self.instruments, tune: tune)
+  end
+
   private
 
   def generate_authentication_token

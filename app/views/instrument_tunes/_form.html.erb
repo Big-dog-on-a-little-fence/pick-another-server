@@ -1,0 +1,23 @@
+<%#= render "shared/errors", obj: @repertoire %>
+
+<div class="panel-body">
+  <div class="form-group">
+    <%#= form_tag tune_instrument_tune_path, :method => :post do %>
+    <%= form_tag create_multiple_tune_instrument_tune_path, :method => :post do %>  
+      <% @instruments.each do |instrument| %>
+        <div>
+          <%= label_tag instrument.type %>
+          <%= hidden_field_tag "instruments[][id]", instrument.id %>
+          <%= check_box_tag "instruments[][known]", "yes", instrument.has_tune?(@tune) %>
+          <%= text_field_tag "instruments[][tunings]" %>
+        </div>
+      <% end %>
+      <div>
+        <%= submit_tag "Submit" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="form-group">
+    [ <%= link_to "Cancel request and return to tune listing", tune_path(:tune_id) %> ]
+  </div>
+</div> <!-- end panel-body -->

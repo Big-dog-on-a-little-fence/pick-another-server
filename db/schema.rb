@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181108152037) do
+ActiveRecord::Schema.define(version: 20181012194117) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "trackable_type"
@@ -72,15 +72,6 @@ ActiveRecord::Schema.define(version: 20181108152037) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "instrument_repertoires", force: :cascade do |t|
-    t.integer  "instrument_id", null: false
-    t.integer  "repertoire_id", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["instrument_id"], name: "index_instrument_repertoires_on_instrument_id"
-    t.index ["repertoire_id"], name: "index_instrument_repertoires_on_repertoire_id"
   end
 
   create_table "instrument_tunes", force: :cascade do |t|

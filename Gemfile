@@ -36,6 +36,7 @@ gem 'public_activity'
 gem 'rack-cors', :require => 'rack/cors'
 # Nested form helpers, easy to dynamically add/remove nested records
 gem "nested_form"
+gem 'webpacker', '~> 3.5'
 
 group :test do
   gem 'database_cleaner'

@@ -1,23 +1,31 @@
 <%= render "shared/errors", obj: @repertoire %>
 
 <div class="panel-body">
-  <%= form_for [:tune, @repertoire] do |f| %>
-    <div class="form-group">
-      <%= f.label "Instruments (check all that apply)" %><br>
-      <%#= f.collection_check_boxes :instrument_repertoires, current_user.instruments.all, :id, :type do |cb| %>
-        <%# cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(checked: @repertoire.instruments.include?(cb.value)) + cb.text} %>
-      <%# end %>
-      <%= f.fields_for :instrument_repertoires do |ir_form| %>
-        <%= check_box_tag(ir_form.object) %>
-        <%= label_tag(ir_form.object, ir_form.object.instrument.type) %>
+  <div class="form-group">
+    <%= form_tag your_action_path do %>
+      <% current_user.instruments do |i|%>
+        <h2><%= i.type %></h2>
+        <%= check_box_tag :name => "instrument_tunes[][]" %>
       <% end %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-    </div>
-    <div class="form-group">
-        <%= f.submit %>
-    </div>
-    <div class="form-group">
-      [ <%= link_to "Cancel request and return to tune listing", tune_path(@repertoire.tune) %> ]
-    </div>
+      <%= submit_tag "Submit" %>
+    <% end %>
+  </div>
+  <div class="form-group">
+    [ <%= link_to "Cancel request and return to tune listing", tune_path(@repertoire.tune) %> ]
+  </div>
   <% end %>
 </div> <!-- end panel-body -->
+
+
+  <%#= form_for [:tune, @repertoire] do |f| %>
+  <!--  <div class="form-group">-->
+      <%#= f.label "Instruments (check all that apply)" %><br>
+      <%#= f.fields_for :instrument_repertoires do |ir_form| %>
+        <%#= check_box_tag(ir_form.object) %>
+        <%#= label_tag(ir_form.object, ir_form.object.instrument.type) %>
+      <%# end %>
+      <%#= f.hidden_field :user_id, :value => current_user.id %>
+  <!--  </div>-->
+  <!--  <div class="form-group">-->
+        <%#= f.submit %>
+  <!--  </div>-->

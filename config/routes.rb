@@ -27,6 +27,15 @@ Rails.application.routes.draw do
   end
   resources :tunes, except: [:destroy] do
     resources :repertoires, :user_starred_tunes, :sources, :lyrics, :charts, :comments
+    # resource :instrument_tune
+    resources :instrument_tunes do
+      collection do
+        get 'new_multiple'
+        post 'create_multiple'
+        get 'edit_multiple'
+        post 'update_multiple'
+      end
+    end
   end
   resources :articles do
     resources :comments

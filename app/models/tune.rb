@@ -5,8 +5,8 @@ class Tune < ApplicationRecord
   has_many :users, through: :repertoires
   has_many :user_starred_tunes
   has_many :users_that_have_starred, through: :user_starred_tunes, source: :user
-  # has_many :instrument_tunes
-  # has_many :instruments, through: :instrument_tunes
+  has_many :instrument_tunes
+  has_many :instruments, through: :instrument_tunes
   has_many :tune_genres
   has_many :genres, through: :tune_genres
   has_many :sources
@@ -18,8 +18,11 @@ class Tune < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { minimum:3, maximum: 50 }
   validates :key, presence: true, length: { minimum:1, maximum: 5 }
   
-  def instruments
-    self.repertoires.flat_map {|r| r.instruments}
+  def has_user?(user)
+    !self.instruments.where(user: user).empty?
   end
   
+  def instruments_by_user(user)
+    self.instruments.where(user: user)
+  end
 end

@@ -1,0 +1,24 @@
+<div class="panel-heading">
+  <h4>EDIT MULTIPLE What instument(s) have you learned <%#= @repertoire.tune.name %> on?</h4>
+  <div class="panel-body">
+    <div class="form-group">
+      <%= form_tag update_multiple_tune_instrument_tunes_path, :method => :post do %>
+        <% @instrument_tunes.each do |it| %>
+          <div>
+            <%= label_tag it.instrument.type %>
+            <%= hidden_field_tag "instrument_tunes[][id]", it.id %>
+            <%= hidden_field_tag "instrument_tunes[][instrument_id]", it.instrument.id %>
+            <%= hidden_field_tag "instrument_tunes[][tune_id]", @tune.id %>
+            <%= check_box_tag "instrument_tunes[][known]", "yes", it.instrument.has_tune?(@tune) %>
+          </div>
+        <% end %>
+        <div>
+          <%= submit_tag "Submit" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="form-group">
+      [ <%= link_to "Cancel request and return to tune listing", tune_path(@tune) %> ]
+    </div>
+  </div><!-- end panel-body -->
+</div><!-- end panel-heading -->

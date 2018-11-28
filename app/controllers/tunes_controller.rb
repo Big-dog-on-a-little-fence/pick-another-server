@@ -7,12 +7,11 @@ class TunesController < ApplicationController
     @q = Tune.ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
     @tunes = @q.result.includes(:sources, :genres, :lyric, :charts, :users, 
-              :users_that_have_starred, repertoires: :instruments).page(params[:page]).per(100)
+              :users_that_have_starred, :instruments).page(params[:page]).per(100)
     @path = tunes_path
   end
 
   def show
-    @repertoire = Repertoire.includes(:instruments).where(tune_id: @tune.id, user_id: current_user.id).take
     @user_starred_tune = UserStarredTune.where(tune_id: @tune.id, user_id: current_user.id).take
   end
 
@@ -47,10 +46,12 @@ class TunesController < ApplicationController
   private
 
   def set_tune
-    tune_includes = [:users, :users_that_have_starred, :genres, :lyric,
-                    comments: [:user], comments: [:commentable], comments: [:comments], 
+    tune_includes = [:users, :users_that_have_starred, :genres, :lyric, :instruments,
+                    comments: [:user, :commentable, :comments], 
                     charts: [progressions: [:measures]]]
     @tune = Tune.includes(tune_includes).find(params[:id])
+    # @instrument_tunes = @tune.instrument_tunes_by_user(current_user)
+    @instruments = @tune.instruments_by_user(current_user)
   end
 
   def tune_params

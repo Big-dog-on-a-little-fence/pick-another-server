@@ -6,11 +6,9 @@ class RepertoiresController < ApplicationController
   end
 
   def new
-    @repertoire = Repertoire.new
-    @repertoire.tune = Tune.find(params[:tune_id])
-    @user = current_user
-    @user.instruments.each do |instrument|
-      @repertoire.instrument_repertoires.build(instrument: instrument, repertoire: @repertoire)
+    @instrument_tunes = []
+    current_user.instruments.each do |i|
+      @instrument_tunes << InstrumentTune.new(instrument: i)
     end
   end
 
@@ -18,20 +16,8 @@ class RepertoiresController < ApplicationController
   end
 
   def create
-    @repertoire = Repertoire.new(repertoire_params)
-    @repertoire.user = current_user
-    @repertoire.tune = Tune.find(params[:tune_id])
-    @checked_instruments = Instrument.find(params[:repertoire][:instrument_repertoires].drop(1)) # drop first blank hidden
-    @checked_instruments.each do |instrument|
-      @repertoire.instrument_repertoires.build(instrument: instrument, repertoire: @repertoire)
-    end
-    if @repertoire.save
-      @repertoire.create_activity :create, owner: current_user
-      flash[:success] = @repertoire.tune.name + " was added to your repertoire"
-      redirect_to tune_path(@repertoire.tune)
-    else
-      flash[:danger] = "Something went wrong"
-      render "new"
+    params[:instrument_tunes].each do |instrument_tune_params|
+      InstrumentTune.create(instrument_tune_params)
     end
   end
 
@@ -60,7 +46,7 @@ class RepertoiresController < ApplicationController
     # @repertoire_instrument_ids = @repertoire.instrument_tunes.map {|it| it.instrument.id}
   end
 
-  def repertoire_params
-    params.require(:repertoire).permit(:user_id, :tune_id, instrument_repertoires: [:instrument])
+  def instrument_tune_params
+    params.require(:instrument_tune).permit(:instrument, :tune, :tunings)
   end
 end
