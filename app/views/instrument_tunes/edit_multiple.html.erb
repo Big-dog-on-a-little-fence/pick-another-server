@@ -1,5 +1,5 @@
 <div class="panel-heading">
-  <h4>EDIT MULTIPLE What instument(s) have you learned <%#= @repertoire.tune.name %> on?</h4>
+  <h4>Edit your repertoire: What instument(s) have you learned <%= @tune.name %> on?</h4>
   <div class="panel-body">
     <div class="form-group">
       <%= form_tag update_multiple_tune_instrument_tunes_path, :method => :post do %>

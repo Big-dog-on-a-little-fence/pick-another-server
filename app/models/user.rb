@@ -30,7 +30,7 @@ class User < ApplicationRecord
   
   # delegate :banjos, :basses, :cellos, :guitars, :mandolins, :violins, :voices, to: :instruments
 
-  scope :starts_with, -> (username) { where("username like ?", "#{username}%")}
+  # scope :starts_with, -> (username) { where("username like ?", "#{username}%")}
 
   attr_accessor :login
 
@@ -54,13 +54,19 @@ class User < ApplicationRecord
     end
   end
 
-  # def unique_tunes
-  #   user_tunes = []
-  #   self.instruments.each do |i|
-  #     user_tunes << i.tunes
-  #   end
-  #   user_tunes.uniq!
-  # end
+  def instrument_ids
+    self.instruments.map {|instrument| instrument.id}
+  end
+
+  def unique_tunes
+    tune_includes = [:users, :users_that_have_starred, :lyric, :charts, :genres,
+                    :sources, :instruments]
+    user_tunes = []
+    self.instruments.each do |instrument|
+      user_tunes += instrument.tunes.includes(tune_includes)
+    end
+    user_tunes.uniq!
+  end
 
   def instrument_tunes
     InstrumentTune.where(instrument: self.instruments)

@@ -1,7 +1,7 @@
 class TunesController < ApplicationController
   # Convention methods order ==> Index, Show, New, Edit, Create, Update, Destroy
   before_action :set_tune, only: [:show, :edit, :update, :destroy]
-
+  
   def index
     @user = current_user
     @q = Tune.ransack(params[:q])
@@ -9,6 +9,7 @@ class TunesController < ApplicationController
     @tunes = @q.result.includes(:sources, :genres, :lyric, :charts, :users, 
               :users_that_have_starred, :instruments).page(params[:page]).per(100)
     @path = tunes_path
+    @current_user_tunes = Tune.user_tunes(current_user) # used for full instrument repertoire
   end
 
   def show
