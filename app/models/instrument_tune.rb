@@ -4,4 +4,5 @@ class InstrumentTune < ApplicationRecord
   belongs_to :instrument
   belongs_to :tune
 
+  delegate :user, to: :instrument
 end

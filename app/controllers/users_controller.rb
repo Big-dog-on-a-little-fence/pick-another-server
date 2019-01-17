@@ -12,8 +12,9 @@ class UsersController < ApplicationController
   end
   
   def show
-    @recent_repertoires = @user.repertoires.includes(:tune).take(10) # reps ordered by id desc in user model
-    @recent_tunes = @recent_repertoires.map { |r| r.tune }
+    # @recent_repertoires = @user.repertoires.includes(:tune).take(10) # reps ordered by id desc in user model
+    @recent_instrument_tunes = InstrumentTune.joins(:instrument).where("instruments.user_id = ?", "#{@user.id}").order(id: :desc).take(10)
+    @recent_tunes = @recent_instrument_tunes.map { |r| r.tune }.uniq
     @instruments = @user.instruments.left_joins(:tunes).group(:id).order('COUNT(tunes.id) DESC')
   end
   
