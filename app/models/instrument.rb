@@ -2,8 +2,6 @@ class Instrument < ApplicationRecord
   belongs_to :user
   has_many :instrument_tunes
   has_many :tunes, through: :instrument_tunes
-  # has_many :instrument_repertoires
-  # has_many :repertoires, through: :instrument_repertoires
 
   scope :accordions, -> { where(type: 'Accordion') } 
   scope :banjos, -> { where(type: 'Banjo') } 
@@ -31,5 +29,9 @@ class Instrument < ApplicationRecord
       return 1
     end
     return 0
+  end
+  
+  def tunings
+    nil
   end
 end

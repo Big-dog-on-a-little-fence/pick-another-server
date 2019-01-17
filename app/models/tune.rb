@@ -19,7 +19,7 @@ class Tune < ApplicationRecord
   validates :key, presence: true, length: { minimum:1, maximum: 5 }
   
   scope :user_tunes, ->(user) { joins(:instruments).where(instruments: {id: user.instrument_ids}).distinct }
-  
+
   def has_user?(user)
     !self.instruments.where(user: user).empty?
   end
