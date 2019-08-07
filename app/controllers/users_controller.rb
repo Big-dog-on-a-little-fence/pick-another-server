@@ -39,9 +39,7 @@ class UsersController < ApplicationController
   def repertoire
     tune_includes = [:users_that_have_starred, :lyric, :charts, :genres,
                     :sources, :instruments]
-    user_instrument_ids = @user.instruments.map { |instrument| instrument.id}
-    tunes = Tune.includes(tune_includes).where(instruments: {id: user_instrument_ids}).distinct
-    @q = tunes.includes(tune_includes).ransack(params[:q])
+    @q = @user.tunes.includes(tune_includes).ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
     @user_tunes = @q.result.page(params[:page]).per(100)
     @path = repertoire_user_path(@user)
