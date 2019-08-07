@@ -10,7 +10,6 @@ class Tune < ApplicationRecord
   has_many :genres, through: :tune_genres
   has_many :sources
   has_one :lyric
-  has_and_belongs_to_many :jams
   has_many :charts
   has_many :comments, as: :commentable
 
