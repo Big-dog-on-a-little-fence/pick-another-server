@@ -32,7 +32,8 @@ class InstrumentTunesController < ApplicationController
     @tune = Tune.find(params[:tune_id])
     checked_instrument_tune_params = params[:instrument_tunes].select {|it| it[:known] == "yes" }
     checked_instrument_tune_params.each do |it_params|
-      InstrumentTune.create(instrument_tune_params(it_params))
+      instrument_tune = InstrumentTune.create(instrument_tune_params(it_params))
+      instrument_tune.create_activity :create, owner: current_user
     end
     redirect_to tune_url(@tune)
   end
@@ -52,7 +53,8 @@ class InstrumentTunesController < ApplicationController
     unchecked_instrument_tune_params = params[:instrument_tunes] - checked_instrument_tune_params
     checked_instrument_tune_params.each do |it_params|
       if it_params[:id].empty?
-        InstrumentTune.create(instrument_tune_params(it_params))
+        instrument_tune = InstrumentTune.create(instrument_tune_params(it_params))
+        instrument_tune.create_activity :create, owner: current_user
       else
         InstrumentTune.find(it_params[:id]).update_attributes(instrument_tune_params(it_params))
       end
