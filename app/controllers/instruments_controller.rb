@@ -12,8 +12,7 @@ class InstrumentsController < ApplicationController
     tune_includes = [:users, :users_that_have_starred, :sources, :charts, :lyric,
                      :genres, :instruments]
     @user = @instrument.user
-    tunes = Tune.where(id: @instrument.tune_ids)
-    @q = tunes.ransack(params[:q])
+    @q = @instrument.tunes.ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
     @tunes = @q.result.includes(tune_includes).page(params[:page]).per(100)
     @path = eval("#{@instrument.type.downcase}_path(@instrument)")

@@ -12,6 +12,7 @@ class GenresController < ApplicationController
     @q = @genre.tunes.includes(tunes_includes).ransack(params[:q])
     @genre_tunes = @q.result.page(params[:page]).per(25)
     @user = current_user
+    @current_user_tunes = Tune.user_tunes(current_user)
   end
   
   def new
