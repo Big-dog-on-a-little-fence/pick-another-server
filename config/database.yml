@@ -13,8 +13,11 @@ development:
   host: <%= ENV["DB_HOST"] || "localhost" %>
   # Important configs for cloud9, change password value
   # to what you entered in the previous psql step.
-  template: template0
-  username: username
+  # template: template0
+  # username: username
+  # password: password
+  template: template1
+  username: postgres
   password: password
 
 test:
