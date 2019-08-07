@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   has_many :instruments
   has_many :instrument_tunes, -> { order("id DESC") }, through: :instruments
-  has_many :tunes, -> { order("id DESC").uniq }, through: :instrument_tunes
+  has_many :tunes, -> { order("id DESC").distinct }, through: :instrument_tunes
   has_many :user_starred_tunes
   has_many :starred_tunes, through: :user_starred_tunes, source: :tune
   has_many :articles, dependent: :destroy

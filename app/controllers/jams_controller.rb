@@ -5,7 +5,7 @@ class JamsController < ApplicationController
   helper_method :jam_structure
   
   def index
-    @jams = Jam.includes(:users).all.order('created_at DESC')
+    @jams = Jam.includes(:users, :tunes).all.order('created_at DESC')
     @jams = @jams.page(params[:page]).per(50)
   end
   
@@ -56,12 +56,8 @@ class JamsController < ApplicationController
   end
   
   def set_tunes
-    user_includes = [:repertoires, :tunes]
     unless @jam.users.length < 1
-      @tunes = @jam.users[0].tunes.includes(:genres, :sources, charts: [progressions: :measures])
-      @jam.users.includes(user_includes).each do |user|
-        @tunes &= user.tunes
-      end
+      @tunes = @jam.tunes.includes(:genres, :sources, charts: [progressions: :measures])
     end
   end
 
