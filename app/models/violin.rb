@@ -1,8 +1,4 @@
 class Violin < Instrument
-  TUNINGS = ['GDAE','ADAE','AEAE','AEAC#','GDGD']
-  
-  def tunings
-    TUNINGS
-  end
+  # TUNINGS = ['GDAE','ADAE','AEAE','AEAC#','GDGD']
   
 end

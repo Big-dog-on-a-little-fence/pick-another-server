@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @tuning.notes %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tuning.name %>
+</p>
+
+<p>
+  <strong>Instrument type:</strong>
+  <%= @tuning.instrument_type %>
+</p>
+
+<%= link_to 'Edit', edit_tuning_path(@tuning) %> |
+<%= link_to 'Back', tunings_path %>
