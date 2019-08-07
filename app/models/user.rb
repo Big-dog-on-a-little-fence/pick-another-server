@@ -5,16 +5,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   before_save :ensure_authentication_token
 
-  has_many :articles, dependent: :destroy
-  has_many :repertoires, -> { order(id: :desc) }
-  has_many :tunes, through: :repertoires
+  has_many :instruments
+  has_many :instrument_tunes, -> { order("id DESC") }, through: :instruments
+  has_many :tunes, -> { order("id DESC").uniq }, through: :instrument_tunes
   has_many :user_starred_tunes
   has_many :starred_tunes, through: :user_starred_tunes, source: :tune
+  has_many :articles, dependent: :destroy
   has_many :jam_users
   has_many :jams, through: :jam_users
   has_many :comments
   
-  has_many :instruments
   has_one :accordion
   has_one :banjo
   has_one :bass
