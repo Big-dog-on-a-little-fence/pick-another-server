@@ -5,4 +5,13 @@ class Jam < ApplicationRecord
   has_many :comments, as: :commentable
   
   ## TODO: validations
+  
+  def tunes_everyone_knows
+    tunes_intersection = self.tunes
+    self.users.each do |user|
+      tunes_intersection &= user.tunes
+    end
+    tunes_intersection.distinct
+  end
+
 end
