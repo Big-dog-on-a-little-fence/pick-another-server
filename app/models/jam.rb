@@ -7,11 +7,12 @@ class Jam < ApplicationRecord
   ## TODO: validations
   
   def tunes_everyone_knows
-    tunes_intersection = self.tunes
+    tunes_includes = [:genres, :sources, charts: [progressions: :measures]]
+    tunes_intersection = self.tunes.includes(tunes_includes)
     self.users.each do |user|
-      tunes_intersection &= user.tunes
+      tunes_intersection &= user.tunes.includes(tunes_includes)
     end
-    tunes_intersection.distinct
+    tunes_intersection
   end
 
 end

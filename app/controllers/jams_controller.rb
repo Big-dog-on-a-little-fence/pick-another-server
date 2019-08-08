@@ -57,7 +57,8 @@ class JamsController < ApplicationController
   
   def set_tunes
     unless @jam.users.length < 1
-      @tunes = @jam.tunes_everyone_knows.includes(:genres, :sources, charts: [progressions: :measures])
+      # @tunes = @jam.tunes_everyone_knows.includes(:genres, :sources, charts: [progressions: :measures])
+      @tunes = @jam.tunes_everyone_knows
     end
   end
 
