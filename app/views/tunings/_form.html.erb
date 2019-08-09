@@ -23,7 +23,8 @@
 
   <div class="field">
     <%= f.label :instrument_type %>
-    <%= f.number_field :instrument_type %>
+    <%#= f.number_field :instrument_type %>
+    <%= f.select :instrument_type, Instrument.types %>
   </div>
 
   <div class="actions">
