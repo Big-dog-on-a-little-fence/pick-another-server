@@ -12,7 +12,11 @@ class Tune < ApplicationRecord
   has_one :lyric
   has_many :charts
   has_many :tune_tunings
-  has_many :tunings, through: :tune_tunings
+  has_many :tunings, -> { order(instrument_type: :asc) }, through: :tune_tunings do
+    def by_instrument_type(instrument_type)
+       where(:instrument_type => instrument_type)
+    end
+   end
   has_many :comments, as: :commentable
 
   validates :name, presence: true, uniqueness: true, length: { minimum:3, maximum: 50 }
@@ -27,4 +31,5 @@ class Tune < ApplicationRecord
   def instruments_by_user(user)
     self.instruments.where(user: user)
   end
+  
 end

@@ -11,6 +11,13 @@
         <% end %>
       <% end %>
     </h3>
+    <% if @tune.tunings.any? %>
+      <hr>
+      <h4>Non-Standard Tunings</h4>
+      <% @tune.tunings.each do |tuning| %>
+        <h4><%= "#{tuning.instrument_type}: #{tuning.notes}" %></h4>
+      <% end %>
+    <% end %>
   </div>
   <br>
   <div>
