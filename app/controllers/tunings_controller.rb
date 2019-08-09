@@ -10,6 +10,13 @@ class TuningsController < ApplicationController
   # GET /tunings/1
   # GET /tunings/1.json
   def show
+    tune_includes = [:users_that_have_starred, :lyric, :charts, :genres,
+                     :sources, :instruments]
+    @q = @tuning.tunes.ransack(params[:q])
+    @q.sorts = 'updated_at desc' if @q.sorts.empty?
+    @tunes = @q.result.includes(tune_includes).page(params[:page]).per(100)
+    @current_user_tunes = Tune.user_tunes(current_user)
+    @user = current_user
   end
 
   # GET /tunings/new
