@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190808160647) do
+ActiveRecord::Schema.define(version: 20190808212142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,15 @@ ActiveRecord::Schema.define(version: 20190808160647) do
   create_table "tune_genres", force: :cascade do |t|
     t.integer "tune_id"
     t.integer "genre_id"
+  end
+
+  create_table "tune_tunings", force: :cascade do |t|
+    t.integer  "tune_id"
+    t.integer  "tuning_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tune_id"], name: "index_tune_tunings_on_tune_id", using: :btree
+    t.index ["tuning_id"], name: "index_tune_tunings_on_tuning_id", using: :btree
   end
 
   create_table "tunes", force: :cascade do |t|
