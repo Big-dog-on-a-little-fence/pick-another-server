@@ -15,7 +15,7 @@
       <hr>
       <h4>Non-Standard Tunings</h4>
       <% @tune.tunings.each do |tuning| %>
-        <h4><%= "#{tuning.instrument_type}: #{tuning.notes}" %></h4>
+        <h4><%= "#{tuning.instrument_type}: #{tuning.notes} #{tuning.name ? '(' + tuning.name + ')' : ''}" %></h4>
       <% end %>
     <% end %>
   </div>
