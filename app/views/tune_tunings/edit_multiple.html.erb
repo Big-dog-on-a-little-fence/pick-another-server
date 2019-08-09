@@ -1,0 +1,24 @@
+<div class="panel-heading">
+  <h4>Edit tunings for <%= @tune.name %></h4>
+  <div class="panel-body">
+    <div class="form-group">
+      <%= form_tag update_multiple_tune_tune_tunings_path, :method => :post do %>
+        <% @tune_tunings.each do |tt| %>
+          <div>
+            <%= label_tag "#{tt.tuning.instrument_type} #{tt.tuning.notes} (#{tt.tuning.name})" %>
+            <%= hidden_field_tag "tune_tunings[][id]", tt.id %>
+            <%= hidden_field_tag "tune_tunings[][tuning_id]", tt.tuning.id %>
+            <%= hidden_field_tag "tune_tunings[][tune_id]", @tune.id %>
+            <%= check_box_tag "tune_tunings[][known]", "yes", tt.tuning.has_tune?(@tune) %>
+          </div>
+        <% end %>
+        <div>
+          <%= submit_tag "Submit" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="form-group">
+      [ <%= link_to "Cancel request and return to tune listing", tune_path(@tune) %> ]
+    </div>
+  </div><!-- end panel-body -->
+</div><!-- end panel-heading -->

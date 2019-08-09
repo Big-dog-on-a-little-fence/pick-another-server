@@ -18,6 +18,15 @@
         <h4><%= "#{tuning.instrument_type}: #{tuning.notes} #{tuning.name ? '(' + tuning.name + ')' : ''}" %></h4>
       <% end %>
     <% end %>
+    <h4>
+    <% if @tune.tunings.any? %>
+      <%= link_to "Edit tunings", edit_multiple_tune_tune_tunings_path(@tune), 
+          class: 'btn btn-md btn-warning' %>
+    <% else %>
+      <%= link_to "(+) Add tunings", new_multiple_tune_tune_tunings_path(@tune), 
+          class: 'btn btn-md btn-primary', value: "Add tunings" %>
+    <% end %>
+    </h4>
   </div>
   <br>
   <div>

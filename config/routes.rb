@@ -37,6 +37,14 @@ Rails.application.routes.draw do
         post 'update_multiple'
       end
     end
+    resources :tune_tunings do
+      collection do
+        get 'new_multiple'
+        post 'create_multiple'
+        get 'edit_multiple'
+        post 'update_multiple'
+      end
+    end
   end
   resources :articles do
     resources :comments
