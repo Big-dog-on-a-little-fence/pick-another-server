@@ -1,19 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Notes:</strong>
-  <%= @tuning.notes %>
-</p>
+<h2>
+  <div class="jumbotron">
+    <%= "#{@tuning.name} tuning on the #{@tuning.instrument_type}:" %>
+    <span><strong><%= @tuning.notes %></strong></span>
+  </div>
+</h2>
 
-<p>
-  <strong>Name:</strong>
-  <%= @tuning.name %>
-</p>
-
-<p>
-  <strong>Instrument type:</strong>
-  <%= @tuning.instrument_type %>
-</p>
+<br>
 
 <%= link_to 'Edit', edit_tuning_path(@tuning) %> |
 <%= link_to 'Back', tunings_path %>

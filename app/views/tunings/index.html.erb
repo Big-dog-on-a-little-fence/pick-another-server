@@ -2,7 +2,7 @@
 
 <h1>Tunings</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Notes</th>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Tuning', new_tuning_path %>
+<%= button_to "(+) New Tuning", new_tuning_path, :method => "get", class: "btn btn-lg btn-primary" %>

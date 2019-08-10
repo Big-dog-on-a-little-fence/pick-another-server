@@ -5,7 +5,12 @@ class InstrumentsController < ApplicationController
   before_action :set_type
   
   def index
-    @instruments = type_class.all
+    # @instruments = type_class.all.order(type: :asc)
+    instruments_unordered = type_class.all
+    @q = instruments_unordered.ransack(params[:q])
+    @q.sorts = 'type asc' if @q.sorts.empty?
+    @instruments = @q.result.includes(:user).page(params[:page]).per(20)
+    @instrument_types = Instrument.types
   end
   
   def show

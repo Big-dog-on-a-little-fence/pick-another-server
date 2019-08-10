@@ -19,7 +19,7 @@ class Instrument < ApplicationRecord
   def self.types
     %w(Accordion Banjo Bass Cello Clarinet Guitar Mandolin Piano Saxophone Trombone Violin Voice)
   end
-  
+
   def has_tune?(tune)
     self.tunes.include?(tune)
   end
@@ -30,8 +30,5 @@ class Instrument < ApplicationRecord
     end
     return 0
   end
-  
-  def tunings
-    nil
-  end
+
 end
