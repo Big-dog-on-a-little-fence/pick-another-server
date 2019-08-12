@@ -22,6 +22,11 @@
         <%= f.label :tunings_notes_eq, "Has specific tuning" %>
         <%= f.collection_select :tunings_notes_eq, Tuning.all, :notes, :instrument_type_notes_and_name, include_blank: "All tunings", class: "form-control" %>
       </div>
+      <div class="form-group form-inline">
+        <%= f.label :lyric_id_not_null, "Has lyrics" %>
+        <%#= f.select :lyric_id_present, [['True', 0], ['False', 1], ['All', 2]], class: "form-control" %>
+        <%= f.check_box :lyric_id_not_null, {}, true, nil %>
+      </div>
       <div class="actions">
         <button type="submit" class="btn btn-default">
           <i class="fa fa-search header-icon-pad-right" aria-hidden="true"></i>
