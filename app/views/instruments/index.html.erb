@@ -4,9 +4,9 @@
 <div class="row well">
   <div class="container">
     <div>
-      Jump to: 
-      <%= render 'instrument_type_page', instrument_types: @instrument_types %>
+      <h4><%= render 'instrument_type_page', instrument_types: @instrument_types %></h4>
     </div>
+    <br>
     <%= search_form_for @q, url: instruments_path, html: { method: :get } do |f| %>
       <div class="form-group form-inline">
         <%= f.label :type_cont, "Instrument name contains" %>
@@ -43,7 +43,7 @@
         </td>
         <td><%= instrument.type %></td>
         <td><%= instrument.user.username %></td>
-        <td><%= link_to 'Show', "" %></td>
+        <td><%= link_to 'Show', eval("#{instrument.type.downcase}_path(instrument)") %></td>
       </tr>
     <% end %>
   </tbody>
