@@ -6,5 +6,9 @@ class Tuning < ApplicationRecord
   def has_tune?(tune)
     self.tunes.include?(tune)
   end  
-
+  
+  def instrument_type_notes_and_name
+    "#{self.notes} on #{self.instrument_type} (#{self.name})"
+  end
+  
 end
