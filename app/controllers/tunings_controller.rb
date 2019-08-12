@@ -72,10 +72,11 @@ class TuningsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_tuning
       @tuning = Tuning.find(params[:id])
+      @tune = @tuneing.tune
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tuning_params
-      params.require(:tuning).permit(:notes, :name, :instrument_type)
+      params.require(:tuning).permit(:notes, :name, :instrument_type, :tune_id)
     end
 end
