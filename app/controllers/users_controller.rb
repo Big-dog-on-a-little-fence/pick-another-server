@@ -12,10 +12,9 @@ class UsersController < ApplicationController
   end
   
   def show
-    # @recent_repertoires = @user.repertoires.includes(:tune).take(10) # reps ordered by id desc in user model
-    @recent_instrument_tunes = InstrumentTune.joins(:instrument).where("instruments.user_id = ?", "#{@user.id}").order(id: :desc).take(10)
+    @recent_instrument_tunes = InstrumentTune.eager_load([{instrument: :user}, :tune]).where("instruments.user_id = ?", "#{@user.id}").take(10)
     @recent_tunes = @recent_instrument_tunes.map { |r| r.tune }.uniq
-    @instruments = @user.instruments.left_joins(:tunes).group(:id).order('COUNT(tunes.id) DESC')
+    @instruments = @user.instruments.ordered_by_number_of_tunes
   end
   
   def update  ## added for devise username modification
@@ -49,7 +48,7 @@ class UsersController < ApplicationController
   private
   
   def set_user
-    user_includes = [:user_starred_tunes]
+    user_includes = [{user_starred_tunes: :tune}, {instruments: {instrument_tunes: :tune}}]
     @user = User.includes(user_includes).find(params[:id])
   end
   

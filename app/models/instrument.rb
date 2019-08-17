@@ -2,6 +2,8 @@ class Instrument < ApplicationRecord
   belongs_to :user
   has_many :instrument_tunes
   has_many :tunes, through: :instrument_tunes
+  
+  scope :ordered_by_number_of_tunes, -> { left_joins(:tunes).group(:id).order('COUNT(tunes.id) DESC') }
 
   scope :accordions, -> { where(type: 'Accordion') } 
   scope :banjos, -> { where(type: 'Banjo') } 
