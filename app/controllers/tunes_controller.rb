@@ -7,7 +7,7 @@ class TunesController < ApplicationController
     @q = Tune.ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
     @tunes = @q.result.includes(:sources, :genres, :lyric, :charts, :users, 
-              :users_that_have_starred, :instruments, :tunings).page(params[:page]).per(100)
+              :users_that_have_starred, :tunings).page(params[:page]).per(100)
     @path = tunes_path
     @current_user_tunes = Tune.user_tunes(current_user) # used for full instrument repertoire
   end

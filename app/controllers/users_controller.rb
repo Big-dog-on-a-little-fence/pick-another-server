@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.page(params[:page])
+    @users = User.includes(:instruments).page(params[:page])
   end
   
   def show

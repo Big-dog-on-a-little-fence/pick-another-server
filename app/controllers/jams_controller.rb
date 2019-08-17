@@ -5,7 +5,7 @@ class JamsController < ApplicationController
   helper_method :jam_structure
   
   def index
-    @jams = Jam.includes(:users, :tunes).all.order('created_at DESC')
+    @jams = Jam.includes(:users).all.order('created_at DESC')
     @jams = @jams.page(params[:page]).per(50)
   end
   
@@ -24,7 +24,7 @@ class JamsController < ApplicationController
       flash[:success] = "Jam created successfully"
       redirect_to jam_path(@jam)
     else
-      render 'new'  ## render new article template in case of failure for another try
+      render 'new'
     end
   end
 
@@ -57,7 +57,6 @@ class JamsController < ApplicationController
   
   def set_tunes
     unless @jam.users.length < 1
-      # @tunes = @jam.tunes_everyone_knows.includes(:genres, :sources, charts: [progressions: :measures])
       @tunes = @jam.tunes_everyone_knows
     end
   end

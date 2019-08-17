@@ -3,7 +3,7 @@ class GenresController < ApplicationController
   
   def index
     @ordered_genres = Genre.all.left_joins(:tunes).group(:id).order('COUNT(tunes.id) DESC')
-    @genres = @ordered_genres.includes(:tunes).page(params[:page])
+    @genres = @ordered_genres.page(params[:page])
   end
 
   def show
