@@ -1,13 +1,24 @@
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
   pool: 5
-  timeout: 5000
+  # username: <%= ENV['USERNAME'] %>
+  # password: <%= ENV['PASSWORD'] %>
+  # host:     <%= ENV['IP'] %>
 
 development:
   <<: *default
   database: pick_another_dev
-  adapter: <%= ENV["DB_ADAPTER"] || "sqlite3" %>
+  # adapter: <%= ENV["DB_ADAPTER"] || "sqlite3" %>
   host: <%= ENV["DB_HOST"] || "localhost" %>
+  # Important configs for cloud9, change password value
+  # to what you entered in the previous psql step.
+  # template: template0
+  # username: username
+  # password: password
+  template: template1
+  username: postgres
+  password: password
 
 test:
   <<: *default

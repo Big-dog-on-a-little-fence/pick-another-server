@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<h2>
+  <div class="jumbotron">
+    <%= "#{@tuning.name} tuning on the #{@tuning.instrument_type}:" %>
+    <span><strong><%= @tuning.notes %></strong></span>
+  </div>
+</h2>
+
+<br>
+
+<%= link_to 'Edit', edit_tuning_path(@tuning) %> |
+<%= link_to 'Back', tunings_path %>
+
+
+<%= render partial: '/tunes/tune', locals: { tunes: @tunes, q_obj: @q } %>

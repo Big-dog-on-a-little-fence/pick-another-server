@@ -1,0 +1,32 @@
+<%= form_for(tuning) do |f| %>
+  <% if tuning.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tuning.errors.count, "error") %> prohibited this tuning from being saved:</h2>
+
+      <ul>
+      <% tuning.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :notes %>
+    <%= f.text_field :notes %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :instrument_type %>
+    <%= f.select :instrument_type, Instrument.types %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

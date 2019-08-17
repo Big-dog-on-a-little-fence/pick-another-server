@@ -3,7 +3,7 @@ class GenresController < ApplicationController
   
   def index
     @ordered_genres = Genre.all.left_joins(:tunes).group(:id).order('COUNT(tunes.id) DESC')
-    @genres = @ordered_genres.includes(:tunes).page(params[:page])
+    @genres = @ordered_genres.page(params[:page])
   end
 
   def show
@@ -12,6 +12,7 @@ class GenresController < ApplicationController
     @q = @genre.tunes.includes(tunes_includes).ransack(params[:q])
     @genre_tunes = @q.result.page(params[:page]).per(25)
     @user = current_user
+    @current_user_tunes = Tune.user_tunes(current_user)
   end
   
   def new

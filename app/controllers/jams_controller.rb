@@ -24,7 +24,7 @@ class JamsController < ApplicationController
       flash[:success] = "Jam created successfully"
       redirect_to jam_path(@jam)
     else
-      render 'new'  ## render new article template in case of failure for another try
+      render 'new'
     end
   end
 
@@ -56,12 +56,8 @@ class JamsController < ApplicationController
   end
   
   def set_tunes
-    user_includes = [:repertoires, :tunes]
     unless @jam.users.length < 1
-      @tunes = @jam.users[0].tunes.includes(:genres, :sources, charts: [progressions: :measures])
-      @jam.users.includes(user_includes).each do |user|
-        @tunes &= user.tunes
-      end
+      @tunes = @jam.tunes_everyone_knows
     end
   end
 

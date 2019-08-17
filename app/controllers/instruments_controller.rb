@@ -5,17 +5,23 @@ class InstrumentsController < ApplicationController
   before_action :set_type
   
   def index
-    @instruments = type_class.all
+    # @instruments = type_class.all.order(type: :asc)
+    instruments_unordered = type_class.all
+    @q = instruments_unordered.ransack(params[:q])
+    @q.sorts = 'type asc' if @q.sorts.empty?
+    @instruments = @q.result.includes(:user).page(params[:page]).per(20)
+    @instrument_types = Instrument.types
   end
   
   def show
-    tune_includes = [:users, :instruments, :users_that_have_starred, :sources, :charts, :lyric,
-                     :genres]
+    tune_includes = [:users, :users_that_have_starred, :sources, :charts, :lyric,
+                     :genres, :instruments]
     @user = @instrument.user
     @q = @instrument.tunes.ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
-    @instrument_tunes = @q.result.includes(tune_includes).page(params[:page]).per(100)
+    @tunes = @q.result.includes(tune_includes).page(params[:page]).per(100)
     @path = eval("#{@instrument.type.downcase}_path(@instrument)")
+    @current_user_tunes = Tune.user_tunes(current_user) # used for full instrument repertoire
   end
 
   def new
@@ -52,7 +58,7 @@ class InstrumentsController < ApplicationController
   private
 
   def set_instrument
-    @instrument = Instrument.includes(:user).find(params[:id])
+    @instrument = Instrument.includes(:user, :tunes).find(params[:id])
   end
 
   def set_type

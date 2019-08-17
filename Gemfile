@@ -36,6 +36,7 @@ gem 'public_activity'
 gem 'rack-cors', :require => 'rack/cors'
 # Nested form helpers, easy to dynamically add/remove nested records
 gem "nested_form"
+gem 'webpacker', '~> 3.5'
 
 group :test do
   gem 'database_cleaner'
@@ -46,7 +47,8 @@ end
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
+  # gem 'sqlite3'
+  gem 'pg', '~> 0.21'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'dotenv'
@@ -66,7 +68,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem "rails-erd"
+  gem 'rails-erd'
+  gem 'pry-rails'
 end
 
 group :production do

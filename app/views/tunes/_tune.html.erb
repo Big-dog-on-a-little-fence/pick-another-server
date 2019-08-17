@@ -17,12 +17,12 @@
     <% tunes.each do |tune| %>
       <%= content_tag :tr, class: "tune-row", id: tune.id do %>
         <td>
-          <% if tune.users.include?(current_user) %>
+          <% if @current_user_tunes.include?(tune) %>
             <i class="fa fa-check" aria-hidden="true" title="in your repertoire"></i>
           <% else %>
-            <%= link_to new_tune_repertoire_path(tune) do %>
-              <i class="fa fa-plus add-to-repertoire" aria-hidden="true" title="add to repertoire"></i>
-            <% end %>
+            <%#= link_to new_multiple_tune_instrument_tune_path(tune) do %>
+              <!--<i class="fa fa-plus add-to-repertoire" aria-hidden="true" title="add to repertoire"></i>-->
+            <%# end %>
           <% end %>
           <% if tune.users_that_have_starred.include?(current_user) %>
             <span class="fa-stack">

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tunings</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Notes</th>
+      <th>Name</th>
+      <th>Instrument type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tunings.each do |tuning| %>
+      <tr>
+        <td><%= tuning.notes %></td>
+        <td><%= tuning.name %></td>
+        <td><%= tuning.instrument_type %></td>
+        <td><%= link_to 'Show', tuning %></td>
+        <td><%= link_to 'Edit', edit_tuning_path(tuning) %></td>
+        <td><%= link_to 'Destroy', tuning, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= button_to "(+) New Tuning", new_tuning_path, :method => "get", class: "btn btn-lg btn-primary" %>

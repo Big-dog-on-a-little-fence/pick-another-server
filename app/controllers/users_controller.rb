@@ -8,13 +8,13 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.page(params[:page])
+    @users = User.includes(:instruments).page(params[:page])
   end
   
   def show
-    @recent_repertoires = @user.repertoires.take(10) # reps ordered by id desc in user model
-    @recent_tunes = @recent_repertoires.map { |r| r.tune }
-    @instruments = @user.instruments.left_joins(:tunes).group(:id).order('COUNT(tunes.id) DESC')
+    @recent_instrument_tunes = InstrumentTune.eager_load([{instrument: :user}, :tune]).where("instruments.user_id = ?", "#{@user.id}").take(10)
+    @recent_tunes = @recent_instrument_tunes.map { |r| r.tune }.uniq
+    @instruments = @user.instruments.ordered_by_number_of_tunes
   end
   
   def update  ## added for devise username modification
@@ -36,18 +36,19 @@ class UsersController < ApplicationController
   end
   
   def repertoire
-    tune_includes = [:users, :users_that_have_starred, :instruments, :lyric, 
-                     :charts, :genres, :tune_genres, :sources]
+    tune_includes = [:users_that_have_starred, :lyric, :charts, :genres,
+                    :sources, :instruments]
     @q = @user.tunes.includes(tune_includes).ransack(params[:q])
     @q.sorts = 'updated_at desc' if @q.sorts.empty?
     @user_tunes = @q.result.page(params[:page]).per(100)
     @path = repertoire_user_path(@user)
+    @current_user_tunes = Tune.user_tunes(current_user) # used for full instrument repertoire
   end
 
   private
   
   def set_user
-    user_includes = [:instruments, repertoires: :tune, user_starred_tunes: :tune]
+    user_includes = [{user_starred_tunes: :tune}, {instruments: {instrument_tunes: :tune}}]
     @user = User.includes(user_includes).find(params[:id])
   end
   

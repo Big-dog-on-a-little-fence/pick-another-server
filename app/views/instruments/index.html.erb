@@ -1,22 +1,49 @@
 <h1>Instruments</h1>
-<table>
+
+<br>
+<div class="row well">
+  <div class="container">
+    <div>
+      <h4><%= render 'instrument_type_page', instrument_types: @instrument_types %></h4>
+    </div>
+    <br>
+    <%= search_form_for @q, url: instruments_path, html: { method: :get } do |f| %>
+      <div class="form-group form-inline">
+        <%= f.label :type_cont, "Instrument name contains" %>
+        <%= f.search_field :type_cont, autofocus: true, class: "form-control" %>
+      </div>
+      <div class="form-group form-inline">
+        <%= f.label :user_username, "Username contains" %>
+        <%= f.search_field :user_username, autofocus: true, class: "form-control" %>
+      </div>
+      <div class="actions">
+        <button type="submit" class="btn btn-default">
+          <i class="fa fa-search header-icon-pad-right" aria-hidden="true"></i>
+          Search
+        </button>
+      </div>
+    <% end %>
+  </div><!-- /input-group -->
+</div><!-- /row -->
+
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Logo</th>
-      <th>Instrument</th>
-      <th>Musician</th>
-      <th></th>
+      <th class="col-md-1">Logo</th>
+      <th class="col-md-2"><%= sort_link(@q, :type, 'Instrument', default_order: 'type asc') %></th>
+      <th class="col-md-2"><%= sort_link(@q, :user_username, 'Musician', default_order: 'lower(user_username) asc') %></th>
+      <th class="col-md-7"></th>
     </tr>
 </thead>
   <tbody>
     <% @instruments.each do |instrument| %>
       <tr>
         <td>
-          <%= image_tag(instrument.type + '.svg', :class => 'svg-xs') %>
+          <%= image_tag(instrument.type + '.svg', :class => 'svg-sm') %>
         </td>
         <td><%= instrument.type %></td>
         <td><%= instrument.user.username %></td>
-        <td><%= link_to 'Show', "" %></td>
+        <td><%= link_to 'Show', eval("#{instrument.type.downcase}_path(instrument)") %></td>
       </tr>
     <% end %>
   </tbody>

@@ -5,16 +5,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   before_save :ensure_authentication_token
 
-  has_many :articles, dependent: :destroy
-  has_many :repertoires, -> { order(id: :desc) }
-  has_many :tunes, through: :repertoires
+  has_many :instruments
+  has_many :instrument_tunes, -> { order("id DESC") }, through: :instruments
+  has_many :tunes, -> { order("id DESC").distinct }, through: :instrument_tunes
   has_many :user_starred_tunes
   has_many :starred_tunes, through: :user_starred_tunes, source: :tune
+  has_many :articles, dependent: :destroy
   has_many :jam_users
   has_many :jams, through: :jam_users
   has_many :comments
   
-  has_many :instruments
   has_one :accordion
   has_one :banjo
   has_one :bass
@@ -30,7 +30,7 @@ class User < ApplicationRecord
   
   # delegate :banjos, :basses, :cellos, :guitars, :mandolins, :violins, :voices, to: :instruments
 
-  scope :starts_with, -> (username) { where("username like ?", "#{username}%")}
+  # scope :starts_with, -> (username) { where("username like ?", "#{username}%")}
 
   attr_accessor :login
 
@@ -52,6 +52,28 @@ class User < ApplicationRecord
     if authentication_token.blank?
       self.authentication_token = generate_authentication_token
     end
+  end
+
+  def instrument_ids
+    self.instruments.map {|instrument| instrument.id}
+  end
+
+  def unique_tunes
+    tune_includes = [:users, :users_that_have_starred, :lyric, :charts, :genres,
+                    :sources, :instruments]
+    user_tunes = []
+    self.instruments.each do |instrument|
+      user_tunes += instrument.tunes.includes(tune_includes)
+    end
+    user_tunes.uniq!
+  end
+
+  def instrument_tunes
+    InstrumentTune.where(instrument: self.instruments)
+  end
+
+  def instrument_tunes_for_tune(tune)
+    InstrumentTune.where(instrument: self.instruments, tune: tune)
   end
 
   private

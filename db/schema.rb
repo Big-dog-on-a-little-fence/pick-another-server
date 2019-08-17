@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181012194117) do
+ActiveRecord::Schema.define(version: 20190808212142) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "activities", force: :cascade do |t|
     t.string   "trackable_type"
@@ -23,9 +26,9 @@ ActiveRecord::Schema.define(version: 20181012194117) do
     t.integer  "recipient_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
-    t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
-    t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
+    t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
+    t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
+    t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
   end
 
   create_table "article_genres", force: :cascade do |t|
@@ -49,7 +52,7 @@ ActiveRecord::Schema.define(version: 20181012194117) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "tune_id"
-    t.index ["tune_id"], name: "index_charts_on_tune_id"
+    t.index ["tune_id"], name: "index_charts_on_tune_id", using: :btree
   end
 
   create_table "chords", force: :cascade do |t|
@@ -65,7 +68,7 @@ ActiveRecord::Schema.define(version: 20181012194117) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "user_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
   create_table "genres", force: :cascade do |t|
@@ -79,18 +82,16 @@ ActiveRecord::Schema.define(version: 20181012194117) do
     t.integer  "tune_id",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["instrument_id"], name: "index_instrument_tunes_on_instrument_id"
-    t.index ["tune_id"], name: "index_instrument_tunes_on_tune_id"
+    t.index ["instrument_id"], name: "index_instrument_tunes_on_instrument_id", using: :btree
+    t.index ["tune_id"], name: "index_instrument_tunes_on_tune_id", using: :btree
   end
 
   create_table "instruments", force: :cascade do |t|
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "user_id"
-    t.integer  "repertoire_id"
     t.string   "type"
-    t.index ["repertoire_id"], name: "index_instruments_on_repertoire_id"
-    t.index ["user_id"], name: "index_instruments_on_user_id"
+    t.index ["user_id"], name: "index_instruments_on_user_id", using: :btree
   end
 
   create_table "jam_users", force: :cascade do |t|
@@ -104,20 +105,13 @@ ActiveRecord::Schema.define(version: 20181012194117) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "jams_tunes", id: false, force: :cascade do |t|
-    t.integer "jam_id",  null: false
-    t.integer "tune_id", null: false
-    t.index ["jam_id"], name: "index_jams_tunes_on_jam_id"
-    t.index ["tune_id"], name: "index_jams_tunes_on_tune_id"
-  end
-
   create_table "lyrics", force: :cascade do |t|
     t.string   "version"
     t.text     "body"
     t.integer  "tune_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tune_id"], name: "index_lyrics_on_tune_id"
+    t.index ["tune_id"], name: "index_lyrics_on_tune_id", using: :btree
   end
 
   create_table "measures", force: :cascade do |t|
@@ -125,7 +119,7 @@ ActiveRecord::Schema.define(version: 20181012194117) do
     t.integer  "progression_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["progression_id"], name: "index_measures_on_progression_id"
+    t.index ["progression_id"], name: "index_measures_on_progression_id", using: :btree
   end
 
   create_table "notes", force: :cascade do |t|
@@ -133,7 +127,7 @@ ActiveRecord::Schema.define(version: 20181012194117) do
     t.integer  "tune_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tune_id"], name: "index_notes_on_tune_id"
+    t.index ["tune_id"], name: "index_notes_on_tune_id", using: :btree
   end
 
   create_table "progressions", force: :cascade do |t|
@@ -142,14 +136,7 @@ ActiveRecord::Schema.define(version: 20181012194117) do
     t.datetime "updated_at",  null: false
     t.string   "chord_list"
     t.integer  "chart_id"
-    t.index ["chart_id"], name: "index_progressions_on_chart_id"
-  end
-
-  create_table "repertoires", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "tune_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.index ["chart_id"], name: "index_progressions_on_chart_id", using: :btree
   end
 
   create_table "sources", force: :cascade do |t|
@@ -159,12 +146,21 @@ ActiveRecord::Schema.define(version: 20181012194117) do
     t.integer  "tune_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["tune_id"], name: "index_sources_on_tune_id"
+    t.index ["tune_id"], name: "index_sources_on_tune_id", using: :btree
   end
 
   create_table "tune_genres", force: :cascade do |t|
     t.integer "tune_id"
     t.integer "genre_id"
+  end
+
+  create_table "tune_tunings", force: :cascade do |t|
+    t.integer  "tune_id"
+    t.integer  "tuning_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tune_id"], name: "index_tune_tunings_on_tune_id", using: :btree
+    t.index ["tuning_id"], name: "index_tune_tunings_on_tuning_id", using: :btree
   end
 
   create_table "tunes", force: :cascade do |t|
@@ -175,14 +171,22 @@ ActiveRecord::Schema.define(version: 20181012194117) do
     t.string   "time_signature"
   end
 
+  create_table "tunings", force: :cascade do |t|
+    t.string   "notes"
+    t.string   "name"
+    t.string   "instrument_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "user_starred_tunes", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.integer  "tune_id",    null: false
     t.string   "goal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tune_id"], name: "index_user_starred_tunes_on_tune_id"
-    t.index ["user_id"], name: "index_user_starred_tunes_on_user_id"
+    t.index ["tune_id"], name: "index_user_starred_tunes_on_tune_id", using: :btree
+    t.index ["user_id"], name: "index_user_starred_tunes_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -201,9 +205,17 @@ ActiveRecord::Schema.define(version: 20181012194117) do
     t.string   "username"
     t.boolean  "admin",                  default: false
     t.string   "authentication_token"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["username"], name: "index_users_on_username", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
+  add_foreign_key "charts", "tunes"
+  add_foreign_key "comments", "users"
+  add_foreign_key "instruments", "users"
+  add_foreign_key "lyrics", "tunes"
+  add_foreign_key "measures", "progressions"
+  add_foreign_key "notes", "tunes"
+  add_foreign_key "progressions", "charts"
+  add_foreign_key "sources", "tunes"
 end

@@ -69,6 +69,7 @@ FactoryBot.define do
         tunes_count { 5 }
       end
       after(:create) do |instrument, evaluator|
+        # repertoires missing from instrument_tunes
         create_list(:tune, evaluator.tunes_count, instruments: [instrument], users:[instrument.user])
       end
     end

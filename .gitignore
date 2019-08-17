@@ -23,3 +23,8 @@
 
 pick_another_dev
 pick_another_test
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity

@@ -2,6 +2,8 @@ class Instrument < ApplicationRecord
   belongs_to :user
   has_many :instrument_tunes
   has_many :tunes, through: :instrument_tunes
+  
+  scope :ordered_by_number_of_tunes, -> { left_joins(:tunes).group(:id).order('COUNT(tunes.id) DESC') }
 
   scope :accordions, -> { where(type: 'Accordion') } 
   scope :banjos, -> { where(type: 'Banjo') } 
@@ -18,6 +20,17 @@ class Instrument < ApplicationRecord
 
   def self.types
     %w(Accordion Banjo Bass Cello Clarinet Guitar Mandolin Piano Saxophone Trombone Violin Voice)
+  end
+
+  def has_tune?(tune)
+    self.tunes.include?(tune)
+  end
+  
+  def has_tune_return_int(tune)
+    if self.tunes.include?(tune)
+      return 1
+    end
+    return 0
   end
 
 end
