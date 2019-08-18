@@ -26,7 +26,8 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # Search and sorting functionality
-gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'ransack'
+
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
