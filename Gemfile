@@ -8,7 +8,7 @@ gem 'puma', '~> 3.0'
 gem 'devise'
 gem 'kaminari'
 # gem 'bootstrap-will_paginate'
-gem 'bootstrap-sass', '~> 3.3.5'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
 # Use SCSS for stylesheets
