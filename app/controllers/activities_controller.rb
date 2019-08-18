@@ -1,7 +1,8 @@
 class ActivitiesController < ApplicationController
   def index
     activities_includes = [:owner, :trackable]
-    @activities = PublicActivity::Activity.includes(activities_includes).order("created_at desc")
-    @activities = @activities.page(params[:page]).per(50)
+    @q = PublicActivity::Activity.ransack(params[:q])
+    @activities = @q.result.includes(activities_includes).order("created_at desc").page(params[:page]).per(50)
+    @activity_types = {"Tune":"Tune", "InstrumentTune":"Learned Tune", "Comment":"Comment"}
   end
 end
