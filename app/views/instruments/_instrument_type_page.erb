@@ -1,4 +1,13 @@
-<% instrument_types.each do |instrument_type| %>
-  <%= link_to image_tag(instrument_type + '.svg', :class => 'svg-xxxs svg-padding-right-sm') +
-      " #{instrument_type.pluralize}", eval("#{instrument_type.pluralize.downcase}_path") %>
-<% end %>
+<div class="row">
+  <div class="col-md-2 inst-padding-bottom">
+    <strong>
+      <%= link_to "All Instruments", instruments_path %>
+    </strong>
+  </div>
+  <% instrument_types.each do |instrument_type| %>
+    <div class="col-md-2 inst-padding-bottom">
+      <strong><%= link_to image_tag(instrument_type + '.svg', :class => 'svg-sm svg-padding-right-sm') +
+          " #{instrument_type.pluralize}", eval("#{instrument_type.pluralize.downcase}_path") %></strong>
+    </div>
+  <% end %>
+</div>
