@@ -4,7 +4,8 @@
 <div class="row well">
   <div class="container">
     <div>
-      <h4><%= render 'instrument_type_page', instrument_types: @instrument_types %></h4>
+      <h5><strong>Filter by instrument:</strong></h5>
+      <%= render 'instrument_type_page', instrument_types: @instrument_types %>
     </div>
     <br>
     <%= search_form_for @q, url: instruments_path, html: { method: :get } do |f| %>
@@ -29,7 +30,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th class="col-md-1">Logo</th>
+      <th class="col-md-1"></th>
       <th class="col-md-2"><%= sort_link(@q, :type, 'Instrument', default_order: 'type asc') %></th>
       <th class="col-md-2"><%= sort_link(@q, :user_username, 'Musician', default_order: 'lower(user_username) asc') %></th>
       <th class="col-md-7"></th>
