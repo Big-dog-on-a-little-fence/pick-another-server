@@ -3,7 +3,7 @@
   <div class="container">
     <%= search_form_for q_obj, url: path, html: { method: :get } do |f| %>
       <div class="form-group form-inline">
-        <%= f.label :trackable_type_eq, "Has specific tuning" %>
+        <%= f.label :trackable_type_eq, "Filter by activity type: " %>
         <%= f.collection_select :trackable_type_eq, @activity_types, :to_s, :to_s, include_blank: "All activities", class: "form-control" %>
       </div>
       <div class="actions">
