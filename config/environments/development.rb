@@ -17,6 +17,9 @@ Rails.application.configure do
 
   # Whitelist IPs
   config.web_console.whitelisted_ips << "50.233.102.11"
+  
+  # Disable Host Authorization for development
+  config.hosts = nil
 
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?

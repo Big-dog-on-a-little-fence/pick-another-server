@@ -79,6 +79,9 @@ config.webpacker.check_yarn_integrity = false
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
+  # Whitelist host
+  config.hosts << "https://bigdogonalittlefence.herokuapp.com"
+
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
