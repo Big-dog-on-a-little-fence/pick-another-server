@@ -80,8 +80,11 @@ Rails.application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
-  # Whitelist host
-  config.hosts << "https://bigdogonalittlefence.herokuapp.com"
+  # Whitelist production host
+  config.hosts << "bigdogonalittlefence.herokuapp.com"
+  
+  # Whitelist staging host
+  config.hosts << "stg-big-dog.herokuapp.com"
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
