@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
-ruby "2.4.1"
+ruby "2.5.0"
 
-gem 'rails', '>= 5.0.7.2', '< 5.1'
+gem 'rails', '>= 6.0.0'
+gem 'pg', '~> 0.21'
 gem 'puma', '~> 3.0'
 # Use devise for authentication
 gem 'devise'
@@ -12,12 +13,12 @@ gem 'bootstrap-sass', '~> 3.4.1'
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '>= 6.0'
 gem 'font-awesome-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '>= 4.1.0'
 gem 'active_model_serializers', '~> 0.10.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -31,13 +32,13 @@ gem 'ransack'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Acitivity feed to track app recent activity
 gem 'public_activity'
 gem 'rack-cors', :require => 'rack/cors'
 # Nested form helpers, easy to dynamically add/remove nested records
 gem "nested_form"
-gem 'webpacker', '~> 3.5'
+gem 'webpacker'
 
 group :test do
   gem 'database_cleaner'
@@ -49,12 +50,11 @@ end
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   # gem 'sqlite3'
-  gem 'pg', '~> 0.21'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'dotenv'
   gem 'jazz_fingers'
-  gem 'bullet', group: 'development'
+  gem 'bullet'
   gem "better_errors"
   gem "binding_of_caller"
   gem 'rspec-rails', '~> 3.8'
@@ -74,6 +74,5 @@ group :development do
 end
 
 group :production do
-  gem 'pg', '~> 0.21'
   gem 'rails_12factor'
 end

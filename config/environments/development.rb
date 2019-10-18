@@ -1,5 +1,7 @@
 Rails.application.configure do
   # Verifies that versions and hashed value of the package contents in the project's package.json
+  config.webpacker.check_yarn_integrity = true
+  # Verifies that versions and hashed value of the package contents in the project's package.json
   config.webpacker.check_yarn_integrity = false
 
   # Settings specified here will take precedence over those in config/application.rb.
@@ -17,6 +19,9 @@ Rails.application.configure do
 
   # Whitelist IPs
   config.web_console.whitelisted_ips << "50.233.102.11"
+  
+  # Disable Host Authorization for development
+  config.hosts = nil
 
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
