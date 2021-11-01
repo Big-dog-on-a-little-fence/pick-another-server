@@ -87,8 +87,8 @@ $( document ).ready(function() {
       return embedLink;
     } 
     else if (link.includes('open.spotify')) {
-      splitLink = link.split('%3A');
-      embedLink = 'https://embed.spotify.com/?uri=spotify%3Atrack%3A' + splitLink[splitLink.length - 1];
+      splitLink = link.split('/');
+      embedLink = 'https://open.spotify.com/embed/track/' + splitLink[splitLink.length - 1] + '?utm_source=generator';
       return embedLink;
     } 
     else {
