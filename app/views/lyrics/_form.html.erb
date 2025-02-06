@@ -1,15 +1,16 @@
 <%= render "shared/errors", obj: @lyric %>
 
-<div class="panel-body">
+<div>
   <%= form_for [@tune, @lyric] do |f| %>
     <div class="form-group">
       <%= f.label :version %><br>
       <%= f.text_field :version, autofocus: true, class: "form-control" %>
     </div>
-    <div class="form-group">
+    <div>
       <%= f.label :body %><br>
-      <%= f.text_area :body, autofocus: true, class: "form-control", rows: "25" %>
+      <%= f.rich_text_area :body, autofocus: true %>
     </div>
+    <br>
     <div class="form-group">
         <%= f.submit %>
     </div>
@@ -17,4 +18,4 @@
       [ <%= link_to "Cancel request and return to tune page", tune_path(@tune) %> ]
     </div>
   <% end %>
-</div> <!-- end panel-body -->
+</div>
