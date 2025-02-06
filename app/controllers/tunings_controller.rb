@@ -76,6 +76,6 @@ class TuningsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tuning_params
-      params.require(:tuning).permit(:notes, :name, :instrument_type, :tune_id)
+      params.require(:tuning).permit(:notes, :name, :instrument_type, :tune_id, :description)
     end
 end

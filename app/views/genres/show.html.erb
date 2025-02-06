@@ -1,3 +1,6 @@
-<h1 align="center" class="jumbotron"><%= @genre.name %> Tunes</h1>
+<h1 align="center" class="jumbotron"><%= @genre.name %></h1>
 
+<%= @genre.description %>
+
+<h3 align="center"><%= @genre.name %> Tunes Index</h2>
 <%= render partial: '/tunes/tune', locals: { tunes: @genre_tunes, q_obj: @q } %>

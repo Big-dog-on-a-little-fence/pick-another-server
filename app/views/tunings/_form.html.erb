@@ -25,7 +25,13 @@
     <%= f.label :instrument_type %>
     <%= f.select :instrument_type, Instrument.types %>
   </div>
-
+  
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.rich_text_area :description %>
+  </div>
+  
+  <br>
   <div class="actions">
     <%= f.submit %>
   </div>
