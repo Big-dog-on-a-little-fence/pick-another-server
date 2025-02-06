@@ -7,10 +7,12 @@
   </div>
 </h2>
 
-<br>
 
 <%= link_to 'Edit', edit_tuning_path(@tuning) %> |
 <%= link_to 'Back', tunings_path %>
+<br><br>
 
+<%= @tuning.description %>
+<br>
 
 <%= render partial: '/tunes/tune', locals: { tunes: @tunes, q_obj: @q } %>

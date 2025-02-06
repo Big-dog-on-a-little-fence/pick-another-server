@@ -1,12 +1,14 @@
 {
   "dependencies": {
+    "@rails/actiontext": "^6.0.0",
     "@rails/webpacker": "3.5",
     "babel-preset-react": "^6.24.1",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3"
+    "react-dom": "^16.6.3",
+    "trix": "^2.1.12"
   },
   "devDependencies": {
-    "webpack-dev-server": "2.11.2"
+    "webpack-dev-server": "3.1.11"
   }
 }
