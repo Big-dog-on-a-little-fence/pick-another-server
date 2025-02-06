@@ -1,6 +1,6 @@
 class LyricsController < ApplicationController
   ### Convention order ==> Index, Show, New, Edit, Create, Update, Destroy
-  before_action :set_lyric, only: [:show, :edit, :update, :destroy]
+  before_action :set_lyric, only: [:show, :create, :edit, :update, :destroy]
   
   def index
   end
@@ -17,7 +17,6 @@ class LyricsController < ApplicationController
   end
   
   def create
-    @tune = Tune.find(params[:tune_id])
     @tune.lyric = Lyric.new(lyric_params)
     if @tune.lyric.save
       flash[:success] = "Lyrics were successfully created "
