@@ -19,6 +19,7 @@ Rails.application.configure do
 
   # Whitelist IPs
   config.web_console.whitelisted_ips << "50.233.102.11"
+  config.web_console.whitelisted_ips << "209.6.241.175"
   
   # Disable Host Authorization for development
   config.hosts = nil

@@ -100,7 +100,7 @@
     <h2 class="chart-title"><i class="fa fa-lg fa-microphone tune-icon"></i>  Lyrics  <i class="fa fa-lg fa-microphone tune-icon"></i></h2>
     <br>
     <div class="lyrics">
-      <%= simple_format(@tune.lyric.body) %>
+      <%= @tune.lyric.body %>
     </div>
   </div>
 <% end %>
