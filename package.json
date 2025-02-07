@@ -1,12 +1,12 @@
 {
   "dependencies": {
-    "@rails/actiontext": "^6.1.710",
+    "@rails/actiontext": "^8.0.100",
     "@rails/webpacker": "5.4.4",
     "babel-preset-react": "^6.24.1",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "trix": "^1.2.0"
+    "trix": "^2.1.12"
   },
   "devDependencies": {
     "sass": "^1.49.9",
