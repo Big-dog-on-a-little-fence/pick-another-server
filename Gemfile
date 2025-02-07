@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-ruby "2.5.0"
+ruby "3.2.0"
 
-gem 'rails', '>= 6.0.0'
-gem 'pg', '~> 0.21'
-gem 'puma', '~> 4.3'
+gem 'rails', '~> 6.1.7.10'
+gem 'pg', '~> 1.3.0'
+gem 'puma', '~> 4.3.7'
 # Use devise for authentication
 gem 'devise'
 gem 'kaminari'
@@ -65,7 +65,7 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-  gem 'listen', '~> 3.0.5'
+  gem 'listen', '~> 3.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -76,3 +76,4 @@ end
 group :production do
   gem 'rails_12factor'
 end
+gem "image_processing", "~> 1.13"
