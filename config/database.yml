@@ -4,7 +4,7 @@ default: &default
   pool: 5
   # username: <%= ENV['USERNAME'] %>
   # password: <%= ENV['PASSWORD'] %>
-  # host:     <%= ENV['IP'] %>
+  host: localhost
 
 development:
   <<: *default

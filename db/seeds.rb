@@ -10,7 +10,7 @@ require 'csv'
 
 User.create([
   { username: 'SammyN', email: 'sammy.nave@gmail.com', password: 'password', authentication_token: '1232' },
-  { username: 'SammyJ', email: 'sjbrunster@gmail.com', password: 'password', authentication_token: '1233' },
+  { username: 'esjay', email: 'sjbrunster@gmail.com', password: 'password', authentication_token: '1233' },
   { username: 'benbruno', email: 'ohschnap@gmail.com', password: 'password', authentication_token: '1234' },
   { username: 'Jer', email: 'jeremy.bohn@gmail.com', password: 'password', 'authentication_token': '1235' },
   { username: 'Scott', email: 'scottminkin@gmail.com', password: 'password', 'authentication_token': '1236' },
