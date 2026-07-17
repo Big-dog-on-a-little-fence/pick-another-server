@@ -26,6 +26,11 @@
       <%= link_to "Add Lyrics", new_tune_lyric_path(@tune), class: 'btn btn-md btn-primary edit-tune' %>
     <% end %>
     <%= link_to "Add Chord Chart", new_tune_chart_path(@tune), class: 'btn btn-md btn-primary edit-tune' %>
+    <% if @tune.strum_machine_url.present? %>
+      <%= link_to @tune.strum_machine_url, target: "_blank", rel: "noopener", class: 'btn btn-md btn-info edit-tune' do %>
+        Practice on Strum Machine <i class="fa fa-external-link" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
     <% if @tune.tunings.any? %>
       <%= link_to "Edit tunings", edit_multiple_tune_tune_tunings_path(@tune), 
           class: 'btn btn-md btn-warning' %>

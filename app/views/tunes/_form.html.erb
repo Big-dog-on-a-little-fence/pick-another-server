@@ -15,6 +15,10 @@
       <%= f.text_field :time_signature, autofocus: true, class: "form-control" %>
     </div>
     <div class="form-group">
+      <%= f.label :strum_machine_url, "Strum Machine link (optional)", class: "control-label" %><br>
+      <%= f.text_field :strum_machine_url, placeholder: "https://strummachine.com/...", class: "form-control" %>
+    </div>
+    <div class="form-group">
       <%= f.label "Genres (check all that apply)" %><br>
       <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :name do |cb| %>
         <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>

@@ -21,6 +21,7 @@ class Tune < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true, length: { minimum:3, maximum: 50 }
   validates :key, presence: true, length: { minimum:1, maximum: 5 }
+  validates :strum_machine_url, format: { with: /\Ahttps?:\/\//, message: "must be a valid URL" }, allow_blank: true
   
   scope :user_tunes, ->(user) { joins(:instruments).where(instruments: {id: user.instrument_ids}).distinct }
 
