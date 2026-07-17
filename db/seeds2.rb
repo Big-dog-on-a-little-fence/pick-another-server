@@ -44,15 +44,7 @@ tunes.each do |row|
 end
 
 # add tunes to users
-# User#tunes goes through Instrument then InstrumentTune (a nested has_many
-# :through), so it can't be written to directly - record tune-knowledge via
-# InstrumentTune against each user's first instrument instead.
 usernames = User.all.map(&:username)
-user_instruments = usernames.each_with_object({}) do |un, hash|
-  user = User.find_by(username: un)
-  hash[un] = user.instruments.first || Guitar.create!(user: user)
-end
-
 csv_tunes_users = File.read("#{Rails.root}/db/csv/tunes_users.csv")
 tunes_users = CSV.parse(csv_tunes_users, headers: true)
 tunes_users.each do |row|
@@ -60,8 +52,9 @@ tunes_users.each do |row|
   next if tune.nil?
 
   usernames.each do |un|
-    next unless row[un] == 'y'
-
-    InstrumentTune.find_or_create_by!(instrument: user_instruments[un], tune: tune)
+    user = User.find_by username: un
+    if (row[un] == 'y') && user.tunes.exclude?(tune)
+      user.tunes << tune
+    end
   end
 end
