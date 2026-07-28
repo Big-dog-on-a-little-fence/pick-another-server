@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby "3.2.0"
 
-gem 'rails', '~> 6.1.7.10'
+gem 'rails', '~> 8.1.3'
 gem 'pg', '~> 1.3.0'
 gem 'puma', '~> 5.6.9'
 # Use devise for authentication
@@ -76,4 +76,4 @@ end
 group :production do
   gem 'rails_12factor'
 end
-gem "image_processing", "~> 1.13"
+gem "image_processing", "~> 1.14"
