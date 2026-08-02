@@ -4,7 +4,7 @@ ruby "3.2.0"
 
 gem 'rails', '~> 6.1.7.10'
 gem 'pg', '~> 1.3.0'
-gem 'puma', '~> 5.6.9'
+gem 'puma', '~> 7.2.1'
 # Use devise for authentication
 gem 'devise'
 gem 'kaminari'
